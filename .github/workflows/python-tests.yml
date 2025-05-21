@@ -19,7 +19,7 @@ jobs:
         python-version: '3.10'
 
     - name: Run tests
-      working-directory: ./test
+      working-directory: CampingRobinsonCountryClub/test
       run: |
         chmod +x runtest.sh
         ./runtest.sh
