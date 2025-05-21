@@ -2,5 +2,4 @@
 set -e  # Exit immediately if any command fails
 
 # Run all tests
-# -s : looks in current directory
-python -m unittest -s test_TentModel.py
+python -m unittest test_TentModel.py
