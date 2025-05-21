@@ -21,9 +21,9 @@ class TentModel() :
         @summary: The init method initialize instance attributes.
         @param self: TestModel self parameter.
         """
-        self._tentCapacities = list[str]
-        self._leiPricePerPerson = 0
-        self._eurPricePerPerson = 0
+        self._tentCapacities : list[str] = []
+        self._leiPricePerPerson : int = 0
+        self._eurPricePerPerson : int = 0
 
     @property
     def TentCapacities(self) -> list[str] :
