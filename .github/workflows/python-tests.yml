@@ -18,7 +18,7 @@ jobs:
         python -m pip install --upgrade pip
 
     - name: Make script executable
-      run: chmod +x ./../../CampingRobinsonCountryClub/test/runtest.sh
+      run: chmod +x runtest.sh
 
     - name: Run tests
       run: |
