@@ -1,0 +1,45 @@
+/**********************************************************
+  Copyright (c) 2025 Matei Tibor. All rights reserved.
+  Description: CampingRobinsonCountryClub index_responsive css style
+  Version: 1.0
+**********************************************************/
+
+/*----------------------
+  Mobile and Tablets
+------------------------*/
+@media only screen
+    and (min-width: 380px)
+    and (max-width: 1024px) {
+
+    .header-mobile-menu-button {
+        display: inline;
+    }
+
+    .header-top-container,
+    .header-nav-container {
+        display: none;
+    }
+}
+
+/*----------------------
+  Desktop
+------------------------*/
+@media only screen
+    and (min-width : 1025px) {
+
+    .header-mobile-menu-button {
+        display: none;
+    }
+
+    .header-top-container > div {
+        display: inline-block;
+    }
+
+    .header-menu > li {
+        display: inline-block;
+    }
+
+    .header-top-menu {
+        float: right;
+    }
+}

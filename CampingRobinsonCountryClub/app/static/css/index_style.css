@@ -1,0 +1,73 @@
+/**********************************************************
+  Copyright (c) 2025 Matei Tibor. All rights reserved.
+  Description: CampingRobinsonCountryClub index css style
+  Version: 1.0
+**********************************************************/
+
+/*----------------------
+  Template default CSS
+------------------------*/
+html,
+body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    font-family: "DM Sans", sans-serif;
+}
+
+ul,
+ol {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+input:focus,
+select:focus,
+button:focus,
+textarea:focus {
+    outline: none;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+    color: #ffffff;
+}
+
+/*----------------------
+  Header
+------------------------*/
+.header {
+    display: block;
+    background-color: #7BB369;
+    justify-content: space-around;
+}
+
+.header-top-logo > h1 {
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+/*----------------------
+  Main
+------------------------*/
+main {
+    background-color: #fff1d6;
+}
+
+/*----------------------
+  Footer
+------------------------*/
+footer {
+    display: block grid;
+    background-color: #eaffe5;
+    justify-content: center;
+}
+
+footer p {
+    color: #075c62;
+    text-align: center;
+}

@@ -1,0 +1,4 @@
+1 200 lei 40 eur
+2-3 200 lei 40 eur
+4-5 250 lei 50 eur
+6< 300 lei 60 eur

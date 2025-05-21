@@ -1,0 +1,11 @@
+gcloud run deploy camping-robinson-country-club \
+  --source . \
+  --platform managed \
+  --region europe-west9 \
+  --allow-unauthenticated \
+  --project camping-robinson-country-club \
+  --timeout 600
+
+# docker build -t camping-server . && docker run -p 8080:8080 -e PORT=8080 camping-server
+
+# You have to change HOST_NAME to "0.0.0.0"

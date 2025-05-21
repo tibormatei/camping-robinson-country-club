@@ -1,0 +1,26 @@
+{
+    "pageName": "Camping Robinson Oradea",
+    "rentalDetails": {
+        "tentDetails": {
+            "personHeader": "Cort",
+            "lei": "Lei",
+            "eur": "Eur",
+            "priceDetail": " / Persoană",
+            "personName": "Persoană"
+        },
+        "trailerDetails": {
+            "personHeader": "Camper rulota",
+            "lei": "Lei",
+            "eur": "Eur",
+            "personName": "Persoană"
+        },
+        "dogDetails": {
+            "dog": "Câine",
+            "lei": "Lei",
+            "eur": "Eur",
+            "priceDetail": " / pe noapte"
+        },
+        "priceInformation": "Prețurile include toate facilitatile.",
+        "checkOutinformation": "Check out până la 10:30."
+    }
+}
