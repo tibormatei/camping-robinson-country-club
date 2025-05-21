@@ -23,9 +23,5 @@ jobs:
         chmod +x runtest.sh
         ./runtest.sh
 
-    - name: Upload test results
-      if: always()
-      uses: actions/upload-artifact@v3
-      with:
-        name: test-reports
-        path: CampingRobinsonCountryClub/test/test-results/
+    - name: Upload coverage
+      uses: codecov/codecov-action@v3
