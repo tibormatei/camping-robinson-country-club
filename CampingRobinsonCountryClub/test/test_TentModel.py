@@ -11,7 +11,7 @@
 """
 
 import unittest
-from app.models.TentModel import TentModel
+from app.models import TentModel
 
 
 class TestTentModel(unittest.TestCase) :
