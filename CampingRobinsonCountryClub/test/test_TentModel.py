@@ -28,7 +28,7 @@ class TestTentModel(unittest.TestCase) :
 
     # Test basic constructor.
     def test_basic_values(self) :
-        self.assertEqual(self.tentModel.TentCapacities, [])
+        self.assertEqual(len(self.tentModel.TentCapacities), 0)
         self.assertEqual(self.tentModel.LeiPricePerPerson, 0)
         self.assertEqual(self.tentModel.EurPricePerPerson, 0)
 
