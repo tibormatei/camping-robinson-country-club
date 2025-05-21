@@ -43,7 +43,7 @@ class TentModel() :
         """
         return self._leiPricePerPerson
 
-    @property
+    @LeiPricePerPerson.setter
     def LeiPricePerPerson(self, leiPricePerPerson : int) :
         """
         @summary: The LeiPricePerPerson setter property.
@@ -62,7 +62,7 @@ class TentModel() :
         """
         return self._eurPricePerPerson
 
-    @property
+    @EurPricePerPerson.setter
     def EurPricePerPerson(self, eurPricePerPerson : int) :
         """
         @summary: The EurPricePerPerson setter property.
