@@ -17,13 +17,15 @@ jobs:
       run: |
         python -m pip install --upgrade pip
 
-    - name: Make script executable
-      run: chmod +x runtest.sh
-
     - name: Run tests
+      working-directory: ./test
       run: |
-        cd ./../../CampingRobinsonCountryClub/test/tests/
+        chmod +x runtest.sh
         ./runtest.sh
 
-    - name: Upload coverage
-      uses: codecov/codecov-action@v3
+    - name: Upload test results
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-reports
+        path: CampingRobinsonCountryClub/test/test-results/
