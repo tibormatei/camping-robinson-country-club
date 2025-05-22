@@ -48,9 +48,7 @@ class TestTentModel(unittest.TestCase) :
     # Test AddTentCapacity
     def test_AddTentCapacity(self) :
         TENT_CAPACITY_2_3 = "2-3"
-        tentCapacities = list(TENT_CAPACITY_2_3)
-
-        self.tentModel.TentCapacities(tentCapacities)
+        self.tentModel.AddTentCapacity(TENT_CAPACITY_2_3)
         self.assertEqual(len(self.tentModel.TentCapacities), 1)
 
 if __name__ == '__main__':
