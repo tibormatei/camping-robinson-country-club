@@ -41,3 +41,6 @@ class TestTrailersModel(unittest.TestCase) :
             n += 1
         
         self.assertEqual(n, 2)
+
+if __name__ == '__main__':
+    unittest.main()

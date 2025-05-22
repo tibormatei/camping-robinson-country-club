@@ -50,3 +50,6 @@ class TestTrailerModel(unittest.TestCase) :
         EUR_PRICE = 40
         self.trailerModel.EurPrice = EUR_PRICE
         self.assertEqual(self.trailerModel.EurPrice, EUR_PRICE)
+
+if __name__ == '__main__':
+    unittest.main()

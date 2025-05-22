@@ -43,3 +43,6 @@ class TestDogModel(unittest.TestCase) :
         EUR_PRICE_PER_NIGHT = 5
         self.dogModel.EurPricePerNight = EUR_PRICE_PER_NIGHT
         self.assertEqual(self.dogModel.EurPricePerNight, EUR_PRICE_PER_NIGHT)
+
+if __name__ == '__main__':
+    unittest.main()
