@@ -26,8 +26,7 @@ class TrailersModel() :
         """
         self._trailers : list[TrailerModel] = trailerModels
 
-    @classmethod
-    def AddTrailerModel(self, trailerModel : TrailerModel) :
+    def AddTrailerModel(self, trailerModel : TrailerModel) -> None :
         """
         @summary: Add to the trailers list a trailer model.
         @param self: TrailersModel self parameter.

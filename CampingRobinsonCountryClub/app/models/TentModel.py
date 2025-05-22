@@ -75,8 +75,7 @@ class TentModel() :
         if eurPricePerPerson > 0 :
             self._eurPricePerPerson = eurPricePerPerson
 
-    @classmethod
-    def AddTentCapacity(self, tentcapacity : str) :
+    def AddTentCapacity(self, tentcapacity : str) -> None :
         """
         @summary: Add to the list a tent capacity.
         @param self: TestModel self parameter.
