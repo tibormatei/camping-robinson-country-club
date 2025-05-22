@@ -29,7 +29,7 @@ class TestTrailersModel(unittest.TestCase) :
 
     # Pozitiv tests:
     # Test for AddTrailerMode and the class is iterable.
-    def test_AddTrailerModel_and_canIterable(self) :
+    def test_01_AddTrailerModel_and_canIterable(self) :
         TRAIL1 = TrailerModel('1 pers', 200, 40)
         TRAIL2 = TrailerModel('2-3 pers', 200, 40)
         self.trailersModel.AddTrailerModel(TRAIL1)
