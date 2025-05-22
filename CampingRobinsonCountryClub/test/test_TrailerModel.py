@@ -36,7 +36,7 @@ class TestTrailerModel(unittest.TestCase) :
     # Test TrailerCapacity
     def test_02_TrailerCapacity(self) :
         TRAILER_CAPACITY = '2-3 pers.'
-        self.self.trailerModel.TrailerCapacity = TRAILER_CAPACITY
+        self.trailerModel.TrailerCapacity = TRAILER_CAPACITY
         self.assertEqual(self.trailerModel.TrailerCapacity, TRAILER_CAPACITY)
 
     # Test LeiPrice
