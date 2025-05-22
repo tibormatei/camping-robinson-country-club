@@ -16,14 +16,17 @@ class TentModel() :
     @summary: This class is a model of rental tent prices.
     """
 
-    def __init__(self) :
+    def __init__(self, tentCapacities : list[str] = [], leiPricePerPerson : int = 0, eurPricePerPerson : int = 0) :
         """
         @summary: The init method initialize instance attributes.
         @param self: TestModel self parameter.
+        @param tentCapacities: Tent capacities.
+        @param leiPricePerPerson: Price in Lei.
+        @param eurPricePerPerson: Price in Eur.
         """
-        self._tentCapacities : list[str] = []
-        self._leiPricePerPerson : int = 0
-        self._eurPricePerPerson : int = 0
+        self._tentCapacities : list[str] = tentCapacities
+        self._leiPricePerPerson : int = leiPricePerPerson
+        self._eurPricePerPerson : int = eurPricePerPerson
 
     @property
     def TentCapacities(self) -> list[str] :
@@ -72,8 +75,7 @@ class TentModel() :
         if eurPricePerPerson > 0 :
             self._eurPricePerPerson = eurPricePerPerson
 
-    @classmethod
-    def AddTentCapacity(self, tentcapacity : str) :
+    def AddTentCapacity(self, tentcapacity : str) -> None :
         """
         @summary: Add to the list a tent capacity.
         @param self: TestModel self parameter.
