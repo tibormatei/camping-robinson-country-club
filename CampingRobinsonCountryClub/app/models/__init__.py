@@ -1,3 +1,3 @@
 from .TentModel import TentModel
 from .TrailerModel import TrailerModel
-from .TrailersModel import TrailerModel
+from .TrailersModel import TrailersModel
