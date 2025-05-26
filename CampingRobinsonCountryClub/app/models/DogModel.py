@@ -11,23 +11,23 @@
 """
 
 
-class DogModel() :
+class DogModel():
     """
     @summary: This class is a model of dog price.
     """
 
-    def __init__(self, leiPricePerNight : int = 0, eurPricePerNight : int = 0) :
+    def __init__(self, leiPricePerNight: int = 0, eurPricePerNight: int = 0):
         """
         @summary: The init method initialize instance attributes.
         @param self: DogModel self parameter.
         @param leiPricePerNight: Price in Lei.
         @param eurPricePerNight: Price in Eur.
         """
-        self._leiPricePerNight : int = leiPricePerNight
-        self._eurPricePerNight : int = eurPricePerNight
+        self._leiPricePerNight: int = leiPricePerNight
+        self._eurPricePerNight: int = eurPricePerNight
 
     @property
-    def LeiPricePerNight(self) -> int :
+    def LeiPricePerNight(self) -> int:
         """
         @summary: The LeiPricePerNight getter property.
         @param self: DogModel self parameter.
@@ -36,17 +36,17 @@ class DogModel() :
         return self._leiPricePerNight
 
     @LeiPricePerNight.setter
-    def LeiPricePerNight(self, leiPricePerNight : int) :
+    def LeiPricePerNight(self, leiPricePerNight: int):
         """
         @summary: The LeiPricePerNight setter property.
         @param self: DogModel self parameter.
         @param leiPricePerNight: Lei price value.
         """
-        if leiPricePerNight > 0 :
+        if leiPricePerNight > 0:
             self._leiPricePerNight = leiPricePerNight
 
     @property
-    def EurPricePerNight(self) -> int :
+    def EurPricePerNight(self) -> int:
         """
         @summary: The EurPricePerNight getter property.
         @param self: DogModel self parameter.
@@ -55,11 +55,11 @@ class DogModel() :
         return self._eurPricePerNight
 
     @EurPricePerNight.setter
-    def EurPricePerNight(self, eurPricePerNight : int) :
+    def EurPricePerNight(self, eurPricePerNight: int):
         """
         @summary: The EurPricePerNight setter property.
         @param self: DogModel self parameter.
         @param eurPricePerNight: Eur price value.
         """
-        if eurPricePerNight > 0 :
+        if eurPricePerNight > 0:
             self._eurPricePerNight = eurPricePerNight

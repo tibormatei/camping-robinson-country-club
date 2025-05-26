@@ -11,9 +11,26 @@
 """
 
 
-class RentalDetailsView() :
+class RentalDetailsView():
     """
     @summary: This class handles the view of rental details.
     """
 
-    pass #To do
+    def __init__(self):
+        """
+        @summary: Rental details views.
+        @param self: RentalDetailsView self parameter.
+        """
+        pass
+
+    @classmethod
+    def showTentView(self):
+        pass
+
+    @classmethod
+    def showTrailerView(self):
+        pass
+
+    @classmethod
+    def showDogView(self):
+        pass
