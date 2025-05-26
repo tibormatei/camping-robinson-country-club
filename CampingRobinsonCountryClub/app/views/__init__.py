@@ -1,0 +1,1 @@
+from .RentalDetailsView import RentalDetailsView
