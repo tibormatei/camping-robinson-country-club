@@ -11,7 +11,6 @@
 """
 
 from pathlib import Path
-import json
 
 
 class TentView():
@@ -91,7 +90,7 @@ class TentView():
         return tentBaseTableHtml
 
     @classmethod
-    def __str__(cls):
+    def __str__(cls) -> str:
         """
         A function of a class that can return class state.
         """
