@@ -14,12 +14,12 @@ import unittest
 from app.models import TentModel
 
 
-class TestTentModel(unittest.TestCase) :
+class TestTentModel(unittest.TestCase):
     """
     @summary: TentModel tests.
     """
 
-    def setUp(self) :
+    def setUp(self):
         """
         @summary: Fresh instance for each test
          @param self: TestTentModel self parameter.
@@ -28,25 +28,25 @@ class TestTentModel(unittest.TestCase) :
 
     # Pozitiv tests:
     # Test basic constructor
-    def test_01_basic_values(self) :
+    def test_01_basic_values(self):
         self.assertEqual(len(self.tentModel.TentCapacities), 0)
         self.assertEqual(self.tentModel.LeiPricePerPerson, 0)
         self.assertEqual(self.tentModel.EurPricePerPerson, 0)
 
     # Test LeiPricePerPerson
-    def test_02_LeiPricePerPerson(self) :
+    def test_02_LeiPricePerPerson(self):
         LEI_PRICE_PER_PERSON = 75
         self.tentModel.LeiPricePerPerson = LEI_PRICE_PER_PERSON
         self.assertEqual(self.tentModel.LeiPricePerPerson, LEI_PRICE_PER_PERSON)
 
     # Test EurPricePerPerson
-    def test_03_EurPricePerPerson(self) :
+    def test_03_EurPricePerPerson(self):
         EUR_PRICE_PER_PERSON = 15
         self.tentModel.EurPricePerPerson = EUR_PRICE_PER_PERSON
         self.assertEqual(self.tentModel.EurPricePerPerson, EUR_PRICE_PER_PERSON)
 
     # Test AddTentCapacity
-    def test_04_AddTentCapacity(self) :
+    def test_04_AddTentCapacity(self):
         TENT_CAPACITY_2_3 = "2-3"
         self.tentModel.AddTentCapacity(TENT_CAPACITY_2_3)
         self.assertEqual(len(self.tentModel.TentCapacities), 1)

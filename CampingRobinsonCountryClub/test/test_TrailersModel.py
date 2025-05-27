@@ -15,12 +15,12 @@ from app.models import TrailerModel
 from app.models import TrailersModel
 
 
-class TestTrailersModel(unittest.TestCase) :
+class TestTrailersModel(unittest.TestCase):
     """
     @summary: TrailersModel tests.
     """
 
-    def setUp(self) :
+    def setUp(self):
         """
         @summary: Fresh instance for each test
         @param self: TestTrailersModel self parameter.
@@ -29,14 +29,14 @@ class TestTrailersModel(unittest.TestCase) :
 
     # Pozitiv tests:
     # Test for AddTrailerMode and the class is iterable.
-    def test_01_AddTrailerModel_and_canIterable(self) :
+    def test_01_AddTrailerModel_and_canIterable(self):
         TRAIL1 = TrailerModel('1 pers', 200, 40)
         TRAIL2 = TrailerModel('2-3 pers', 200, 40)
         self.trailersModel.AddTrailerModel(TRAIL1)
         self.trailersModel.AddTrailerModel(TRAIL2)
 
         n = 0
-        for trail in self.trailersModel :
+        for trail in self.trailersModel:
             self.assertIsNotNone(trail)
             n += 1
         
