@@ -30,7 +30,7 @@ class TestTentView(unittest.TestCase):
     # Test showTentView method
     def test_01_showTentView(self):
         EXPECTED_RESULT: str = ('<table id="rentaldetails-tent-table" class="rentaldetails-table">'
-                                '            <thead>\n' +
+                                '    <thead>'
                                 '        <tr>'
                                 '            <th id="rentaldetails-tent-table-thead-personheader">Tent</th>'
                                 '            <th id="rentaldetails-tent-table-thead-lei">Lei</th>'
