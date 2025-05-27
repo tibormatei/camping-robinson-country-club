@@ -29,18 +29,18 @@ class TestTentView(unittest.TestCase):
     # Pozitiv tests:
     # Test showTentView method
     def test_01_showTentView(self):
-        EXPECTED_RESULT: str = ('<table id="rentaldetails-tent-table" class="rentaldetails-table">'
-                                '    <thead>'
-                                '        <tr>'
-                                '            <th id="rentaldetails-tent-table-thead-personheader">Tent</th>'
-                                '            <th id="rentaldetails-tent-table-thead-lei">Lei</th>'
-                                '            <th id="rentaldetails-tent-table-thead-eur">Eur</th>'
-                                '        </tr>'
-                                '    </thead>'
-                                '    <tbody>'
-                                '        <tr><td>1</td><td rowspan="3">200</td><td rowspan="3">50</td></tr><tr><td>2-3</td></tr><tr><td>4-5</td></tr><tr><td>6 <</td></tr>'
-                                '    </tbody>'
-                                '</table>')
+        EXPECTED_RESULT: str = ('<table id="rentaldetails-tent-table" class="rentaldetails-table">\n'
+                                '    <thead>\n'
+                                '        <tr>\n'
+                                '            <th id="rentaldetails-tent-table-thead-personheader">Tent</th>\n'
+                                '            <th id="rentaldetails-tent-table-thead-lei">Lei</th>\n'
+                                '            <th id="rentaldetails-tent-table-thead-eur">Eur</th>\n'
+                                '        </tr>\n'
+                                '    </thead>\n'
+                                '    <tbody>\n'
+                                '        <tr><td>1</td><td rowspan="4">200</td><td rowspan="4">50</td></tr><tr><td>2-3</td></tr><tr><td>4-5</td></tr><tr><td>6 <</td></tr>\n'
+                                '    </tbody>\n'
+                                '</table>\n')
 
         TRANSLATIONS: dict =  {
             "rentalDetails": {

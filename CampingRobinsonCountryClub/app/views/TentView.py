@@ -96,9 +96,3 @@ class TentView():
         A function of a class that can return class state.
         """
         return cls.showTentView()
-    
-if __name__ == '__main__':
-    a = TentView()
-    with open(Path(__file__).parent.parent.parent.joinpath('data', 'languages', 'en.json')) as json_file:
-        data = json.load(json_file)
-    print(a.showTentView(data, ['1 pers', '2 pers', '3 pers'], 12, 23))
