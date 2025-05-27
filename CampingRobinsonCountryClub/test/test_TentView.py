@@ -56,7 +56,7 @@ class TestTentView(unittest.TestCase):
         LEI_PRICE_PER_PERSON: int = 200
         EUR_PRICE_PER_PERSON: int = 50
 
-        self.assertEqual(self.self.tentView.showTentView(TRANSLATIONS, TENT_CAPACITIES, LEI_PRICE_PER_PERSON, EUR_PRICE_PER_PERSON), EXPECTED_RESULT)
+        self.assertEqual(self.tentView.showTentView(TRANSLATIONS, TENT_CAPACITIES, LEI_PRICE_PER_PERSON, EUR_PRICE_PER_PERSON), EXPECTED_RESULT)
 
 if __name__ == '__main__':
     unittest.main()
