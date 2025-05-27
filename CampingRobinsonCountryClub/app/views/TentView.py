@@ -10,46 +10,88 @@
 @summary: This class handles the view of rental tent details.
 """
 
+from pathlib import Path
 
-class TentView() :
+
+class TentView():
     """
     @summary: This class handles the view of rental tent details.
     """
 
     # Class variables
-    TENT_BASE_TABLE : str = None
+    TENT_BASE_TABLE_FILE_CONTENT: str = None
+    TENT_BASE_TABLE_FILE_NAME: str = 'table_tentBase.html'
+    TENT_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', TENT_BASE_TABLE_FILE_NAME)
 
-    TENT_BASE_TABLE_FILE_NAME : str = 'table_tentBase.html'
-
-    def __init__(self) :
+    def __init__(self):
         """
         @summary: Rental tent details views.
         @param self: TentView self parameter.
         """
-        if self.TENT_BASE_TABLE is None :
-            self.TENT_BASE_TABLE =  self.__readTentBaseTableHtml()
+        if self.__class__.TENT_BASE_TABLE_FILE_CONTENT is None:
+            self.__class__.TENT_BASE_TABLE_FILE_CONTENT = self.__readTentBaseTableHtml()
 
     @classmethod
-    def __readTentBaseTableHtml(cls) -> str :
+    def showTentView(cls, TRANSLATIONS: dict, tentCapacities: list[str], leiPricePerPerson: int, eurPricePerPerson: int) -> str:
+        """
+        @summary: Create the full tent view.
+        @param cls: TentView cls parameter.
+        @returns: Returns a full displayable tent html code piece.
+        """
+        # 1. replaces translation texts
+        tentView: str = cls.TENT_BASE_TABLE_FILE_CONTENT
+        try:
+            for key, itemValue in TRANSLATIONS['rentalDetails']['tentDetails'].items():
+                tentView = tentView.replace('{{' + key + '}}', itemValue)
+        except KeyError as e:
+            print(f"KeyError exception: {e}!")
+
+        # 2. generating and replaces tentTableRows in the content
+        tentTableRows: str = str()
+        if len(tentCapacities) > 0:
+            capacityDataCell: str = '<td>' + tentCapacities[0] + '</td>'
+            leiDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(leiPricePerPerson) + '</td>'
+            eurDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(eurPricePerPerson) + '</td>'
+            tentTableRows = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
+            for i in range(1, len(tentCapacities)):
+                tentTableRows = tentTableRows + '<tr><td>' + tentCapacities[i] + '</td></tr>'
+        else:
+            capacityDataCell: str = '<td></td>'
+            leiDataCell: str = '<td>' + str(leiPricePerPerson) + '</td>'
+            eurDataCell: str = '<td>' + str(eurPricePerPerson) + '</td>'
+            tentTableRows = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
+
+        TENT_TABLE_ROWS_KEY: str = 'tentTableRows'
+        tentView = tentView.replace('{{' + TENT_TABLE_ROWS_KEY + '}}', tentTableRows)
+
+        return tentView
+
+    @classmethod
+    def __readTentBaseTableHtml(cls) -> str:
         """
         @summary: Read in table_tentBase.html from templates folder.
         @param cls: TentView cls parameter.
         @returns: Returns contents of html file.
         """
-        tentBaseTableHtml : str = None
+        tentBaseTableHtml: str = None
 
-        try :
-            with open(cls.TENT_BASE_TABLE_FILE_NAME, 'r', encoding = 'utf-8') as f :
+        try:
+            with open(cls.TENT_BASE_TABLE_FILE_PATH, 'r', encoding = 'utf-8') as f:
                 tentBaseTableHtml = f.read()
 
-        except FileNotFoundError :
-            print(f"Exception Error: {cls.TENT_BASE_TABLE_FILE_NAME} file not found!")
+        except FileNotFoundError:
+            print(f"Exception Error: {cls.TENT_BASE_TABLE_FILE_PATH} file not found!")
             tentBaseTableHtml = None
 
-        except Exception as e :
-            print(f"Exception Error: reading {cls.TENT_BASE_TABLE_FILE_NAME}: {e}")
+        except Exception as e:
+            print(f"Exception Error: reading {cls.TENT_BASE_TABLE_FILE_PATH}: {e}")
             tentBaseTableHtml = None
 
         return tentBaseTableHtml
 
-# To Do here
+    @classmethod
+    def __str__(cls) -> str:
+        """
+        A function of a class that can return class state.
+        """
+        return cls.showTentView()

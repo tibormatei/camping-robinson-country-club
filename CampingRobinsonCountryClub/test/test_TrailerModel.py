@@ -14,12 +14,12 @@ import unittest
 from app.models import TrailerModel
 
 
-class TestTrailerModel(unittest.TestCase) :
+class TestTrailerModel(unittest.TestCase):
     """
     @summary: TrailerModel tests.
     """
 
-    def setUp(self) :
+    def setUp(self):
         """
         @summary: Fresh instance for each test
         @param self: TestTrailerModel self parameter.
@@ -28,25 +28,25 @@ class TestTrailerModel(unittest.TestCase) :
 
     # Pozitiv tests:
     # Test basic constructor
-    def test_01_basic_values(self) :
+    def test_01_basic_values(self):
         self.assertEqual(self.trailerModel.TrailerCapacity, '-')
         self.assertEqual(self.trailerModel.LeiPrice, 0)
         self.assertEqual(self.trailerModel.EurPrice, 0)
 
     # Test TrailerCapacity
-    def test_02_TrailerCapacity(self) :
+    def test_02_TrailerCapacity(self):
         TRAILER_CAPACITY = '2-3 pers.'
         self.trailerModel.TrailerCapacity = TRAILER_CAPACITY
         self.assertEqual(self.trailerModel.TrailerCapacity, TRAILER_CAPACITY)
 
     # Test LeiPrice
-    def test_03_LeiPrice(self) :
+    def test_03_LeiPrice(self):
         LEI_PRICE = 200
         self.trailerModel.LeiPrice = LEI_PRICE
         self.assertEqual(self.trailerModel.LeiPrice, LEI_PRICE)
 
     # Test EurPrice
-    def test_04_EurPrice(self) :
+    def test_04_EurPrice(self):
         EUR_PRICE = 40
         self.trailerModel.EurPrice = EUR_PRICE
         self.assertEqual(self.trailerModel.EurPrice, EUR_PRICE)

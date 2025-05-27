@@ -15,12 +15,12 @@ from app.models import TrailersModel
 from app.models import DogModel
 
 
-class RentalDetailsModel() :
+class RentalDetailsModel():
     """
     @summary: This class is a model of rental details.
     """
 
-    def __init__(self, tentModel : TentModel = None, trailersModel : TrailersModel = None, dogModel : DogModel = None) :
+    def __init__(self, tentModel: TentModel = None, trailersModel: TrailersModel = None, dogModel: DogModel = None):
         """
         @summary: The init method initialize instance attributes.
         @param self: RentalDetailsModel self parameter.
@@ -28,12 +28,12 @@ class RentalDetailsModel() :
         @param trailersModel: Trailer rental detalis.
         @param dogModel: Dog price details.
         """
-        self._tentModel : TentModel = tentModel
-        self._trailersModel : TrailersModel = trailersModel
-        self._dogModel : DogModel = dogModel
+        self._tentModel: TentModel = tentModel
+        self._trailersModel: TrailersModel = trailersModel
+        self._dogModel: DogModel = dogModel
 
     @property
-    def TentModel(self) -> TentModel :
+    def TentModel(self) -> TentModel:
         """
         @summary: The TentModel getter property.
         @param self: RentalDetailsModel self parameter.
@@ -42,7 +42,7 @@ class RentalDetailsModel() :
         return self._tentModel
 
     @property
-    def TrailersModel(self) -> TrailersModel :
+    def TrailersModel(self) -> TrailersModel:
         """
         @summary: The TrailersModel getter property.
         @param self: RentalDetailsModel self parameter.
@@ -51,7 +51,7 @@ class RentalDetailsModel() :
         return self._trailersModel
     
     @property
-    def DogModel(self) -> DogModel :
+    def DogModel(self) -> DogModel:
         """
         @summary: The DogModel getter property.
         @param self: RentalDetailsModel self parameter.
