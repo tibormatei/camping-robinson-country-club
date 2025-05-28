@@ -33,22 +33,23 @@ class TestTentView(unittest.TestCase):
                                 '    <thead>\n'
                                 '        <tr>\n'
                                 '            <th id="rentaldetails-tent-table-thead-personheader">Tent</th>\n'
-                                '            <th id="rentaldetails-tent-table-thead-lei">Lei</th>\n'
-                                '            <th id="rentaldetails-tent-table-thead-eur">Eur</th>\n'
+                                '            <th id="rentaldetails-tent-table-thead-lei">Lei / Person</th>\n'
+                                '            <th id="rentaldetails-tent-table-thead-eur">Eur / Person</th>\n'
                                 '        </tr>\n'
                                 '    </thead>\n'
                                 '    <tbody>\n'
-                                '        <tr><td>1</td><td rowspan="4">200</td><td rowspan="4">50</td></tr><tr><td>2-3</td></tr><tr><td>4-5</td></tr><tr><td>6 <</td></tr>\n'
+                                '        <tr><td>1 Person</td><td rowspan="4">200</td><td rowspan="4">50</td></tr><tr><td>2-3 Person</td></tr><tr><td>4-5 Person</td></tr><tr><td>6 < Person</td></tr>\n'
                                 '    </tbody>\n'
                                 '</table>\n')
 
-        TRANSLATIONS: dict =  {
+        TRANSLATIONS: dict = {
             "rentalDetails": {
                 "tentDetails": {
                     "personHeader": "Tent",
                     "lei": "Lei",
                     "eur": "Eur",
-                    "priceDetail": " / Person"
+                    "priceDetail": " / Person",
+                    "personName": "Person"
                 }
             }
         }

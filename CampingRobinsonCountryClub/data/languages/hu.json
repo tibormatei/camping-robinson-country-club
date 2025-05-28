@@ -4,16 +4,20 @@
         "tentDetails": {
             "personHeader": "Sátor",
             "lei": "Lei",
-            "eur": "Eur",
-            "priceDetail": " / Személy"
+            "eur": "Euró",
+            "priceDetail": " / Személy",
+            "personName": "Személy"
         },
         "trailerDetails": {
             "personHeader": "Lakókocsi",
             "lei": "Lei",
-            "eur": "Eur"
+            "eur": "Euró",
+            "personName": "Személy"
         },
         "dogDetails": {
             "dog": "Kutya",
+            "lei": "Lei",
+            "eur": "Euró",
             "priceDetail": " / Éjszaka"
         },
         "priceInformation": "Az árak tartalmazzák az összes szolgáltatást.",

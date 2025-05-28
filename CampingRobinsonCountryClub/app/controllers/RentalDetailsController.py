@@ -37,9 +37,11 @@ class RentalDetailsController():
         """
         rentalDetailsView: str = str()
 
-        rentalDetailsView.append(self._rentalDetailsView.showTentView())
-        rentalDetailsView.append(self._rentalDetailsView.showTrailerView())
-        rentalDetailsView.append(self._rentalDetailsView.showDogView())
+        #tentSection: str = self._rentalDetailsView.TentView.showTentView(self._rentalDetailsModel.TentModel.TentCapacities, self._rentalDetailsModel.TentModel.LeiPricePerPerson)
+
+        #rentalDetailsView.append()
+        #rentalDetailsView.append(self._rentalDetailsView.TrailersView.showTrailersView())
+        #rentalDetailsView.append(self._rentalDetailsView.DogView.showDogView())
 
         return rentalDetailsView
 
