@@ -5,15 +5,19 @@
             "personHeader": "Tent",
             "lei": "Lei",
             "eur": "Eur",
-            "priceDetail": " / Person"
+            "priceDetail": " / Person",
+            "personName": "Person"
         },
         "trailerDetails": {
             "personHeader": "Camper Trailer",
             "lei": "Lei",
-            "eur": "Eur"
+            "eur": "Eur",
+            "personName": "Person"
         },
         "dogDetails": {
             "dog": "Dog",
+            "lei": "Lei",
+            "eur": "Eur",
             "priceDetail": " / Night"
         },
         "priceInformation": "Prices contains all facilities.",

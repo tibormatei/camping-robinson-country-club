@@ -20,7 +20,8 @@ class RentalDetailsModel():
     @summary: This class is a model of rental details.
     """
 
-    def __init__(self, tentModel: TentModel = None, trailersModel: TrailersModel = None, dogModel: DogModel = None):
+    def __init__(self, tentModel: TentModel = None, trailersModel: TrailersModel = None, dogModel: DogModel = None,
+                 priceInformation: str = '', checkOutinformation: str = ''):
         """
         @summary: The init method initialize instance attributes.
         @param self: RentalDetailsModel self parameter.
@@ -31,6 +32,8 @@ class RentalDetailsModel():
         self._tentModel: TentModel = tentModel
         self._trailersModel: TrailersModel = trailersModel
         self._dogModel: DogModel = dogModel
+        self._priceInformation: str = priceInformation
+        self._checkOutinformation: str = checkOutinformation
 
     @property
     def TentModel(self) -> TentModel:
@@ -49,7 +52,7 @@ class RentalDetailsModel():
         @returns: Returns trailers detailes.
         """
         return self._trailersModel
-    
+
     @property
     def DogModel(self) -> DogModel:
         """
@@ -58,3 +61,21 @@ class RentalDetailsModel():
         @returns: Returns dog detailes.
         """
         return self._dogModel
+
+    @property
+    def PriceInformation(self) -> str:
+        """
+        @summary: The PriceInformation getter property.
+        @param self: RentalDetailsModel self parameter.
+        @returns: Returns price information detailes.
+        """
+        return self._priceInformation
+
+    @property
+    def CheckOutinformation(self) -> str:
+        """
+        @summary: The CheckOutinformation getter property.
+        @param self: RentalDetailsModel self parameter.
+        @returns: Returns check out detailes.
+        """
+        return self._checkOutinformation

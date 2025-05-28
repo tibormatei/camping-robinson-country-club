@@ -13,3 +13,5 @@ python -m unittest test/test_DogModel.py
 echo ""
 echo "Run all View tests"
 python -m unittest test/test_TentView.py
+python -m unittest test/test_TrailerView.py
+python -m unittest test/test_DogView.py
