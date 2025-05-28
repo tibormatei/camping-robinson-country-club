@@ -36,6 +36,10 @@ class TentView():
         """
         @summary: Create the full tent view.
         @param cls: TentView cls parameter.
+        @param TRANSLATIONS: Language dictionary.
+        @param tentCapacities: Capacities dates.
+        @param leiPricePerPerson: Price in Lei.
+        @param eurPricePerPerson: Price in Eur.
         @returns: Returns a full displayable tent html code piece.
         """
         # 1. replaces translation texts
@@ -49,12 +53,14 @@ class TentView():
         # 2. generating and replaces tentTableRows in the content
         tentTableRows: str = str()
         if len(tentCapacities) > 0:
-            capacityDataCell: str = '<td>' + tentCapacities[0] + '</td>'
+            personName: str = TRANSLATIONS['rentalDetails']['tentDetails']['personName']
+
+            capacityDataCell: str = '<td>' + tentCapacities[0] + ' ' + personName + '</td>'
             leiDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(leiPricePerPerson) + '</td>'
             eurDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(eurPricePerPerson) + '</td>'
             tentTableRows = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
             for i in range(1, len(tentCapacities)):
-                tentTableRows = tentTableRows + '<tr><td>' + tentCapacities[i] + '</td></tr>'
+                tentTableRows = tentTableRows + '<tr><td>' + tentCapacities[i] + ' ' + personName + '</td></tr>'
         else:
             capacityDataCell: str = '<td></td>'
             leiDataCell: str = '<td>' + str(leiPricePerPerson) + '</td>'
