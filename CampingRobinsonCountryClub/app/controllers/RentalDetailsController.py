@@ -10,9 +10,14 @@
 @summary: This class controller the rental details model, and view.
 """
 
+from collections.abc import Iterator
+
 from app.models import RentalDetailsModel
 from app.views import RentalDetailsView
 
+from app.controllers import TentController
+from app.controllers import TrailersController
+from app.controllers import DogController
 
 class RentalDetailsController():
     """
@@ -29,21 +34,21 @@ class RentalDetailsController():
         self._rentalDetailsModel: RentalDetailsModel = rentalDetailsModel
         self._rentalDetailsView: RentalDetailsView = rentalDetailsView
 
-    def showRentalDetails(self) -> str:
+    def showRentalDetails(self, translations: dict) -> str:
         """
         @summary: Return the view of tent, trailer and dog detals.
         @param self: RentalDetailsController self parameter.
+        @param translations: Language words.
         @returns: Returns view of Rental Details in string.
         """
-        rentalDetailsView: str = str()
-
-        #tentSection: str = self._rentalDetailsView.TentView.showTentView(self._rentalDetailsModel.TentModel.TentCapacities, self._rentalDetailsModel.TentModel.LeiPricePerPerson)
-
-        #rentalDetailsView.append()
-        #rentalDetailsView.append(self._rentalDetailsView.TrailersView.showTrailersView())
-        #rentalDetailsView.append(self._rentalDetailsView.DogView.showDogView())
-
-        return rentalDetailsView
+        tentController: TentController = self._rentalDetailsModel.TentController
+        trailersController: TrailersController = self._rentalDetailsModel.TrailersController
+        trailerControllersList: Iterator = self._rentalDetailsModel.TrailerControllersList
+        dogController: DogController = self._rentalDetailsModel.DogController
+        priceInformation: str = self._rentalDetailsModel.PriceInformation
+        checkOutinformation: str = self._rentalDetailsModel.CheckOutinformation
+        return self._rentalDetailsView.showRentalDetailsView(translations, tentController, trailersController, trailerControllersList,
+                                                             dogController, priceInformation, checkOutinformation)
 
     @classmethod
     def __str__(cls) -> str:

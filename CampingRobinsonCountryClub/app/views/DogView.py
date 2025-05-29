@@ -32,11 +32,11 @@ class DogView():
             self.__class__.DOG_BASE_TABLE_FILE_CONTENT = self.__readDogBaseTableHtml()
 
     @classmethod
-    def showDogView(cls, TRANSLATIONS: dict, leiPricePerNight: int, eurPricePerNight: int) -> str:
+    def showDogView(cls, translations: dict, leiPricePerNight: int, eurPricePerNight: int) -> str:
         """
         @summary: Create the full tent view.
         @param cls: DogView cls parameter.
-        @param TRANSLATIONS: Language dictionary.
+        @param translations: Language dictionary.
         @param leiPricePerNight: Price / Night in Lei.
         @param eurPricePerNight: Price / Night in Eur.
         @returns: Returns a full displayable dog html code piece.
@@ -44,14 +44,14 @@ class DogView():
         # 1. replaces translation texts
         dogView: str = cls.DOG_BASE_TABLE_FILE_CONTENT
         try:
-            for key, itemValue in TRANSLATIONS['rentalDetails']['dogDetails'].items():
+            for key, itemValue in translations['rentalDetails']['dogDetails'].items():
                 dogView = dogView.replace('{{' + key + '}}', itemValue)
         except KeyError as e:
             print(f"KeyError exception: {e}!")
 
         # 2. generating and replaces dogTableRows in the content
-        dogName: str = TRANSLATIONS['rentalDetails']['dogDetails']['dog']
-        priceDetail: str = TRANSLATIONS['rentalDetails']['dogDetails']['priceDetail']
+        dogName: str = translations['rentalDetails']['dogDetails']['dog']
+        priceDetail: str = translations['rentalDetails']['dogDetails']['priceDetail']
 
         capacityDataCell: str = '<td>' + dogName + '</td>'
         leiDataCell: str = '<td>' + str(leiPricePerNight) + priceDetail + '</td>'

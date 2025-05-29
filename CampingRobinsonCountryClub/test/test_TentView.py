@@ -40,7 +40,7 @@ class TestTentView(unittest.TestCase):
                                 '    <tbody>\n'
                                 '        <tr><td>1 Person</td><td rowspan="4">200</td><td rowspan="4">50</td></tr><tr><td>2-3 Person</td></tr><tr><td>4-5 Person</td></tr><tr><td>6 < Person</td></tr>\n'
                                 '    </tbody>\n'
-                                '</table>\n')
+                                '</table>')
 
         TRANSLATIONS: dict = {
             "rentalDetails": {

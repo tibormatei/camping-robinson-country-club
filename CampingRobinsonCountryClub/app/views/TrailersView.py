@@ -13,8 +13,6 @@
 from pathlib import Path
 from collections.abc import Iterator
 
-from app.views import TrailerView
-
 
 class TrailersView():
     """
@@ -35,27 +33,26 @@ class TrailersView():
             self.__class__.TRAILER_BASE_TABLE_FILE_CONTENT = self.__readTrailerBaseTableHtml()
 
     @classmethod
-    def showTrailersView(cls, TRANSLATIONS: dict, trailersData: Iterator, trailerView: TrailerView) -> str:
+    def showTrailersView(cls, translations: dict, trailerControllers: Iterator) -> str:
         """
         @summary: Create the full trailers view.
         @param cls: TrailersView cls parameter.
-        @param TRANSLATIONS: Language dictionary.
-        @param trailersData: Trailer model datas.
-        @param trailerView: Delegates Trailer's View class from the controller.
+        @param translations: Language dictionary.
+        @param trailerControllers: Trailer contollers.
         @returns: Returns a full displayable trailers html code piece.
         """
         # 1. replaces translation texts
         trailersView: str = cls.TRAILER_BASE_TABLE_FILE_CONTENT
         try:
-            for key, itemValue in TRANSLATIONS['rentalDetails']['trailerDetails'].items():
+            for key, itemValue in translations['rentalDetails']['trailerDetails'].items():
                 trailersView = trailersView.replace('{{' + key + '}}', itemValue)
         except KeyError as e:
             print(f"KeyError exception: {e}!")
 
         # 2. generating and replaces trailerTableRows in the content
         trailersTableRows: str = str()
-        for i in trailersData:
-            trailersTableRows = trailersTableRows + trailerView.showTrailerView(i.TrailerCapacity, i.LeiPrice, i.EurPrice)
+        for i in trailerControllers:
+            trailersTableRows = trailersTableRows + i.showTrailerView(translations)
 
         TRAILER_TABLE_ROWS_KEY: str = 'trailerTableRows'
         trailersView = trailersView.replace('{{' + TRAILER_TABLE_ROWS_KEY + '}}', trailersTableRows)

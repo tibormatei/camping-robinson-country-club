@@ -32,11 +32,11 @@ class TentView():
             self.__class__.TENT_BASE_TABLE_FILE_CONTENT = self.__readTentBaseTableHtml()
 
     @classmethod
-    def showTentView(cls, TRANSLATIONS: dict, tentCapacities: list[str], leiPricePerPerson: int, eurPricePerPerson: int) -> str:
+    def showTentView(cls, translations: dict, tentCapacities: list[str], leiPricePerPerson: int, eurPricePerPerson: int) -> str:
         """
         @summary: Create the full tent view.
         @param cls: TentView cls parameter.
-        @param TRANSLATIONS: Language dictionary.
+        @param translations: Language dictionary.
         @param tentCapacities: Capacities dates.
         @param leiPricePerPerson: Price in Lei.
         @param eurPricePerPerson: Price in Eur.
@@ -45,7 +45,7 @@ class TentView():
         # 1. replaces translation texts
         tentView: str = cls.TENT_BASE_TABLE_FILE_CONTENT
         try:
-            for key, itemValue in TRANSLATIONS['rentalDetails']['tentDetails'].items():
+            for key, itemValue in translations['rentalDetails']['tentDetails'].items():
                 tentView = tentView.replace('{{' + key + '}}', itemValue)
         except KeyError as e:
             print(f"KeyError exception: {e}!")
@@ -53,7 +53,7 @@ class TentView():
         # 2. generating and replaces tentTableRows in the content
         tentTableRows: str = str()
         if len(tentCapacities) > 0:
-            personName: str = TRANSLATIONS['rentalDetails']['tentDetails']['personName']
+            personName: str = translations['rentalDetails']['tentDetails']['personName']
 
             capacityDataCell: str = '<td>' + tentCapacities[0] + ' ' + personName + '</td>'
             leiDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(leiPricePerPerson) + '</td>'

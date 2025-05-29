@@ -24,17 +24,17 @@ class TrailerView():
         pass
 
     @classmethod
-    def showTrailerView(cls, TRANSLATIONS: dict, trailerCapacity: str, leiPrice: int, eurPrice: int) -> str:
+    def showTrailerView(cls, translations: dict, trailerCapacity: str, leiPrice: int, eurPrice: int) -> str:
         """
         @summary: Create a trailer row view.
         @param cls: TrailerView cls parameter.
-        @param TRANSLATIONS: Language dictionary.
+        @param translations: Language dictionary.
         @param trailerCapacity: Capacity data.
         @param leiPrice: Price data in Lei.
         @param eurPrice: Price data in Eur.
         @returns: Returns a trailer html table row code piece.
         """
-        priceName: str = TRANSLATIONS['rentalDetails']['trailerDetails']['personName']
+        priceName: str = translations['rentalDetails']['trailerDetails']['personName']
 
         capacityDataCell: str = '<td>' + trailerCapacity + ' ' + priceName + '</td>'
         leiDataCell: str = '<td>' + str(leiPrice) + '</td>'
