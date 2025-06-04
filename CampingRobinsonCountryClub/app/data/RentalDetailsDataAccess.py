@@ -35,15 +35,15 @@ class RentalDetailsDataAccess():
         pass
 
     @abstractmethod
-    def getTrailerCapacity(self) -> str:
+    def getTrailerCapacities(self) -> list[str]:
         pass
 
     @abstractmethod
-    def getTrailerPriceLei(self) -> str:
+    def getTrailerPriceLei(self, capacity: str) -> str:
         pass
 
     @abstractmethod
-    def getTrailerPriceEur(self) -> str:
+    def getTrailerPriceEur(self, capacity: str) -> str:
         pass
 
     @abstractmethod
