@@ -33,6 +33,7 @@ class TentController():
         """
         @summary: Return the view of tent.
         @param self: TentController self parameter.
+        @param translations: Language words.
         @returns: Returns view of Tent Details in string.
         """
         return self._tentView.showTentView(translations, self._tentModel.TentCapacities, self._tentModel.LeiPricePerPerson, self._tentModel.EurPricePerPerson)

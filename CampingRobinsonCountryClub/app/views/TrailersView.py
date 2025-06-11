@@ -11,7 +11,9 @@
 """
 
 from pathlib import Path
-from collections.abc import Iterator
+from app.models import TrailersModel
+from app.views import TrailerView
+from app.controllers import TrailerController
 
 
 class TrailersView():
@@ -22,7 +24,7 @@ class TrailersView():
     # Class variables
     TRAILER_BASE_TABLE_FILE_CONTENT: str = None
     TRAILER_BASE_TABLE_FILE_NAME: str = 'table_trailerBase.html'
-    TRAILER_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', TRAILER_BASE_TABLE_FILE_NAME)
+    TRAILER_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rentalDetails', TRAILER_BASE_TABLE_FILE_NAME)
 
     def __init__(self):
         """
@@ -33,7 +35,7 @@ class TrailersView():
             self.__class__.TRAILER_BASE_TABLE_FILE_CONTENT = self.__readTrailerBaseTableHtml()
 
     @classmethod
-    def showTrailersView(cls, translations: dict, trailerControllers: Iterator) -> str:
+    def showTrailersView(cls, translations: dict, trailersModel: TrailersModel) -> str:
         """
         @summary: Create the full trailers view.
         @param cls: TrailersView cls parameter.
@@ -51,8 +53,10 @@ class TrailersView():
 
         # 2. generating and replaces trailerTableRows in the content
         trailersTableRows: str = str()
-        for i in trailerControllers:
-            trailersTableRows = trailersTableRows + i.showTrailerView(translations)
+        for i in trailersModel:
+            trailerView: TrailerView = TrailerView()
+            trailerController: TrailerController = TrailerController(i, trailerView)
+            trailersTableRows = trailersTableRows + trailerController.showTrailerView(translations)
 
         TRAILER_TABLE_ROWS_KEY: str = 'trailerTableRows'
         trailersView = trailersView.replace('{{' + TRAILER_TABLE_ROWS_KEY + '}}', trailersTableRows)
@@ -87,4 +91,4 @@ class TrailersView():
         """
         A function of a class that can return class state.
         """
-        return cls.showTrailersView()
+        pass

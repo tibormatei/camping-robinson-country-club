@@ -10,14 +10,13 @@
 @summary: This class controller the rental details model, and view.
 """
 
-from collections.abc import Iterator
-
 from app.models import RentalDetailsModel
 from app.views import RentalDetailsView
 
-from app.controllers import TentController
-from app.controllers import TrailersController
-from app.controllers import DogController
+from app.models import TentModel
+from app.models import TrailersModel
+from app.models import DogModel
+
 
 class RentalDetailsController():
     """
@@ -34,21 +33,20 @@ class RentalDetailsController():
         self._rentalDetailsModel: RentalDetailsModel = rentalDetailsModel
         self._rentalDetailsView: RentalDetailsView = rentalDetailsView
 
-    def showRentalDetails(self, translations: dict) -> str:
+    def showRentalDetails(self, translations: dict = {}) -> str:
         """
         @summary: Return the view of tent, trailer and dog detals.
         @param self: RentalDetailsController self parameter.
         @param translations: Language words.
         @returns: Returns view of Rental Details in string.
         """
-        tentController: TentController = self._rentalDetailsModel.TentController
-        trailersController: TrailersController = self._rentalDetailsModel.TrailersController
-        trailerControllersList: Iterator = self._rentalDetailsModel.TrailerControllersList
-        dogController: DogController = self._rentalDetailsModel.DogController
+        tentModel: TentModel = self._rentalDetailsModel.TentModel
+        trailersModel: TrailersModel = self._rentalDetailsModel.TrailersModel
+        dogModel: DogModel = self._rentalDetailsModel.DogModel
         priceInformation: str = self._rentalDetailsModel.PriceInformation
-        checkOutinformation: str = self._rentalDetailsModel.CheckOutinformation
-        return self._rentalDetailsView.showRentalDetailsView(translations, tentController, trailersController, trailerControllersList,
-                                                             dogController, priceInformation, checkOutinformation)
+        checkOutinformation: str = self._rentalDetailsModel.CheckOutInformation
+        return self._rentalDetailsView.showRentalDetailsView(translations, tentModel, trailersModel,
+                                                             dogModel, priceInformation, checkOutinformation)
 
     @classmethod
     def __str__(cls) -> str:

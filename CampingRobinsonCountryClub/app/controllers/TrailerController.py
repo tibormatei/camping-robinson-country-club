@@ -29,7 +29,7 @@ class TrailerController():
         self._trailerModel: TrailerModel = trailerModel
         self._trailerView: TrailerView = trailerView
 
-    def showTrailerView(self, translations: dict) -> str:
+    def showTrailerView(self, translations: dict = {}) -> str:
         """
         @summary: Return the view of tent.
         @param self: TentController self parameter.

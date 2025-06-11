@@ -31,13 +31,14 @@ class TrailersController():
         self._trailersModel: TrailersModel = trailersModel
         self._trailersView: TrailersView = trailersView
 
-    def showTrailersView(self, translations: dict = {}, trailerControllers: Iterator = None) -> str:
+    def showTrailersView(self, translations: dict = {}) -> str:
         """
         @summary: Return the view of tent.
         @param self: TentController self parameter.
+        @param trailerControllers: Trailer controllers, because need to call the view.
         @returns: Returns view of Tent Details in string.
         """
-        return self._trailersView.showTrailersView(translations, trailerControllers)
+        return self._trailersView.showTrailersView(translations, self._trailersModel)
 
     @classmethod
     def __str__(cls) -> str:

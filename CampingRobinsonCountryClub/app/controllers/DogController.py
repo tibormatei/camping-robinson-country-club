@@ -29,7 +29,7 @@ class DogController():
         self._dogModel: DogModel = dogModel
         self._dogView: DogView = dogView
 
-    def showDogView(self, translations: dict) -> str:
+    def showDogView(self, translations: dict = {}) -> str:
         """
         @summary: Return the view of tent.
         @param self: TentController self parameter.

@@ -11,8 +11,13 @@
 """
 
 from pathlib import Path
-from collections.abc import Iterator
 
+from app.models import TentModel
+from app.models import TrailersModel
+from app.models import DogModel
+from app.views import TentView
+from app.views import TrailersView
+from app.views import DogView
 from app.controllers import TentController
 from app.controllers import TrailersController
 from app.controllers import DogController
@@ -26,7 +31,7 @@ class RentalDetailsView():
     # Class variables
     RENTAL_DETAILS_SECTION_FILE_CONTENT: str = None
     RENTAL_DETAILS_SECTION_FILE_NAME: str = 'section__rentalDetails.html'
-    RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', RENTAL_DETAILS_SECTION_FILE_NAME)
+    RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rentalDetails', RENTAL_DETAILS_SECTION_FILE_NAME)
 
     def __init__(self):
         """
@@ -37,20 +42,16 @@ class RentalDetailsView():
             self.__class__.RENTAL_DETAILS_SECTION_FILE_CONTENT = self.__readRentalDetailsSectionHtml()
 
     @classmethod
-    def showRentalDetailsView(cls, translations: dict,
-                              tentController: TentController,
-                              trailersController: TrailersController,
-                              trailerControllersList: Iterator,
-                              dogController: DogController,
+    def showRentalDetailsView(cls, translations: dict, tentModel: TentModel,
+                              trailersModel: TrailersModel, dogModel: DogModel,
                               priceInformation: str, checkOutinformation: str) -> str:
         """
         @summary: Create the full rental details view.
         @param cls: RentalDetailsView cls parameter.
         @param translations: Language words.
-        @param tentController: Tent's controller class.
-        @param trailersController: Trailers's controller class.
-        @param trailerControllersList: List of TrailerControllers.
-        @param dogController: Dog's controller class.
+        @param tentModel: Tent's Model class.
+        @param trailersModel: Trailers's Model class.
+        @param dogModel: Dog's Model class.
         @param priceInformation: Price details.
         @param checkOutinformation: Check Out time.
         @returns: Returns a full displayable Rental information html code piece.
@@ -58,18 +59,27 @@ class RentalDetailsView():
         rentalDetailsView: str = cls.RENTAL_DETAILS_SECTION_FILE_CONTENT
 
         # Tent section
-        TENT_SECTION_KEY: str = 'tentSection'
+        tentView: TentView = TentView()
+        tentController: TentController = TentController(tentModel, tentView)
         tentSectionContent: str = tentController.showTentView(translations)
+
+        TENT_SECTION_KEY: str = 'tentSection'
         rentalDetailsView = rentalDetailsView.replace('{{' + TENT_SECTION_KEY + '}}', tentSectionContent)
 
         # Trailers section
+        trailersView: TrailersView = TrailersView()
+        trailersController: TrailersController = TrailersController(trailersModel, trailersView)
+        trailersSectionContent: str = trailersController.showTrailersView(translations)
+
         TRAILERS_SECTION_KEY: str = 'trailersSection'
-        trailersSectionContent: str = trailersController.showTrailersView(translations, trailerControllersList)
         rentalDetailsView = rentalDetailsView.replace('{{' + TRAILERS_SECTION_KEY + '}}', trailersSectionContent)
 
         # Dog section
-        DOG_SECTION_KEY: str = 'dogSection'
+        dogView: DogView = DogView()
+        dogController: DogController = DogController(dogModel, dogView)
         dogSectionContent: str = dogController.showDogView(translations)
+
+        DOG_SECTION_KEY: str = 'dogSection'
         rentalDetailsView = rentalDetailsView.replace('{{' + DOG_SECTION_KEY + '}}', dogSectionContent)
 
         # Price Information section

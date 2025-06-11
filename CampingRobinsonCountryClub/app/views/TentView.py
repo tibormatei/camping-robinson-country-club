@@ -21,7 +21,7 @@ class TentView():
     # Class variables
     TENT_BASE_TABLE_FILE_CONTENT: str = None
     TENT_BASE_TABLE_FILE_NAME: str = 'table_tentBase.html'
-    TENT_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', TENT_BASE_TABLE_FILE_NAME)
+    TENT_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rentalDetails', TENT_BASE_TABLE_FILE_NAME)
 
     def __init__(self):
         """

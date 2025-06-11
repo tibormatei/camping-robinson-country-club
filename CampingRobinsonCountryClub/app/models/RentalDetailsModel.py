@@ -10,12 +10,9 @@
 @summary: This class is a model of rental details.
 """
 
-from collections.abc import Iterator
-
-from app.controllers import TentController
-from app.controllers import TrailersController
-from app.controllers import TrailerController
-from app.controllers import DogController
+from app.models import TentModel
+from app.models import TrailersModel
+from app.models import DogModel
 
 
 class RentalDetailsModel():
@@ -23,61 +20,49 @@ class RentalDetailsModel():
     @summary: This class is a model of rental details.
     """
 
-    def __init__(self, tentController: TentController = None, trailersController: TrailersController = None,
-                 trailerControllersList: list[TrailerController] = [], dogController: DogController = None,
-                 priceInformation: str = '', checkOutinformation: str = ''):
+    def __init__(self, tentModel: TentModel = None, trailersModel: TrailersModel = None,
+                 dogModel: DogModel = None, priceInformation: str = '', checkOutInformation: str = ''):
         """
         @summary: The init method initialize instance attributes.
         @param self: RentalDetailsModel self parameter.
-        @param tentController: Tent rental detalis.
-        @param trailersController: Trailer rental detalis.
-        @param trailerControllersList: Trailer controllers in a list..
-        @param dogController: Dog price details.
+        @param tentModel: Tent rental detalis.
+        @param trailersModel: Trailer rental detalis.
+        @param dogModel: Dog price details.
         @param priceInformation: Price details.
-        @param checkOutinformation: Check out time.
+        @param checkOutInformation: Check out time.
         """
-        self._tentController: TentController = tentController
-        self._trailersController: TrailersController = trailersController
-        self._trailerControllersList: list[TrailerController] = trailerControllersList
-        self._dogController: DogController = dogController
+        self._tentModel: TentModel = tentModel
+        self._trailersModel: TrailersModel = trailersModel
+        self._dogModel: DogModel = dogModel
         self._priceInformation: str = priceInformation
-        self._checkOutinformation: str = checkOutinformation
+        self._checkOutInformation: str = checkOutInformation
 
     @property
-    def TentController(self) -> TentController:
+    def TentModel(self) -> TentModel:
         """
-        @summary: The TentController getter property.
+        @summary: The TentModel getter property.
         @param self: RentalDetailsModel self parameter.
         @returns: Returns tent detailes.
         """
         return self._tentModel
 
     @property
-    def TrailersController(self) -> TrailersController:
+    def TrailersModel(self) -> TrailersModel:
         """
-        @summary: The TrailersController getter property.
+        @summary: The TrailersModel getter property.
         @param self: RentalDetailsModel self parameter.
         @returns: Returns trailers detailes.
         """
-        return self._trailersController
+        return self._trailersModel
 
     @property
-    def TrailerControllersList(self) -> Iterator:
+    def DogModel(self) -> DogModel:
         """
-        @summary: The TrailerControllersList getter property.
-        @param self: RentalDetailsModel self parameter.
-        @returns: Returns trailer controllers.
-        """
-        return iter(self._trailerControllersList)
-
-    @property
-    def DogController(self) -> DogController:
-        """
-        @summary: The DogController getter property.
+        @summary: The DogModel getter property.
         @param self: RentalDetailsModel self parameter.
         @returns: Returns dog detailes.
         """
-        return self._dogController
+        return self._dogModel
 
     @property
     def PriceInformation(self) -> str:
@@ -89,10 +74,10 @@ class RentalDetailsModel():
         return self._priceInformation
 
     @property
-    def CheckOutinformation(self) -> str:
+    def CheckOutInformation(self) -> str:
         """
-        @summary: The CheckOutinformation getter property.
+        @summary: The CheckOutInformation getter property.
         @param self: RentalDetailsModel self parameter.
         @returns: Returns check out detailes.
         """
-        return self._checkOutinformation
+        return self._checkOutInformation
