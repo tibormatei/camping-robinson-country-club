@@ -55,9 +55,8 @@ class Index():
 
         return indexHtml
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
-        A function of a class that can return index.html page.
+        @summary: A function of a class that can return index.html page.
         """
-        return cls.buildIndexPage()
+        return self.buildIndexPage()

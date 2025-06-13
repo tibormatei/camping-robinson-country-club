@@ -13,7 +13,10 @@
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 import mimetypes
+import threading
+
 from Index import Index
+from utils.response import *
 
 
 class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
@@ -33,30 +36,39 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
 
         # Custom initializations:
         self._rootPath: Path = Path(__file__).parent
-        self._connectionIsKeepAlive = True
 
     def do_GET(self):
         """
         @summary: By design the http protocol has a “get” request.
+                  This is an asynchronous thread handler.
         """
+        print(f"Request handled in thread: {threading.current_thread().ident}")
+
         if self.path == '/':
-            self._sendIndexPage()
+            # sendIndexPage:
+            indexPageCreator: Index = Index(self._rootPath)
+            handler = DynamicHtmlHandler(indexPageCreator)
         else:
-            (mime_type, encoding) = mimetypes.guess_type(self.path)
-            if mime_type is not None:
-                print(mime_type)
-                match mime_type:
+            (mimeType, encoding) = mimetypes.guess_type(self.path)
+            if mimeType is not None:
+                match mimeType:
                     case 'text/html':
-                        self._sendIndexPage()
+                        # sendIndexPage:
+                        if self.path.find('index'):
+                            indexPageCreator: Index = Index(self._rootPath)
+                            handler = DynamicHtmlHandler(indexPageCreator)
 
                     case 'image/x-icon' | 'image/vnd.microsoft.icon':
-                        self._sendIcoImage(self.path)
+                        # sendIcoImage:
+                        handler = StaticHandler(self._rootPath, self.path, mimeType)
 
                     case 'image/png':
-                        self._sendPngImage(self.path)
+                        # sendPngImage:
+                        handler = StaticHandler(self._rootPath, self.path, mimeType)
 
                     case _:
-                        pass
+                        handler = BadRequestHandler()
+        self.respond(handler)
 
     def do_POST(self):
         """
@@ -64,65 +76,26 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         """
         pass
 
-    def _sendIndexPage(self):
+    def respond(self, handler: RequestHandler):
         """
-        @summary: Send out index.html page.
+        @summary: Send a http respons.
+        @param handler: Respons specific handler.
         """
-        index: Index = Index(self._rootPath)
-        content = bytes(index.buildIndexPage(), "utf-8")
-
-        self.send_response(200)
-        self.send_header("Content-type", "text/html")
-        self.send_header('Content-Length', str(len(content)))
-        self.end_headers()
-
-        self.wfile.write(content)
-
-    def _sendIcoImage(self, path: str):
-        if path.startswith("/"):
-            path = path[1:]
-        iconPath: Path = self._rootPath.joinpath(path)
-
         try:
-            with open(iconPath, 'rb') as f:
-                    icoData = f.read()
-        except FileNotFoundError:
-            # To do: It will create dynamically in default icon and return ok instance of error!
-            print('404 - Favicon not found!')
-            self.send_error(404, "Favicon not found!")
+            if not self.close_connection:
+                # Set header:
+                if handler.StatusCode == 200:
+                    self.send_response(handler.StatusCode)
+                    self.send_header("Content-type", handler.ContentType)
+                    self.send_header('Content-Length', handler.ContentLength)
+                    self.end_headers()
 
-        self.send_response(200)
-        self.send_header('Content-type', 'image/vnd.microsoft.icon')
-        self.send_header('Content-Length', str(len(icoData)))
-        self.end_headers()
+                    # Set contents:
+                    if not self.wfile.closed:
+                        self.wfile.write(handler.Contents)
+                        self.wfile.flush()
+                else:
+                    self.send_error(handler.StatusCode, str(handler.Contents, 'utf-8'))
 
-        try:
-            self.wfile.write(icoData)
-            self.wfile.flush()
         except ConnectionAbortedError:
-            print('Client disconnected early!')
-            self.close_connection
-
-    def _sendPngImage(self, path: str):
-        if path.startswith("/"):
-            path = path[1:]
-        pngPath: Path = self._rootPath.joinpath(path)
-
-        try:
-            with open(pngPath, 'rb') as f:
-                    pngData = f.read()
-        except FileNotFoundError:
-            print('404 - Png image not found!')
-            self.send_error(404, "Png image not found!")
-
-        try:
-            self.send_response(200)
-            self.send_header('Content-type', 'image/png')
-            self.send_header('Content-Length', str(len(pngData)))
-            self.end_headers()
-            self.end_headers()
-
-            self.wfile.write(pngData)
-            self.wfile.flush()
-        except ConnectionAbortedError:
-            print('Client disconnected early!')
+                print('Client disconnected early!')
