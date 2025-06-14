@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: RentalDetailsView.py
+# Filename: Rental_details_view.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -12,15 +12,15 @@
 
 from pathlib import Path
 
-from app.models import TentModel
-from app.models import TrailersModel
-from app.models import DogModel
-from app.views import TentView
-from app.views import TrailersView
-from app.views import DogView
-from app.controllers import TentController
-from app.controllers import TrailersController
-from app.controllers import DogController
+from models import TentModel
+from models import TrailersModel
+from models import DogModel
+from views import TentView
+import views.trailers_view as from_views
+from views import DogView
+from controllers import TentController
+from controllers import TrailersController
+from controllers import DogController
 
 
 class RentalDetailsView():
@@ -30,7 +30,7 @@ class RentalDetailsView():
 
     # Class variables
     RENTAL_DETAILS_SECTION_FILE_CONTENT: str = None
-    RENTAL_DETAILS_SECTION_FILE_NAME: str = 'section__rentalDetails.html'
+    RENTAL_DETAILS_SECTION_FILE_NAME: str = 'section_rentalDetails.html'
     RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rentalDetails', RENTAL_DETAILS_SECTION_FILE_NAME)
 
     def __init__(self):
@@ -67,7 +67,7 @@ class RentalDetailsView():
         rentalDetailsView = rentalDetailsView.replace('{{' + TENT_SECTION_KEY + '}}', tentSectionContent)
 
         # Trailers section
-        trailersView: TrailersView = TrailersView()
+        trailersView: from_views.TrailersView = from_views.TrailersView()
         trailersController: TrailersController = TrailersController(trailersModel, trailersView)
         trailersSectionContent: str = trailersController.showTrailersView(translations)
 
@@ -102,15 +102,15 @@ class RentalDetailsView():
         rentalDetailsSectionHtml: str = None
 
         try:
-            with open(cls.RENTAL_DETAILS_SECTION_FILE_NAME, 'r', encoding = 'utf-8') as f:
+            with open(cls.RENTAL_DETAILS_SECTION_FILE_PATH, 'r', encoding = 'utf-8') as f:
                 rentalDetailsSectionHtml = f.read()
 
         except FileNotFoundError:
-            print(f"Exception Error: {cls.RENTAL_DETAILS_SECTION_FILE_NAME} file not found!")
+            print(f"Exception Error: {cls.RENTAL_DETAILS_SECTION_FILE_PATH} file not found!")
             rentalDetailsSectionHtml = None
 
         except Exception as e:
-            print(f"Exception Error: reading {cls.RENTAL_DETAILS_SECTION_FILE_NAME}: {e}")
+            print(f"Exception Error: reading {cls.RENTAL_DETAILS_SECTION_FILE_PATH}: {e}")
             rentalDetailsSectionHtml = None
 
         return rentalDetailsSectionHtml

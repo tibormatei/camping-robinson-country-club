@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TentModelBuilder.py
+# Filename: tent_model_builder.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,8 +10,8 @@
 @summary: This class returns the TentModel with dates.
 """
 
-from app.data import RentalDetailsDataAccess
-from app.models import TentModel
+from data import RentalDetailsDataAccess
+from models import TentModel
 
 
 class TentModelBuilder():

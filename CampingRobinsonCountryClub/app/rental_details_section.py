@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: RentalDetailsSection.py
+# Filename: rental_details_section.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,16 +10,16 @@
 @summary: This class controller the rental details classes.
 """
 
-from app.data import RentalDetailsDataFromFile
-from app.data import TentModelBuilder
-from app.models import TentModel
-from app.data import TrailersModelBuilder
-from app.models import TrailersModel
-from app.data import DogModelBuilder
-from app.models import DogModel
-from app.models import RentalDetailsModel
-from app.views import RentalDetailsView
-from app.controllers import RentalDetailsController
+from data import RentalDetailsDataFromFile
+from data import TentModelBuilder
+from models import TentModel
+from data import TrailersModelBuilder
+from models import TrailersModel
+from data import DogModelBuilder
+from models import DogModel
+from models import RentalDetailsModel
+from views import RentalDetailsView
+from controllers import RentalDetailsController
 
 
 class RentalDetailsSection():
@@ -51,12 +51,11 @@ class RentalDetailsSection():
         rentalDetailsView: RentalDetailsView = RentalDetailsView()
         self._rentalDetailsController: RentalDetailsController = RentalDetailsController(rentalDetailsModel, rentalDetailsView)
 
-    @classmethod
-    def generateRentalDetailsSection(cls, translations: dict = {}) -> str:
+    def generateRentalDetailsSection(self, translations: dict = {}) -> str:
         """
         @summary: Generates rental details html section.
-        @param cls: RentalDetailsSection cls parameter.
+        @param self: RentalDetailsSection self parameter.
         @param translations: Language words.
         @returns: Returns a full displayable Rental details information html code piece.
         """
-        return cls._rentalDetailsController.showRentalDetails(translations)
+        return self._rentalDetailsController.showRentalDetails(translations)

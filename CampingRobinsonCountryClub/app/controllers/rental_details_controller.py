@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: RentalDetailsController.py
+# Filename: rental_details_ontroller.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,12 +10,12 @@
 @summary: This class controller the rental details model, and view.
 """
 
-from app.models import RentalDetailsModel
-from app.views import RentalDetailsView
+import models.rental_details_model as models
+import views.rental_details_view as views
 
-from app.models import TentModel
-from app.models import TrailersModel
-from app.models import DogModel
+from models import TentModel
+from models import TrailersModel
+from models import DogModel
 
 
 class RentalDetailsController():
@@ -23,15 +23,15 @@ class RentalDetailsController():
     @summary: This class controller the rental details.
     """
 
-    def __init__(self, rentalDetailsModel: RentalDetailsModel, rentalDetailsView: RentalDetailsView):
+    def __init__(self, rentalDetailsModel: models.RentalDetailsModel, rentalDetailsView: views.RentalDetailsView):
         """
         @summary: The init method initialize instance attributes.
         @param self: RentalDetailsController self parameter.
         @param rentalDetailsModel: The model class for MVC pattern.
         @param rentalDetailsView: The view class for MVC pattern.
         """
-        self._rentalDetailsModel: RentalDetailsModel = rentalDetailsModel
-        self._rentalDetailsView: RentalDetailsView = rentalDetailsView
+        self._rentalDetailsModel: models.RentalDetailsModel = rentalDetailsModel
+        self._rentalDetailsView: views.RentalDetailsView = rentalDetailsView
 
     def showRentalDetails(self, translations: dict = {}) -> str:
         """
@@ -48,11 +48,10 @@ class RentalDetailsController():
         return self._rentalDetailsView.showRentalDetailsView(translations, tentModel, trailersModel,
                                                              dogModel, priceInformation, checkOutinformation)
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
         @summary: A function of a class that can return class state.
-        @param cls: RentalDetailsController cls parameter.
+        @param self: RentalDetailsController self parameter.
         @returns: Returns showRentalDetails().
         """
-        return cls.showRentalDetails()
+        return self.showRentalDetails()

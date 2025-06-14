@@ -12,7 +12,7 @@
 
 from pathlib import Path
 
-from .RequestHandler import RequestHandler
+from utils.response import RequestHandler
 
 
 class StaticHandler(RequestHandler):

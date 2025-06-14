@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: BadRequestHandler.py
+# Filename: bad_request_handler.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,7 +10,7 @@
 @summary: This class handlers a bad request file.
 """
 
-from .RequestHandler import RequestHandler
+from utils.response import RequestHandler
 
 
 class BadRequestHandler(RequestHandler):

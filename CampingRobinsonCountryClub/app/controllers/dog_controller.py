@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TentController.py
+# Filename: dog_controller.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,8 +10,8 @@
 @summary: This class controller the dog model and view.
 """
 
-from app.models import DogModel
-from app.views import DogView
+from models import DogModel
+from views import DogView
 
 
 class DogController():
@@ -38,11 +38,10 @@ class DogController():
         """
         return self._dogView.showDogView(translations, self._dogModel.LeiPricePerNight, self._dogModel.EurPricePerNight)
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
         @summary: A function of a class that can return class state.
-        @param cls: DogController cls parameter.
+        @param self: DogController self parameter.
         @returns: Returns showDogView().
         """
-        return cls.showDogView()
+        return self.showDogView()

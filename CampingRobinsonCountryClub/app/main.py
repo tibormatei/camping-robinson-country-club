@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 from http.server import ThreadingHTTPServer
-from CampingRobinsonCountryClubServer import CampingRobinsonCountryClubServer
+from camping_robinson_country_club_server import CampingRobinsonCountryClubServer
 
 
 if __name__ == "__main__":

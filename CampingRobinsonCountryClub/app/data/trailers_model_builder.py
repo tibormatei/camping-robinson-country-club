@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TrailersModelBuilder.py
+# Filename: trailers_model_builder.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,10 +10,10 @@
 @summary: This class returns the TrailerModel with dates.
 """
 
-from app.data import RentalDetailsDataAccess
-from app.models import TrailerModel
-from app.models import TrailersModel
-from app.data import TrailerModelBuilder
+from data import RentalDetailsDataAccess
+from data import TrailerModelBuilder
+from models import TrailerModel
+from models import TrailersModel
 
 
 class TrailersModelBuilder():

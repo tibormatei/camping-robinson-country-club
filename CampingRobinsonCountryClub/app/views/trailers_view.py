@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TrailersView.py
+# Filename: trailers_view.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -11,9 +11,10 @@
 """
 
 from pathlib import Path
-from app.models import TrailersModel
-from app.views import TrailerView
-from app.controllers import TrailerController
+
+from models import TrailersModel
+from views import TrailerView
+from controllers import TrailerController
 
 
 class TrailersView():
@@ -89,6 +90,7 @@ class TrailersView():
     @classmethod
     def __str__(cls) -> str:
         """
-        A function of a class that can return class state.
+        @summary: A function of a class that can return class state.
+        @param cls: TrailersView self parameter.
         """
         pass

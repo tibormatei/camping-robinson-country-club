@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TrailerController.py
+# Filename: trailer_controller.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,8 +10,8 @@
 @summary: This class controller the trailer model and view.
 """
 
-from app.models import TrailerModel
-from app.views import TrailerView
+from models import TrailerModel
+from views import TrailerView
 
 
 class TrailerController():
@@ -40,11 +40,10 @@ class TrailerController():
         eurPrice: int = self._trailerModel.EurPrice
         return self._trailerView.showTrailerView(translations, trailerCapacity, leiPrice, eurPrice)
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
         @summary: A function of a class that can return class state.
-        @param cls: TrailerController cls parameter.
+        @param self: TrailerController self parameter.
         @returns: Returns showTrailerView().
         """
-        return cls.showTrailerView()
+        return self.showTrailerView()

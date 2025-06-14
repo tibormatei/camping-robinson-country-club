@@ -12,6 +12,8 @@
 
 from pathlib import Path
 
+from rental_details_section import RentalDetailsSection
+
 
 class Index():
     """
@@ -21,7 +23,7 @@ class Index():
     # Class variables
     INDEX_FILE_NAME: str = 'index.html'
 
-    def __init__(self, path: str):
+    def __init__(self, path: str, translations: dict):
         """
         @summary: The init method initialize instance attributes.
         @param self: Index self parameter.
@@ -29,8 +31,15 @@ class Index():
         """
         self._index_file_path: Path = Path(path).joinpath('templates', self.__class__.INDEX_FILE_NAME)
         self._index_file_content: str = self.__readIndexHtml()
+        self._translations: dict = translations
 
     def buildIndexPage(self) -> str:
+        rentalDetailsSection: RentalDetailsSection = RentalDetailsSection()
+        rentalDetailsSectionHtml = rentalDetailsSection.generateRentalDetailsSection(self._translations)
+
+        RENTALDETAILS_KEY: str = 'rentaldetails'
+        self._index_file_content = self._index_file_content.replace('{{' + RENTALDETAILS_KEY + '}}', rentalDetailsSectionHtml)
+
         return self._index_file_content
 
     def __readIndexHtml(cls) -> str:

@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: CampingRobinsonCountryClubServer.py
+# Filename: camping_robinson_country_club_server.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -14,8 +14,9 @@ from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 import mimetypes
 import threading
+import json
 
-from Index import Index
+from index import Index
 from utils.response import *
 
 
@@ -41,13 +42,13 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         """
         @summary: By design the http protocol has a “get” request.
                   This is an asynchronous thread handler.
+        @param self: CampingRobinsonCountryClubServer self parameter.
         """
         print(f"Request handled in thread: {threading.current_thread().ident}")
 
         if self.path == '/':
             # sendIndexPage:
-            indexPageCreator: Index = Index(self._rootPath)
-            handler = DynamicHtmlHandler(indexPageCreator)
+            handler = self._getIndexPageHandler()
         else:
             (mimeType, encoding) = mimetypes.guess_type(self.path)
             if mimeType is not None:
@@ -55,8 +56,7 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
                     case 'text/html':
                         # sendIndexPage:
                         if self.path.find('index'):
-                            indexPageCreator: Index = Index(self._rootPath)
-                            handler = DynamicHtmlHandler(indexPageCreator)
+                            handler = self._getIndexPageHandler()
 
                     case 'image/x-icon' | 'image/vnd.microsoft.icon':
                         # sendIcoImage:
@@ -66,6 +66,10 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
                         # sendPngImage:
                         handler = StaticHandler(self._rootPath, self.path, mimeType)
 
+                    case 'text/css':
+                        # sendCssStyle:
+                        handler = StaticHandler(self._rootPath, self.path, mimeType)
+
                     case _:
                         handler = BadRequestHandler()
         self.respond(handler)
@@ -73,12 +77,14 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
     def do_POST(self):
         """
         @summary: By design the http protocol has a “post” request.
+        @param self: CampingRobinsonCountryClubServer self parameter.
         """
         pass
 
     def respond(self, handler: RequestHandler):
         """
         @summary: Send a http respons.
+        @param self: CampingRobinsonCountryClubServer self parameter.
         @param handler: Respons specific handler.
         """
         try:
@@ -99,3 +105,20 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
 
         except ConnectionAbortedError:
                 print('Client disconnected early!')
+
+    def _getIndexPageHandler(self) -> DynamicHtmlHandler:
+        """
+        @summary: Get index page.
+        @param self: CampingRobinsonCountryClubServer self parameter.
+        @param self: Respons specific handler.
+        """
+        # accept_language = self.headers.get('Accept-Language', '')
+        # print(f"Browser languages: {accept_language}")
+        # To Do: decide which language you need!
+
+        languagePath = self._rootPath.joinpath('data', 'languages', 'en.json')
+        f = open(languagePath)
+        language = json.load(f)
+
+        indexPageCreator: Index = Index(self._rootPath, language)
+        return DynamicHtmlHandler(indexPageCreator)

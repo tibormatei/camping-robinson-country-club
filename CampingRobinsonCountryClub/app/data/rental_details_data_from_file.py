@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: RentalDetailsDataFromFile.py
+# Filename: rental_details_data_from_file.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -12,7 +12,7 @@
 
 from pathlib import Path
 
-from app.data import RentalDetailsDataAccess
+from data import RentalDetailsDataAccess
 
 
 class RentalDetailsDataFromFile(RentalDetailsDataAccess):

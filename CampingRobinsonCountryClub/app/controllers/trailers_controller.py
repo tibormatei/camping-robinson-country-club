@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TrailersController.py
+# Filename: trailers_controller.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,10 +10,8 @@
 @summary: This class controller the trailers model and view.
 """
 
-from collections.abc import Iterator
-
-from app.models import TrailersModel
-from app.views import TrailersView
+from models import TrailersModel
+import views.trailers_view as from_views
 
 
 class TrailersController():
@@ -21,7 +19,7 @@ class TrailersController():
     @summary: This class controller the trailersent details.
     """
 
-    def __init__(self, trailersModel: TrailersModel, trailersView: TrailersView):
+    def __init__(self, trailersModel: TrailersModel, trailersView: from_views.TrailerView):
         """
         @summary: The init method initialize instance attributes.
         @param self: TrailersController self parameter.
@@ -29,7 +27,7 @@ class TrailersController():
         @param trailersView: The view class for MVC pattern.
         """
         self._trailersModel: TrailersModel = trailersModel
-        self._trailersView: TrailersView = trailersView
+        self._trailersView: from_views.TrailerView = trailersView
 
     def showTrailersView(self, translations: dict = {}) -> str:
         """
@@ -40,11 +38,10 @@ class TrailersController():
         """
         return self._trailersView.showTrailersView(translations, self._trailersModel)
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
         @summary: A function of a class that can return class state.
-        @param cls: TrailersController cls parameter.
+        @param self: TrailersController self parameter.
         @returns: Returns showTrailersView().
         """
-        return cls.showTrailersView()
+        return self.showTrailersView()

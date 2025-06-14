@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TrailerView.py
+# Filename: trailer_view.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,9 +43,9 @@ class TrailerView():
         trailerTableRow: str = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
         return trailerTableRow
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
-        A function of a class that can return class state.
+        @summary: A function of a class that can return class state.
+        @param self: TrailerView self parameter.
         """
-        return cls.showTrailerView()
+        return self.showTrailerView()

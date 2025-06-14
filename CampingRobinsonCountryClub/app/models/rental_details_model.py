@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: RentalDetailsModel.py
+# Filename: rental_details_model.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,9 +10,9 @@
 @summary: This class is a model of rental details.
 """
 
-from app.models import TentModel
-from app.models import TrailersModel
-from app.models import DogModel
+from models import TentModel
+from models import TrailersModel
+from models import DogModel
 
 
 class RentalDetailsModel():

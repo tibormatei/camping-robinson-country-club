@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: DogModelBuilder.py
+# Filename: dog_model_builder.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,8 +10,8 @@
 @summary: This class returns the TentModel with dates.
 """
 
-from app.data import RentalDetailsDataAccess
-from app.models import DogModel
+from data import RentalDetailsDataAccess
+from models import DogModel
 
 
 class DogModelBuilder():

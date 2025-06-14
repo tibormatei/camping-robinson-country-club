@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TentController.py
+# Filename: tent_controller.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,9 +10,8 @@
 @summary: This class controller the tent model and view.
 """
 
-from app.models import TentModel
-from app.views import TentView
-
+from models import TentModel
+from views import TentView
 
 class TentController():
     """
@@ -38,11 +37,10 @@ class TentController():
         """
         return self._tentView.showTentView(translations, self._tentModel.TentCapacities, self._tentModel.LeiPricePerPerson, self._tentModel.EurPricePerPerson)
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
         @summary: A function of a class that can return class state.
-        @param cls: TentController cls parameter.
+        @param self: TentController self parameter.
         @returns: Returns showTentView().
         """
-        return cls.showTentView()
+        return self.showTentView()

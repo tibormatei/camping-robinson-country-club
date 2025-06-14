@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TrailersModel.py
+# Filename: trailers_model.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -10,7 +10,7 @@
 @summary: This class is a model of rental trailers prices.
 """
 
-from app.models import TrailerModel
+from models import TrailerModel
 
 
 class TrailersModel():

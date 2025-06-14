@@ -3,6 +3,9 @@ set -e  # Exit immediately if any command fails
 
 cd ..
 
+# Set the app folder the Python path
+export PYTHONPATH=$(pwd)/app
+
 # Run all tests
 echo "Run all Model tests"
 python -m unittest test/test_TentModel.py

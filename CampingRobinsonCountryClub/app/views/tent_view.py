@@ -1,6 +1,6 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: TentView.py
+# Filename: tent_view.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -95,9 +95,9 @@ class TentView():
 
         return tentBaseTableHtml
 
-    @classmethod
-    def __str__(cls) -> str:
+    def __str__(self) -> str:
         """
-        A function of a class that can return class state.
+        @summary: A function of a class that can return class state.
+        @param cls: TentView cls parameter.
         """
-        return cls.showTentView()
+        return self.showTentView()
