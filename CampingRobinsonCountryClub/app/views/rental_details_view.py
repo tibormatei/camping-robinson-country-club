@@ -31,7 +31,7 @@ class RentalDetailsView():
     # Class variables
     RENTAL_DETAILS_SECTION_FILE_CONTENT: str = None
     RENTAL_DETAILS_SECTION_FILE_NAME: str = 'section_rentalDetails.html'
-    RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rentalDetails', RENTAL_DETAILS_SECTION_FILE_NAME)
+    RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rental_details', RENTAL_DETAILS_SECTION_FILE_NAME)
 
     def __init__(self):
         """

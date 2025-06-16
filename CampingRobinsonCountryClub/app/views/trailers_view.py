@@ -25,7 +25,7 @@ class TrailersView():
     # Class variables
     TRAILER_BASE_TABLE_FILE_CONTENT: str = None
     TRAILER_BASE_TABLE_FILE_NAME: str = 'table_trailerBase.html'
-    TRAILER_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rentalDetails', TRAILER_BASE_TABLE_FILE_NAME)
+    TRAILER_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rental_details', TRAILER_BASE_TABLE_FILE_NAME)
 
     def __init__(self):
         """
