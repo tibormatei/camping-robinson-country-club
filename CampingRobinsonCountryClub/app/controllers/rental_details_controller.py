@@ -43,8 +43,12 @@ class RentalDetailsController():
         tentModel: TentModel = self._rentalDetailsModel.TentModel
         trailersModel: TrailersModel = self._rentalDetailsModel.TrailersModel
         dogModel: DogModel = self._rentalDetailsModel.DogModel
-        priceInformation: str = self._rentalDetailsModel.PriceInformation
-        checkOutinformation: str = self._rentalDetailsModel.CheckOutInformation
+        try:
+            priceInformation: str = translations['rentalDetails']['priceInformation']
+            checkOutinformation: str = translations['rentalDetails']['checkOutinformation']
+        except KeyError:
+            priceInformation: str = self._rentalDetailsModel.PriceInformation
+            checkOutinformation: str = self._rentalDetailsModel.CheckOutInformation
         return self._rentalDetailsView.showRentalDetailsView(translations, tentModel, trailersModel,
                                                              dogModel, priceInformation, checkOutinformation)
 
