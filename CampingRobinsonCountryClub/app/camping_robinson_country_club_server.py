@@ -47,32 +47,37 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         print(f"Request handled in thread: {threading.current_thread().ident}")
 
         if self.path == '/':
-            # sendIndexPage:
+            # send IndexPage:
             handler = self._getIndexPageHandler()
         else:
             (mimeType, encoding) = mimetypes.guess_type(self.path)
             if mimeType is not None:
                 match mimeType:
                     case 'text/html':
-                        # sendIndexPage:
+                        # send IndexPage:
                         if self.path.find('index'):
                             handler = self._getIndexPageHandler()
 
                     case 'image/x-icon' | 'image/vnd.microsoft.icon':
-                        # sendIcoImage:
+                        # send IcoImage:
                         handler = StaticHandler(self._rootPath, self.path, mimeType)
 
                     case 'image/png':
-                        # sendPngImage:
+                        # send PngImage:
                         handler = StaticHandler(self._rootPath, self.path, mimeType)
 
                     case 'text/css':
-                        # sendCssStyle:
+                        # send CssStyle:
+                        handler = StaticHandler(self._rootPath, self.path, mimeType)
+
+                    case 'text/javascript' | 'application/javascript':
+                        # send JavaScript:
                         handler = StaticHandler(self._rootPath, self.path, mimeType)
 
                     case _:
                         handler = BadRequestHandler()
         self.respond(handler)
+        del(handler)
 
     def do_POST(self):
         """
