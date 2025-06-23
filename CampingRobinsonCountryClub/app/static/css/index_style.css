@@ -14,11 +14,14 @@ body {
     padding: 0;
     height: 100%;
     font-family: "DM Sans", sans-serif;
+    font-size: 1.1rem;
 }
 
 body {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
 }
 
 ul,
@@ -43,6 +46,7 @@ a:focus {
 }
 
 table {
+    margin: 0px;
     border-collapse: collapse;
 }
 
@@ -69,8 +73,25 @@ th, td {
   Main
 ------------------------*/
 main {
-    background-color: #fff1d6;
+    background-image: url("/static/images/background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     flex: 1;
+    width: 100%;
+    color: #fff1d6;
+}
+
+#rentaldetails {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    flex: 1;
+    width: 100%;
+}
+
+#rentaldetails tr {
+    text-align: center; 
 }
 
 /*----------------------
