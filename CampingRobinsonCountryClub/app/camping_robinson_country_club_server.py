@@ -48,6 +48,7 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
 
         if self.path == '/':
             # send IndexPage:
+            userLanguage = self._parseAcceptLanguage(self.headers.get('Accept-Language', ''))
             handler = self._getIndexPageHandler()
         else:
             (mimeType, encoding) = mimetypes.guess_type(self.path)
@@ -64,6 +65,10 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
 
                     case 'image/png':
                         # send PngImage:
+                        handler = StaticHandler(self._rootPath, self.path, mimeType)
+
+                    case 'image/jpeg':
+                        # send JPGImage:
                         handler = StaticHandler(self._rootPath, self.path, mimeType)
 
                     case 'text/css':
@@ -115,7 +120,6 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         """
         @summary: Get index page.
         @param self: CampingRobinsonCountryClubServer self parameter.
-        @param self: Respons specific handler.
         """
         # accept_language = self.headers.get('Accept-Language', '')
         # print(f"Browser languages: {accept_language}")
@@ -127,3 +131,11 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
 
         indexPageCreator: Index = Index(self._rootPath, language)
         return DynamicHtmlHandler(indexPageCreator)
+    
+    def _parseAcceptLanguage(self, acceptLanguage: str) -> str:
+        """
+        @summary: Parse Accept-Language header and return prefered language of user.
+        @param self: CampingRobinsonCountryClubServer self parameter.
+        @param acceptLanguage: Accept-Language header string.
+        """
+        pass
