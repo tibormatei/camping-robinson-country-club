@@ -15,7 +15,7 @@ import unittest
 from app.models.header_languages import LanguageOptionTagModel
 from app.models.header_languages import LanguageOptionTagsModel
 from app.views.header_languages import LanguageOptionTagsView
-from app.controllers.header_languages import LanguageOptionTagController
+from app.controllers.header_languages import LanguageOptionTagsController
 
 class TestLanguageOptionTagController(unittest.TestCase):
     """
@@ -35,7 +35,7 @@ class TestLanguageOptionTagController(unittest.TestCase):
 
         languageOptionTagsModel = LanguageOptionTagsModel(langList)
         languageOptionTagsView = LanguageOptionTagsView()
-        self.languageOptionTagController = LanguageOptionTagController(languageOptionTagsModel, languageOptionTagsView)
+        self.languageOptionTagController = LanguageOptionTagsController(languageOptionTagsModel, languageOptionTagsView)
 
     # Pozitiv tests:
     # Test showLanguageOptionTags method
@@ -43,7 +43,7 @@ class TestLanguageOptionTagController(unittest.TestCase):
         EXPECTED_RESULT: str = ('<option selected value="en">English</option>\n'
                                 '<option value="hu">Hungarian</option>\n')
 
-        self.assertEqual(self.languageOptionTagController.showLanguageOptionTag(), EXPECTED_RESULT)
+        self.assertEqual(self.languageOptionTagController.showLanguageOptionTags(), EXPECTED_RESULT)
 
 if __name__ == '__main__':
     unittest.main()
