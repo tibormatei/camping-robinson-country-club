@@ -79,6 +79,10 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
                         # send JavaScript:
                         handler = StaticHandler(self._rootPath, self.path, mimeType)
 
+                    case 'text/json' | 'application/json':
+                        # send json file:
+                        handler = StaticHandler(self._rootPath, self.path, mimeType)
+
                     case _:
                         handler = BadRequestHandler()
         self.respond(handler)
