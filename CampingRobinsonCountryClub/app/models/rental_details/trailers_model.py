@@ -10,7 +10,7 @@
 @summary: This class is a model of rental trailers prices.
 """
 
-from models import TrailerModel
+from models.rental_details import TrailerModel
 
 
 class TrailersModel():

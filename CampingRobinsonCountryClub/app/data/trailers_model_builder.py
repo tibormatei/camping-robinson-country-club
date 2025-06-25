@@ -12,8 +12,8 @@
 
 from data import RentalDetailsDataAccess
 from data import TrailerModelBuilder
-from models import TrailerModel
-from models import TrailersModel
+from models.rental_details import TrailerModel
+from models.rental_details import TrailersModel
 
 
 class TrailersModelBuilder():

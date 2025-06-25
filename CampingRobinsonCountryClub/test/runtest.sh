@@ -22,3 +22,7 @@ python -m unittest test/test_DogView.py
 echo ""
 echo "Run all data tests"
 python -m unittest test/test_RentalDetailsDataFromFile.py
+
+echo ""
+echo "Run all controller tests"
+python -m unittest test/test_LanguageOptionTagController.py

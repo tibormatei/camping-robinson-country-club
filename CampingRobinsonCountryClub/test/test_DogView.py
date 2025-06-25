@@ -11,7 +11,7 @@
 """
 
 import unittest
-from app.views import DogView
+from app.views.rental_details import DogView
 
 
 class TestDogView(unittest.TestCase):

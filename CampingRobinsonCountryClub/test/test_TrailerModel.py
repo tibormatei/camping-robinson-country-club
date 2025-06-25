@@ -11,7 +11,7 @@
 """
 
 import unittest
-from app.models import TrailerModel
+from app.models.rental_details import TrailerModel
 
 
 class TestTrailerModel(unittest.TestCase):

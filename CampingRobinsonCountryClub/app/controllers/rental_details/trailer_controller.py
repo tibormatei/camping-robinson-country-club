@@ -10,8 +10,8 @@
 @summary: This class controller the trailer model and view.
 """
 
-from models import TrailerModel
-from views import TrailerView
+from models.rental_details import TrailerModel
+from views.rental_details import TrailerView
 
 
 class TrailerController():

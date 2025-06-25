@@ -11,7 +11,7 @@
 """
 
 import unittest
-from app.views import TrailerView
+from app.views.rental_details import TrailerView
 
 
 class TestTrailerView(unittest.TestCase):

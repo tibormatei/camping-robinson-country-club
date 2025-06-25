@@ -11,7 +11,7 @@
 """
 
 import unittest
-from app.views import TentView
+from app.views.rental_details import TentView
 
 
 class TestTentView(unittest.TestCase):

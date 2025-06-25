@@ -12,7 +12,8 @@
 
 from pathlib import Path
 
-from rental_details_section import RentalDetailsSection
+from utils.generators import RentalDetailsSection
+from utils.generators import LanguageOptionsForSelect
 
 
 class Index():
@@ -34,32 +35,55 @@ class Index():
         self._translations: dict = translations
 
     def buildIndexPage(self) -> str:
+        """
+        @summary: Return the done index page.
+        @param self: Index self parameter.
+        """
+        # Replace langCode:
+        LANG_CODE_KEY: str = 'langCode'
+        self.__replaceInIndexContent(LANG_CODE_KEY, self._translations[LANG_CODE_KEY])
+
+        # Replace languageOptions:
+        languageOptionsForSelect: LanguageOptionsForSelect = LanguageOptionsForSelect(self._translations[LANG_CODE_KEY])
+        languageOptionsForSelectHtml = languageOptionsForSelect.generateLanguageOptionsForSelect()
+
+        LANGUAGE_OPTIONS_KEY: str = 'languageOptions'
+        self.__replaceInIndexContent(LANGUAGE_OPTIONS_KEY, languageOptionsForSelectHtml)
+
+        # Replace rentaldetails:
         rentalDetailsSection: RentalDetailsSection = RentalDetailsSection()
         rentalDetailsSectionHtml = rentalDetailsSection.generateRentalDetailsSection(self._translations)
 
         RENTALDETAILS_KEY: str = 'rentaldetails'
-        self._index_file_content = self._index_file_content.replace('{{' + RENTALDETAILS_KEY + '}}', rentalDetailsSectionHtml)
+        self.__replaceInIndexContent(RENTALDETAILS_KEY, rentalDetailsSectionHtml)
 
         return self._index_file_content
+    
+    def __replaceInIndexContent(self, key: str, content: str) -> str:
+        """
+        @summary: Replace the given key to the given content.
+        @param cls: Index cls parameter.
+        """
+        self._index_file_content = self._index_file_content.replace('{{' + key + '}}', content)
 
-    def __readIndexHtml(cls) -> str:
+    def __readIndexHtml(self) -> str:
         """
         @summary: Read in index.html from templates folder.
-        @param cls: Index cls parameter.
+        @param self: Index self parameter.
         @returns: Returns contents of html file.
         """
         indexHtml: str = None
 
         try:
-            with open(cls._index_file_path, 'r', encoding = 'utf-8') as f:
+            with open(self._index_file_path, 'r', encoding = 'utf-8') as f:
                 indexHtml = f.read()
 
         except FileNotFoundError:
-            print(f"Exception Error: {cls._index_file_path} file not found!")
+            print(f"Exception Error: {self._index_file_path} file not found!")
             indexHtml = "Server error!"
 
         except Exception as e:
-            print(f"Exception Error: reading {cls._index_file_path}: {e}")
+            print(f"Exception Error: reading {self._index_file_path}: {e}")
             indexHtml = "Server html file error!"
 
         return indexHtml
