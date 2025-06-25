@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="{{langCode}}">
     <head>
         <meta charset="UTF-8">
 
@@ -38,7 +38,7 @@
                     </div>
                     <div class="header-top-menu">
                         <select class="header-top-language">
-                            <option selected value="ENG">English</option>
+                            {{languageOptions}}
                         </select>
                     </div>
                 </div>
@@ -47,6 +47,7 @@
                     <nav class="header-nav-menu">
                         <ul class="header-menu">
                             <li><a href="#">Home</a></li>
+                            <li><a href="#footer">Contacts</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -59,7 +60,7 @@
         </main>
 
         <!-- Foother Section Begin -->
-        <footer class="footer">
+        <footer id="footer" class="footer">
             <div class="footer-information-container">
                 <p>Camping Robinson Country Oradea, </p>
                 <p>Tel: +40 764 523 950</p>

@@ -18,6 +18,7 @@ import json
 
 from index import Index
 from utils.response import *
+from utils.language import LanguageCodes
 
 
 class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
@@ -48,7 +49,6 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
 
         if self.path == '/':
             # send IndexPage:
-            userLanguage = self._parseAcceptLanguage(self.headers.get('Accept-Language', ''))
             handler = self._getIndexPageHandler()
         else:
             (mimeType, encoding) = mimetypes.guess_type(self.path)
@@ -121,21 +121,36 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         @summary: Get index page.
         @param self: CampingRobinsonCountryClubServer self parameter.
         """
-        # accept_language = self.headers.get('Accept-Language', '')
-        # print(f"Browser languages: {accept_language}")
-        # To Do: decide which language you need!
+        userLanguage = self._parseAcceptLanguage(self.headers.get('Accept-Language', ''))
+        languageFileName: str = userLanguage.name + '.json'
+        # print(f"Browser languages: {userLanguage.value}")
 
-        languagePath = self._rootPath.joinpath('data', 'languages', 'en.json')
-        f = open(languagePath)
+        languagePath = self._rootPath.joinpath('data', 'languages', languageFileName)
+        f = open(file = languagePath, mode = 'r', encoding = 'utf-8')
         language = json.load(f)
 
         indexPageCreator: Index = Index(self._rootPath, language)
         return DynamicHtmlHandler(indexPageCreator)
     
-    def _parseAcceptLanguage(self, acceptLanguage: str) -> str:
+    def _parseAcceptLanguage(self, acceptLanguage: str) -> LanguageCodes:
         """
         @summary: Parse Accept-Language header and return prefered language of user.
         @param self: CampingRobinsonCountryClubServer self parameter.
         @param acceptLanguage: Accept-Language header string.
         """
-        pass
+        languageCode = LanguageCodes.en
+
+        for languageStr in acceptLanguage.lower().split(','):
+            if languageStr.startswith(LanguageCodes.en.name):
+                languageCode = LanguageCodes.en
+                break
+            elif languageStr.startswith(LanguageCodes.hu.name):
+                languageCode = LanguageCodes.hu
+                break
+            elif languageStr.startswith(LanguageCodes.ro.name):
+                languageCode = LanguageCodes.ro
+                break
+            else:
+                pass
+
+        return languageCode

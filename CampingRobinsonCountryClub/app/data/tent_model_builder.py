@@ -11,7 +11,7 @@
 """
 
 from data import RentalDetailsDataAccess
-from models import TentModel
+from models.rental_details import TentModel
 
 
 class TentModelBuilder():

@@ -10,8 +10,8 @@
 @summary: This class controller the tent model and view.
 """
 
-from models import TentModel
-from views import TentView
+from models.rental_details import TentModel
+from views.rental_details import TentView
 
 class TentController():
     """

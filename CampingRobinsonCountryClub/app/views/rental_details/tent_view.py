@@ -21,7 +21,7 @@ class TentView():
     # Class variables
     TENT_BASE_TABLE_FILE_CONTENT: str = None
     TENT_BASE_TABLE_FILE_NAME: str = 'table_tentBase.html'
-    TENT_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rental_details', TENT_BASE_TABLE_FILE_NAME)
+    TENT_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.parent.joinpath('templates', 'rental_details', TENT_BASE_TABLE_FILE_NAME)
 
     def __init__(self):
         """
@@ -48,7 +48,7 @@ class TentView():
             for key, itemValue in translations['rentalDetails']['tentDetails'].items():
                 tentView = tentView.replace('{{' + key + '}}', itemValue)
         except KeyError as e:
-            print(f"KeyError exception: {e}!")
+            print(f"KeyError exception in {cls.__class__.__name__}: {e}!")
 
         # 2. generating and replaces tentTableRows in the content
         tentTableRows: str = str()

@@ -10,8 +10,8 @@
 @summary: This class controller the dog model and view.
 """
 
-from models import DogModel
-from views import DogView
+from models.rental_details import DogModel
+from views.rental_details import DogView
 
 
 class DogController():

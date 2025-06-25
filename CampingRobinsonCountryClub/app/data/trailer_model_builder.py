@@ -11,7 +11,7 @@
 """
 
 from data import RentalDetailsDataAccess
-from models import TrailerModel
+from models.rental_details import TrailerModel
 
 
 class TrailerModelBuilder():
