@@ -27,8 +27,8 @@ class TestLanguageOptionTagController(unittest.TestCase):
         @summary: Fresh instance for each test
         @param self: TestLanguageOptionTagController self parameter.
         """
-        en = LanguageOptionTagModel('en', 'English', True)
-        hu = LanguageOptionTagModel('hu', 'Hungarian')
+        en = LanguageOptionTagModel('English', 'en', True)
+        hu = LanguageOptionTagModel('Hungarian', 'hu')
         langList = list()
         langList.append(en)
         langList.append(hu)
