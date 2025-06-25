@@ -12,7 +12,8 @@
 
 from pathlib import Path
 
-from rental_details_section import RentalDetailsSection
+from utils.generators import RentalDetailsSection
+from utils.generators import LanguageOptionsForSelect
 
 
 class Index():
@@ -34,6 +35,18 @@ class Index():
         self._translations: dict = translations
 
     def buildIndexPage(self) -> str:
+        # Replace langCode:
+        LANG_CODE_KEY: str = 'langCode'
+        self._index_file_content = self._index_file_content.replace('{{' + LANG_CODE_KEY + '}}', self._translations[LANG_CODE_KEY])
+
+        # Replace :
+        languageOptionsForSelect: LanguageOptionsForSelect = LanguageOptionsForSelect(self._translations[LANG_CODE_KEY])
+        languageOptionsForSelectHtml = languageOptionsForSelect.generateLanguageOptionsForSelect()
+
+        LANGUAGE_OPTIONS_KEY: str = 'languageOptions'
+        self._index_file_content = self._index_file_content.replace('{{' + LANGUAGE_OPTIONS_KEY + '}}', languageOptionsForSelectHtml)
+
+        # Replace rentaldetails:
         rentalDetailsSection: RentalDetailsSection = RentalDetailsSection()
         rentalDetailsSectionHtml = rentalDetailsSection.generateRentalDetailsSection(self._translations)
 

@@ -11,7 +11,7 @@
 """
 
 from data import RentalDetailsDataAccess
-from models import DogModel
+from models.rental_details import DogModel
 
 
 class DogModelBuilder():

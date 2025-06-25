@@ -10,9 +10,9 @@
 @summary: This class is a model of rental details.
 """
 
-from models import TentModel
-from models import TrailersModel
-from models import DogModel
+from models.rental_details import TentModel
+from models.rental_details import TrailersModel
+from models.rental_details import DogModel
 
 
 class RentalDetailsModel():

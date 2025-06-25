@@ -12,14 +12,14 @@
 
 from data import RentalDetailsDataFromFile
 from data import TentModelBuilder
-from models import TentModel
+from models.rental_details import TentModel
 from data import TrailersModelBuilder
-from models import TrailersModel
+from models.rental_details import TrailersModel
 from data import DogModelBuilder
-from models import DogModel
-from models import RentalDetailsModel
-from views import RentalDetailsView
-from controllers import RentalDetailsController
+from models.rental_details import DogModel
+from models.rental_details import RentalDetailsModel
+from views.rental_details import RentalDetailsView
+from controllers.rental_details import RentalDetailsController
 
 
 class RentalDetailsSection():

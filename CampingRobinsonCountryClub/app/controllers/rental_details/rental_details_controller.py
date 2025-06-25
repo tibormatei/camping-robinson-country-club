@@ -10,12 +10,12 @@
 @summary: This class controller the rental details model, and view.
 """
 
-import models.rental_details_model as models
-import views.rental_details_view as views
+import models.rental_details.rental_details_model as models
+import views.rental_details.rental_details_view as views
 
-from models import TentModel
-from models import TrailersModel
-from models import DogModel
+from models.rental_details import TentModel
+from models.rental_details import TrailersModel
+from models.rental_details import DogModel
 
 
 class RentalDetailsController():

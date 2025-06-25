@@ -11,7 +11,7 @@
 """
 
 import unittest
-from app.models import DogModel
+from app.models.rental_details import DogModel
 
 
 class TestDogModel(unittest.TestCase):

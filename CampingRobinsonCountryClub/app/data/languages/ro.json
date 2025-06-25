@@ -1,4 +1,5 @@
 {
+    "langCode": "ro",
     "pageName": "Camping Robinson Oradea",
     "rentalDetails": {
         "tentDetails": {
@@ -20,7 +21,7 @@
             "eur": "Eur",
             "priceDetail": " / pe noapte"
         },
-        "priceInformation": "Prețurile include toate facilitatile.",
+        "priceInformation": "Prețurile include toate facilitățile.",
         "checkOutinformation": "Check out până la 10:30."
     }
 }

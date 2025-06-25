@@ -10,8 +10,7 @@
 @summary: This class controller the trailers model and view.
 """
 
-from models import TrailersModel
-import views.trailers_view as from_views
+from models.rental_details import TrailersModel
 
 
 class TrailersController():
@@ -19,15 +18,17 @@ class TrailersController():
     @summary: This class controller the trailersent details.
     """
 
-    def __init__(self, trailersModel: TrailersModel, trailersView: from_views.TrailerView):
+    def __init__(self, trailersModel: TrailersModel, trailersView):
         """
         @summary: The init method initialize instance attributes.
         @param self: TrailersController self parameter.
         @param trailersModel: The model class for MVC pattern.
         @param trailersView: The view class for MVC pattern.
         """
+        import views.rental_details.trailers_view as from_views
+
         self._trailersModel: TrailersModel = trailersModel
-        self._trailersView: from_views.TrailerView = trailersView
+        self._trailersView: from_views.TrailersView = trailersView
 
     def showTrailersView(self, translations: dict = {}) -> str:
         """

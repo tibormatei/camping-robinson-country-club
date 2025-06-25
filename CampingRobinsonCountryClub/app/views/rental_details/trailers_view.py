@@ -12,9 +12,9 @@
 
 from pathlib import Path
 
-from models import TrailersModel
-from views import TrailerView
-from controllers import TrailerController
+from models.rental_details import TrailersModel
+from views.rental_details import TrailerView
+from controllers.rental_details import TrailerController
 
 
 class TrailersView():
@@ -25,7 +25,7 @@ class TrailersView():
     # Class variables
     TRAILER_BASE_TABLE_FILE_CONTENT: str = None
     TRAILER_BASE_TABLE_FILE_NAME: str = 'table_trailerBase.html'
-    TRAILER_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rental_details', TRAILER_BASE_TABLE_FILE_NAME)
+    TRAILER_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.parent.joinpath('templates', 'rental_details', TRAILER_BASE_TABLE_FILE_NAME)
 
     def __init__(self):
         """
@@ -50,7 +50,7 @@ class TrailersView():
             for key, itemValue in translations['rentalDetails']['trailerDetails'].items():
                 trailersView = trailersView.replace('{{' + key + '}}', itemValue)
         except KeyError as e:
-            print(f"KeyError exception: {e}!")
+            print(f"KeyError exception in {cls.__class__.__name__}: {e}!")
 
         # 2. generating and replaces trailerTableRows in the content
         trailersTableRows: str = str()

@@ -21,7 +21,7 @@ class DogView():
     # Class variables
     DOG_BASE_TABLE_FILE_CONTENT: str = None
     DOG_BASE_TABLE_FILE_NAME: str = 'table_dogBase.html'
-    DOG_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rental_details', DOG_BASE_TABLE_FILE_NAME)
+    DOG_BASE_TABLE_FILE_PATH: Path = Path(__file__).parent.parent.parent.joinpath('templates', 'rental_details', DOG_BASE_TABLE_FILE_NAME)
 
     def __init__(self):
         """
@@ -47,7 +47,7 @@ class DogView():
             for key, itemValue in translations['rentalDetails']['dogDetails'].items():
                 dogView = dogView.replace('{{' + key + '}}', itemValue)
         except KeyError as e:
-            print(f"KeyError exception: {e}!")
+            print(f"KeyError exception in {cls.__class__.__name__}: {e}!")
 
         # 2. generating and replaces dogTableRows in the content
         dogName: str = translations['rentalDetails']['dogDetails']['dog']

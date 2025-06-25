@@ -12,15 +12,15 @@
 
 from pathlib import Path
 
-from models import TentModel
-from models import TrailersModel
-from models import DogModel
-from views import TentView
-import views.trailers_view as from_views
-from views import DogView
-from controllers import TentController
-from controllers import TrailersController
-from controllers import DogController
+from models.rental_details import TentModel
+from models.rental_details import TrailersModel
+from models.rental_details import DogModel
+from views.rental_details import TentView
+import views.rental_details.trailers_view as from_views
+from views.rental_details import DogView
+from controllers.rental_details import TentController
+from controllers.rental_details import TrailersController
+from controllers.rental_details import DogController
 
 
 class RentalDetailsView():
@@ -31,7 +31,7 @@ class RentalDetailsView():
     # Class variables
     RENTAL_DETAILS_SECTION_FILE_CONTENT: str = None
     RENTAL_DETAILS_SECTION_FILE_NAME: str = 'section_rentalDetails.html'
-    RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.joinpath('templates', 'rental_details', RENTAL_DETAILS_SECTION_FILE_NAME)
+    RENTAL_DETAILS_SECTION_FILE_PATH: Path = Path(__file__).parent.parent.parent.joinpath('templates', 'rental_details', RENTAL_DETAILS_SECTION_FILE_NAME)
 
     def __init__(self):
         """
