@@ -125,22 +125,47 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         @summary: Get index page.
         @param self: CampingRobinsonCountryClubServer self parameter.
         """
-        userLanguage = self._parseAcceptLanguage(self.headers.get('Accept-Language', ''))
-        languageFileName: str = userLanguage.name + '.json'
-        # print(f"Browser languages: {userLanguage.value}")
+        cookies: dict[str, str] = self._parseCookie(self.headers.get('Cookie'))
 
-        languagePath = self._rootPath.joinpath('data', 'languages', languageFileName)
-        f = open(file = languagePath, mode = 'r', encoding = 'utf-8')
-        language = json.load(f)
+        LANGUAGE_COOKIE: str = "language"
+        if LANGUAGE_COOKIE in cookies:
+            userLanguage = LanguageCodes[cookies[LANGUAGE_COOKIE]]
+        else:
+            userLanguage = self._parseAcceptLanguage(self.headers.get('Accept-Language', ''))
+
+        language = self._getLanguageJson(userLanguage)
 
         indexPageCreator: Index = Index(self._rootPath, language)
-        return DynamicHtmlHandler(indexPageCreator)
-    
+        dynamicHtmlHandler = DynamicHtmlHandler(indexPageCreator)
+
+        return dynamicHtmlHandler
+
+    def _getLanguageJson(self, userLanguage: LanguageCodes):
+        """
+        @summary: Return language parsed json.
+        @param self: CampingRobinsonCountryClubServer self parameter.
+        @param userLanguage: Selected language enum.
+        @return: Parsed language json dictionary.
+        """
+        languageFileName: str = userLanguage.name + '.json'
+        languagePath = self._rootPath.joinpath('data', 'languages', languageFileName)
+        try:
+            f = open(file = languagePath, mode = 'r', encoding = 'utf-8')
+            language = json.load(f)
+            f.close()
+
+        except FileNotFoundError:
+            print(f'Language file not found: {languageFileName}!')
+            language = {}
+
+        return language
+
     def _parseAcceptLanguage(self, acceptLanguage: str) -> LanguageCodes:
         """
         @summary: Parse Accept-Language header and return prefered language of user.
         @param self: CampingRobinsonCountryClubServer self parameter.
         @param acceptLanguage: Accept-Language header string.
+        @return: LanguageCodes enum value.
         """
         languageCode = LanguageCodes.en
 
@@ -158,3 +183,19 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
                 pass
 
         return languageCode
+
+    def _parseCookie(self, cookie: str) -> dict:
+        """
+        @summary: Parse Cookie header and return a map with cookies.
+        @param self: CampingRobinsonCountryClubServer self parameter.
+        @param cookie: Cookie header string.
+        @return: cookies in a dictionary.
+        """
+        cookies = dict()
+        cookieStrings = cookie.split('; ')
+        for cookieString in cookieStrings:
+            keyValueCookie = cookieString.split('=')
+            if len(keyValueCookie) > 1:
+                cookies[keyValueCookie[0]] = keyValueCookie[1]
+
+        return cookies
