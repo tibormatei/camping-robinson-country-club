@@ -17,6 +17,7 @@ class PageLangSwitcher
         this.languageSelect = document.querySelector('#' + languageSelectId + ', .' + languageSelectId);
 
         this.languageSelect.addEventListener('change', this.languageSelected.bind(this));
+        window.addEventListener('load', this.pageReloadSetCorrectValueForSelect.bind(this));
     }
 
     /**
@@ -24,11 +25,25 @@ class PageLangSwitcher
     */
     async languageSelected()
     {
+        this.setLanguageCookie();
+
         const url = '/data/languages/' + this.languageSelect.value + '.json';
         fetch(url)
             .then(response => response.json())
             .then(data => this.changePagelanguage(data))
             .catch(error => console.error('Error in languageSelected:', error));
+    }
+
+    /**
+    * @summary This function set the language cookie.
+    */
+    setLanguageCookie()
+    {
+        let data = new Date();
+        data.setFullYear(data.getFullYear() + 6);
+        document.cookie = "language=" + this.languageSelect.value + "; expires=" + data.toUTCString() + "; path=/";
+
+        console.log("language cookie was set by user");
     }
 
     /**
@@ -112,6 +127,15 @@ class PageLangSwitcher
         {
             checkoutinformationP.innerText = languageJson['rentalDetails']['checkOutinformation'];
         }
+    }
+
+    /**
+    * @summary This function handles the selector when page reload.
+    */
+    pageReloadSetCorrectValueForSelect()
+    {
+        const htmlTag = document.querySelector('html');
+        this.languageSelect.value = htmlTag.lang;
     }
 }
 
