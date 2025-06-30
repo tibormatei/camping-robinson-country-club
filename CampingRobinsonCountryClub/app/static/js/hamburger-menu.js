@@ -15,12 +15,14 @@ class HamburgerMenu
     */
     constructor(menuButtonId, mobileMenuContainerId)
     {
-        this.menuButton = document.querySelector('#' + menuButtonId + ', .' + menuButtonId);
+        const menuButton = document.querySelector('#' + menuButtonId + ', .' + menuButtonId);
+        const mainTag = document.getElementsByTagName('main')[0];
         this.mobileMenuContainer = document.querySelector('#' + mobileMenuContainerId + ', .' + mobileMenuContainerId);
 
         this.isOpen = false;
 
-        this.menuButton.addEventListener('click', this.toggleMenu.bind(this));
+        menuButton.addEventListener('click', this.toggleMenu.bind(this));
+        mainTag.addEventListener('click', this.closeMenuIfOpen.bind(this));
         window.addEventListener('resize', this.removeMobileStyles.bind(this));
     }
 
@@ -57,6 +59,18 @@ class HamburgerMenu
     {
         this.mobileMenuContainer.classList.remove('mobile-nav-bar-active');
         this.mobileMenuContainer.style.display = 'none';
+    }
+
+    /**
+    * @summary This function handles the main tag click event and close the hamburger menu, if the menu is open.
+    */
+    closeMenuIfOpen()
+    {
+        if (this.isOpen == true)
+        {
+            this.hideSidebar();
+            this.isOpen = false;
+        }
     }
 
     /**
