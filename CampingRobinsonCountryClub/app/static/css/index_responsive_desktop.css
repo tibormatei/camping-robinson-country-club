@@ -1,0 +1,98 @@
+/**********************************************************
+  Copyright (c) 2025 Matei Tibor. All rights reserved.
+  Description: CampingRobinsonCountryClub index_responsive_desktop css style
+  Version: 2.0
+**********************************************************/
+
+/*----------------------
+  Desktop
+------------------------*/
+@media only screen
+    and (min-width : 1025px) {
+
+    /*----------------------
+      Header
+    ------------------------*/
+    .header-mobile-menu-button {
+        display: none;
+    }
+
+    .header-mobile-menu-container {
+        display: block;
+    }
+
+    .header-top-container > div {
+        display: inline-block;
+    }
+
+    .header-menu > li {
+        display: inline-block;
+    }
+
+    .header-top-menu {
+        float: right;
+        padding: 0.7rem;
+    }
+
+    .header-nav-container {
+        margin-left: 6px;
+        margin-bottom: 5px;
+    }
+
+    #header-top-logo {
+        display: inline-flex;
+        flex-direction: row;
+    }
+
+    #header-top-logo  > img {
+       margin-left: 6px;
+       margin-top: 4px;
+       margin-bottom: 4px;
+       margin-right: 2px;
+    }
+
+    #header-top-logo > h1 {
+        margin: auto;
+    }
+
+    /*----------------------
+      Main
+    ------------------------*/
+    #rentaldetails > section {
+        padding-top: 1.5rem;
+        padding-left: 30%;
+        padding-right: 30%;
+    }
+
+    #rentaldetails table {
+        width: 100%;
+    }
+
+    #rentaldetails p {
+        margin-left: 0;
+        margin-top: 0;
+        margin-bottom: 1rem;
+    }
+
+    td {
+        padding: 7px;
+    }
+
+    /*----------------------
+      Footer
+    ------------------------*/
+    footer p {
+        font-size: 1.125rem;
+    }
+
+    .footer-information-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .footer-information-container:first-child {
+        white-space: pre;
+        margin: 0;
+    }
+}

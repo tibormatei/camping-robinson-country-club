@@ -25,17 +25,17 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
         @summary: The init method initialize instance attributes.
         @param self: RentalDetailsDataFromFile self parameter.
         """
-        _TENT_PERSON_FILE_NAME: str = 'tent_person.txt'
-        self._TENT_PERSON_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', _TENT_PERSON_FILE_NAME)
+        TENT_PERSON_FILE_NAME: str = 'tent_person.txt'
+        self._TENT_PERSON_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', TENT_PERSON_FILE_NAME)
 
-        _TENT_PRICE_FILE_NAME: str = 'tent_price.txt'
-        self._TENT_PRICE_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', _TENT_PRICE_FILE_NAME)
+        TENT_PRICE_FILE_NAME: str = 'tent_price.txt'
+        self._TENT_PRICE_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', TENT_PRICE_FILE_NAME)
 
-        _TRAILER_FILE_NAME: str = 'trailer.txt'
-        self._TRAILER_FILE_PATH: Path = Path(__file__).parent.joinpath('txt',  _TRAILER_FILE_NAME)
+        TRAILER_FILE_NAME: str = 'trailer.txt'
+        self._TRAILER_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', TRAILER_FILE_NAME)
 
-        _DOG_FILE_NAME: str = 'dog.txt'
-        self._DOG_FILE_PATH: Path = Path(__file__).parent.joinpath('txt',  _DOG_FILE_NAME)
+        DOG_FILE_NAME: str = 'dog.txt'
+        self._DOG_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', DOG_FILE_NAME)
 
     def getTentPersons(self) -> list[str]:
         """

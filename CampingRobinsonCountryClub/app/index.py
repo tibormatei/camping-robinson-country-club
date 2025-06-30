@@ -50,6 +50,10 @@ class Index():
         LANGUAGE_OPTIONS_KEY: str = 'languageOptions'
         self.__replaceInIndexContent(LANGUAGE_OPTIONS_KEY, languageOptionsForSelectHtml)
 
+        # Replace menu:
+        MENU_KEY: str = 'menu'
+        self.__replaceInIndexContent(MENU_KEY, self._translations[MENU_KEY])
+
         # Replace rentaldetails:
         rentalDetailsSection: RentalDetailsSection = RentalDetailsSection()
         rentalDetailsSectionHtml = rentalDetailsSection.generateRentalDetailsSection(self._translations)

@@ -55,6 +55,11 @@ class PageLangSwitcher
         const htmlTag = document.querySelector('html');
         htmlTag.lang = languageJson['langCode'];
 
+        // menu
+        const regexpMenu = new RegExp('M+.*');
+        const headerMobileMenuButton = document.getElementsByClassName('header-mobile-menu-button')[0];
+        headerMobileMenuButton.innerText = headerMobileMenuButton.innerText.replace(regexpMenu, languageJson['menu']);
+
         // rentalDetails section:
         // tentDetails:
         const tentTablePersonHeadere = document.getElementById('rentaldetails-tent-table-thead-personheader');

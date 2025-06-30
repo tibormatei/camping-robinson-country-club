@@ -10,7 +10,7 @@
 @summary: This class controller the rental details classes.
 """
 
-from data import RentalDetailsDataFromFile
+from data import RentalDetailsDataFromJson
 from data import TentModelBuilder
 from models.rental_details import TentModel
 from data import TrailersModelBuilder
@@ -32,7 +32,7 @@ class RentalDetailsSection():
         @summary: The init method initialize instance attributes.
         @param self: RentalDetailsSection self parameter.
         """
-        rentalDetailsData: RentalDetailsDataFromFile = RentalDetailsDataFromFile()
+        rentalDetailsData: RentalDetailsDataFromJson = RentalDetailsDataFromJson()
 
         # 1. Tent controller:
         tentModelBuilder: TentModelBuilder = TentModelBuilder(rentalDetailsData)
