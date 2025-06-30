@@ -192,10 +192,11 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
         @return: cookies in a dictionary.
         """
         cookies = dict()
-        cookieStrings = cookie.split('; ')
-        for cookieString in cookieStrings:
-            keyValueCookie = cookieString.split('=')
-            if len(keyValueCookie) > 1:
-                cookies[keyValueCookie[0]] = keyValueCookie[1]
+        if cookie != None:
+            cookieStrings = cookie.split('; ')
+            for cookieString in cookieStrings:
+                keyValueCookie = cookieString.split('=')
+                if len(keyValueCookie) > 1:
+                    cookies[keyValueCookie[0]] = keyValueCookie[1]
 
         return cookies
