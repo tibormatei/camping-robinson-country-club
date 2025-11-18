@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class tests the functions of TrailerView.
+This class tests the functions of TrailerView.
 """
 
 import unittest
@@ -16,19 +16,21 @@ from app.views.rental_details import DogView
 
 class TestDogView(unittest.TestCase):
     """
-    @summary: TestDogView tests.
+    TestDogView tests.
     """
 
     def setUp(self):
         """
-        @summary: Fresh instance for each test
-        @param self: TestDogView self parameter.
+        Fresh instance for each test
+
+        Args:
+            self: TestDogView self parameter.
         """
-        self.dogView = DogView()
+        self.dog_view = DogView()
 
     # Pozitiv tests:
-    # Test showDogView method
-    def test_01_showDogView(self):
+    # Test show_dog_view method
+    def test_01_show_dog_view(self):
         EXPECTED_RESULT: str = ('<table id="rentaldetails-dog-table" class="rentaldetails-table">\n'
                                 '    <thead>\n'
                                 '        <tr>\n'
@@ -55,7 +57,7 @@ class TestDogView(unittest.TestCase):
         LEI_PRICE_PER_NIGHT: int = 50
         EUR_PRICE_PER_NIGHT: int = 10
 
-        self.assertEqual(self.dogView.showDogView(TRANSLATIONS, LEI_PRICE_PER_NIGHT, EUR_PRICE_PER_NIGHT), EXPECTED_RESULT)
+        self.assertEqual(self.dog_view.show_dog_view(TRANSLATIONS, LEI_PRICE_PER_NIGHT, EUR_PRICE_PER_NIGHT), EXPECTED_RESULT)
 
 if __name__ == '__main__':
     unittest.main()

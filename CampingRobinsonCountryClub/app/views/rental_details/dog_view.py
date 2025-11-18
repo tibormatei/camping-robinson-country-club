@@ -1,13 +1,13 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: dog_View.py
+# Filename: dog_view.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of dog details.
+This class handles the view of dog details.
 """
 
 from pathlib import Path
@@ -15,7 +15,7 @@ from pathlib import Path
 
 class DogView():
     """
-    @summary: This class handles the view of dog details.
+    This class handles the view of dog details.
     """
 
     # Class variables
@@ -25,71 +25,81 @@ class DogView():
 
     def __init__(self):
         """
-        @summary: Dog details views.
-        @param self: DogView self parameter.
+        Dog details views.
+
+        Args:
+            self: DogView self parameter.
         """
         if self.__class__.DOG_BASE_TABLE_FILE_CONTENT is None:
-            self.__class__.DOG_BASE_TABLE_FILE_CONTENT = self.__readDogBaseTableHtml()
+            self.__class__.DOG_BASE_TABLE_FILE_CONTENT = self.__read_dog_base_table_html()
 
     @classmethod
-    def showDogView(cls, translations: dict, leiPricePerNight: int, eurPricePerNight: int) -> str:
+    def show_dog_view(cls, translations: dict, lei_price_per_night: int, eur_price_per_night: int) -> str:
         """
-        @summary: Create the full tent view.
-        @param cls: DogView cls parameter.
-        @param translations: Language dictionary.
-        @param leiPricePerNight: Price / Night in Lei.
-        @param eurPricePerNight: Price / Night in Eur.
-        @returns: Returns a full displayable dog html code piece.
+        Create the full tent view.
+
+        Args:
+            cls: DogView cls parameter.
+            translations: Language dictionary.
+            lei_price_per_night: Price / Night in Lei.
+            eur_price_per_night: Price / Night in Eur.
+        Returns:
+            Returns a full displayable dog html code piece.
         """
         # 1. replaces translation texts
-        dogView: str = cls.DOG_BASE_TABLE_FILE_CONTENT
+        dog_view: str = cls.DOG_BASE_TABLE_FILE_CONTENT
         try:
-            for key, itemValue in translations['rentalDetails']['dogDetails'].items():
-                dogView = dogView.replace('{{' + key + '}}', itemValue)
+            for key, item_value in translations['rentalDetails']['dogDetails'].items():
+                dog_view = dog_view.replace('{{' + key + '}}', item_value)
         except KeyError as e:
             print(f"KeyError exception in {cls.__class__.__name__}: {e}!")
 
         # 2. generating and replaces dogTableRows in the content
-        dogName: str = translations['rentalDetails']['dogDetails']['dog']
-        priceDetail: str = translations['rentalDetails']['dogDetails']['priceDetail']
+        dog_name: str = translations['rentalDetails']['dogDetails']['dog']
+        price_detail: str = translations['rentalDetails']['dogDetails']['priceDetail']
 
-        capacityDataCell: str = '<td>' + dogName + '</td>'
-        leiDataCell: str = '<td>' + str(leiPricePerNight) + priceDetail + '</td>'
-        eurDataCell: str = '<td>' + str(eurPricePerNight) + priceDetail + '</td>'
+        capacity_data_cell: str = '<td>' + dog_name + '</td>'
+        lei_data_cell: str = '<td>' + str(lei_price_per_night) + price_detail + '</td>'
+        eur_data_cell: str = '<td>' + str(eur_price_per_night) + price_detail + '</td>'
 
-        dogTableRows: str = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
+        dog_table_rows: str = '<tr>' + capacity_data_cell + lei_data_cell + eur_data_cell + "</tr>"
 
         DOG_TABLE_ROWS_KEY: str = 'dogTableRows'
-        dogView = dogView.replace('{{' + DOG_TABLE_ROWS_KEY + '}}', dogTableRows)
+        dog_view = dog_view.replace('{{' + DOG_TABLE_ROWS_KEY + '}}', dog_table_rows)
 
-        return dogView
+        return dog_view
 
     @classmethod
-    def __readDogBaseTableHtml(cls) -> str:
+    def __read_dog_base_table_html(cls) -> str:
         """
-        @summary: Read in table_dogBase.html from templates folder.
-        @param cls: DogView cls parameter.
-        @returns: Returns contents of html file.
+        Read in table_dogBase.html from templates folder.
+
+        Args:
+            cls: DogView cls parameter.
+        Returns:
+            Returns contents of html file.
         """
-        dogBaseTableHtml: str = None
+        dog_base_table_html: str = None
 
         try:
             with open(cls.DOG_BASE_TABLE_FILE_PATH, 'r', encoding = 'utf-8') as f:
-                dogBaseTableHtml = f.read()
+                dog_base_table_html = f.read()
 
         except FileNotFoundError:
             print(f"Exception Error: {cls.DOG_BASE_TABLE_FILE_PATH} file not found!")
-            dogBaseTableHtml = None
+            dog_base_table_html = None
 
         except Exception as e:
             print(f"Exception Error: reading {cls.DOG_BASE_TABLE_FILE_PATH}: {e}")
-            dogBaseTableHtml = None
+            dog_base_table_html = None
 
-        return dogBaseTableHtml
+        return dog_base_table_html
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param cls: DogView cls parameter.
+        A function of a class that can return class state.
+
+        Args:
+            cls: DogView cls parameter.
         """
-        return self.showDogView()
+        return self.show_dog_view()

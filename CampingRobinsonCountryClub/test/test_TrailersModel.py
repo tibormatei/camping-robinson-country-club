@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class tests the functions of TrailersModel.
+This class tests the functions of TrailersModel.
 """
 
 import unittest
@@ -17,26 +17,28 @@ from app.models.rental_details import TrailersModel
 
 class TestTrailersModel(unittest.TestCase):
     """
-    @summary: TrailersModel tests.
+    TrailersModel tests.
     """
 
     def setUp(self):
         """
-        @summary: Fresh instance for each test
-        @param self: TestTrailersModel self parameter.
+        Fresh instance for each test
+
+        Args:
+            self: TestTrailersModel self parameter.
         """
-        self.trailersModel = TrailersModel()
+        self.trailers_model = TrailersModel()
 
     # Pozitiv tests:
-    # Test for AddTrailerMode and the class is iterable.
-    def test_01_AddTrailerModel_and_canIterable(self):
+    # Test for add_trailer_model and the class is iterable.
+    def test_01_add_trailer_model_and_can_iterable(self):
         TRAIL1 = TrailerModel('1 pers', 200, 40)
         TRAIL2 = TrailerModel('2-3 pers', 200, 40)
-        self.trailersModel.AddTrailerModel(TRAIL1)
-        self.trailersModel.AddTrailerModel(TRAIL2)
+        self.trailers_model.add_trailer_model(TRAIL1)
+        self.trailers_model.add_trailer_model(TRAIL2)
 
         n = 0
-        for trail in self.trailersModel:
+        for trail in self.trailers_model:
             self.assertIsNotNone(trail)
             n += 1
         

@@ -7,59 +7,71 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model of dog price.
+This class is a model of dog price.
 """
 
 
 class DogModel():
     """
-    @summary: This class is a model of dog price.
+    This class is a model of dog price.
     """
 
-    def __init__(self, leiPricePerNight: int = 0, eurPricePerNight: int = 0):
+    def __init__(self, lei_price_per_night: int = 0, eur_price_per_night: int = 0):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: DogModel self parameter.
-        @param leiPricePerNight: Price in Lei.
-        @param eurPricePerNight: Price in Eur.
+        The init method initialize instance attributes.
+
+        Args:
+            self: DogModel self parameter.
+            lei_price_per_night: Price in Lei.
+            eur_price_per_night: Price in Eur.
         """
-        self._leiPricePerNight: int = leiPricePerNight
-        self._eurPricePerNight: int = eurPricePerNight
+        self._lei_price_per_night: int = lei_price_per_night
+        self._eur_price_per_night: int = eur_price_per_night
 
     @property
-    def LeiPricePerNight(self) -> int:
+    def lei_price_per_night(self) -> int:
         """
-        @summary: The LeiPricePerNight getter property.
-        @param self: DogModel self parameter.
-        @returns: Returns price in lei.
-        """
-        return self._leiPricePerNight
+        The LeiPricePerNight getter property.
 
-    @LeiPricePerNight.setter
-    def LeiPricePerNight(self, leiPricePerNight: int):
+        Args:
+            self: DogModel self parameter.
+        Returns:
+            Returns price in lei.
         """
-        @summary: The LeiPricePerNight setter property.
-        @param self: DogModel self parameter.
-        @param leiPricePerNight: Lei price value.
+        return self._lei_price_per_night
+
+    @lei_price_per_night.setter
+    def lei_price_per_night(self, lei_price_per_night: int):
         """
-        if leiPricePerNight > 0:
-            self._leiPricePerNight = leiPricePerNight
+        The lei_price_per_night setter property.
+
+        Args:
+            self: DogModel self parameter.
+            lei_price_per_night: Lei price value.
+        """
+        if lei_price_per_night > 0:
+            self._lei_price_per_night = lei_price_per_night
 
     @property
-    def EurPricePerNight(self) -> int:
+    def eur_price_per_night(self) -> int:
         """
-        @summary: The EurPricePerNight getter property.
-        @param self: DogModel self parameter.
-        @returns: Returns price in eur.
-        """
-        return self._eurPricePerNight
+        The eur_price_per_night getter property.
 
-    @EurPricePerNight.setter
-    def EurPricePerNight(self, eurPricePerNight: int):
+        Args:
+            self: DogModel self parameter.
+        Returns:
+            Returns price in eur.
         """
-        @summary: The EurPricePerNight setter property.
-        @param self: DogModel self parameter.
-        @param eurPricePerNight: Eur price value.
+        return self._eur_price_per_night
+
+    @eur_price_per_night.setter
+    def eur_price_per_night(self, eur_price_per_night: int):
         """
-        if eurPricePerNight > 0:
-            self._eurPricePerNight = eurPricePerNight
+        The eur_price_per_night setter property.
+
+        Args:
+            self: DogModel self parameter.
+            eur_price_per_night: Eur price value.
+        """
+        if eur_price_per_night > 0:
+            self._eur_price_per_night = eur_price_per_night

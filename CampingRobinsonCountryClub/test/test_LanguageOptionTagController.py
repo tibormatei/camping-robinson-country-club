@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class tests the functions of TrailerView.
+This class tests the functions of TrailerView.
 """
 
 import unittest
@@ -19,31 +19,33 @@ from app.controllers.header_languages import LanguageOptionTagsController
 
 class TestLanguageOptionTagController(unittest.TestCase):
     """
-    @summary: TestLanguageOptionTagController tests.
+    TestLanguageOptionTagController tests.
     """
 
     def setUp(self):
         """
-        @summary: Fresh instance for each test
-        @param self: TestLanguageOptionTagController self parameter.
+        Fresh instance for each test.
+
+        Args:
+            self: TestLanguageOptionTagController self parameter.
         """
         en = LanguageOptionTagModel('English', 'en', True)
         hu = LanguageOptionTagModel('Hungarian', 'hu')
-        langList = list()
-        langList.append(en)
-        langList.append(hu)
+        lang_list = list()
+        lang_list.append(en)
+        lang_list.append(hu)
 
-        languageOptionTagsModel = LanguageOptionTagsModel(langList)
-        languageOptionTagsView = LanguageOptionTagsView()
-        self.languageOptionTagController = LanguageOptionTagsController(languageOptionTagsModel, languageOptionTagsView)
+        language_option_tags_model = LanguageOptionTagsModel(lang_list)
+        language_option_tags_view = LanguageOptionTagsView()
+        self.language_option_tag_controller = LanguageOptionTagsController(language_option_tags_model, language_option_tags_view)
 
     # Pozitiv tests:
-    # Test showLanguageOptionTags method
-    def test_01_showLanguageOptionTags(self):
+    # Test show_language_option_tags method
+    def test_01_show_language_option_tags(self):
         EXPECTED_RESULT: str = ('<option selected value="en">English</option>\n'
                                 '<option value="hu">Hungarian</option>\n')
 
-        self.assertEqual(self.languageOptionTagController.showLanguageOptionTags(), EXPECTED_RESULT)
+        self.assertEqual(self.language_option_tag_controller.show_language_option_tags(), EXPECTED_RESULT)
 
 if __name__ == '__main__':
     unittest.main()

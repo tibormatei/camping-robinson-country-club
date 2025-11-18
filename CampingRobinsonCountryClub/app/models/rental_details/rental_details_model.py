@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model of rental details.
+This class is a model of rental details.
 """
 
 from models.rental_details import TentModel
@@ -17,67 +17,84 @@ from models.rental_details import DogModel
 
 class RentalDetailsModel():
     """
-    @summary: This class is a model of rental details.
+    This class is a model of rental details.
     """
 
-    def __init__(self, tentModel: TentModel = None, trailersModel: TrailersModel = None,
-                 dogModel: DogModel = None, priceInformation: str = '', checkOutInformation: str = ''):
+    def __init__(self, tent_model: TentModel = None, trailers_model: TrailersModel = None,
+                 dog_model: DogModel = None, price_information: str = '', check_out_information: str = ''):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: RentalDetailsModel self parameter.
-        @param tentModel: Tent rental detalis.
-        @param trailersModel: Trailer rental detalis.
-        @param dogModel: Dog price details.
-        @param priceInformation: Price details.
-        @param checkOutInformation: Check out time.
+        The init method initialize instance attributes.
+
+        Args:
+            self: RentalDetailsModel self parameter.
+            tent_model: Tent rental detalis.
+            trailers_model: Trailer rental detalis.
+            dog_model: Dog price details.
+            price_information: Price details.
+            check_out_information: Check out time.
         """
-        self._tentModel: TentModel = tentModel
-        self._trailersModel: TrailersModel = trailersModel
-        self._dogModel: DogModel = dogModel
-        self._priceInformation: str = priceInformation
-        self._checkOutInformation: str = checkOutInformation
+        self._tent_model: TentModel = tent_model
+        self._trailers_model: TrailersModel = trailers_model
+        self._dog_model: DogModel = dog_model
+        self._price_information: str = price_information
+        self._check_out_information: str = check_out_information
 
     @property
-    def TentModel(self) -> TentModel:
+    def tent_model(self) -> TentModel:
         """
-        @summary: The TentModel getter property.
-        @param self: RentalDetailsModel self parameter.
-        @returns: Returns tent detailes.
+        The tent_model getter property.
+
+        Args:
+            self: RentalDetailsModel self parameter.
+        Returns:
+            Returns tent detailes.
         """
-        return self._tentModel
+        return self._tent_model
 
     @property
-    def TrailersModel(self) -> TrailersModel:
+    def trailers_model(self) -> TrailersModel:
         """
-        @summary: The TrailersModel getter property.
-        @param self: RentalDetailsModel self parameter.
-        @returns: Returns trailers detailes.
+        The trailers_model getter property.
+
+        Args:
+            self: RentalDetailsModel self parameter.
+        Returns:
+            Returns trailers detailes.
         """
-        return self._trailersModel
+        return self._trailers_model
 
     @property
-    def DogModel(self) -> DogModel:
+    def dog_model(self) -> DogModel:
         """
-        @summary: The DogModel getter property.
-        @param self: RentalDetailsModel self parameter.
-        @returns: Returns dog detailes.
+        The dog_model getter property.
+
+        Args:
+            self: RentalDetailsModel self parameter.
+        Returns:
+            Returns dog detailes.
         """
-        return self._dogModel
+        return self._dog_model
 
     @property
-    def PriceInformation(self) -> str:
+    def price_information(self) -> str:
         """
-        @summary: The PriceInformation getter property.
-        @param self: RentalDetailsModel self parameter.
-        @returns: Returns price information detailes.
+        The price_information getter property.
+
+        Args:
+            self: RentalDetailsModel self parameter.
+        Returns:
+            Returns price information detailes.
         """
-        return self._priceInformation
+        return self._price_information
 
     @property
-    def CheckOutInformation(self) -> str:
+    def check_out_information(self) -> str:
         """
-        @summary: The CheckOutInformation getter property.
-        @param self: RentalDetailsModel self parameter.
-        @returns: Returns check out detailes.
+        The CheckOutInformation getter property.
+
+        Args:
+            self: RentalDetailsModel self parameter.
+        Returns:
+            Returns check out detailes.
         """
-        return self._checkOutInformation
+        return self._check_out_information

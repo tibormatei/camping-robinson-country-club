@@ -7,80 +7,97 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model of rental trailer prices.
+This class is a model of rental trailer prices.
 """
 
 
 class TrailerModel():
     """
-    @summary: This class is a model of rental trailer prices.
+    This class is a model of rental trailer prices.
     """
 
-    def __init__(self, trailerCapacity: str = '-', leiPrice: int = 0, eurPrice: int = 0):
+    def __init__(self, trailer_capacity: str = '-', lei_price: int = 0, eur_price: int = 0):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TrailerModel self parameter.
-        @param trailerCapacity: Trailer capacity.
-        @param leiPrice: Price in Lei.
-        @param eurPrice: Price in Eur.
+        The init method initialize instance attributes.
+
+        Args:
+            self: TrailerModel self parameter.
+            trailer_capacity: Trailer capacity.
+            lei_price: Price in Lei.
+            eur_price: Price in Eur.
         """
-        self._trailerCapacity: str = trailerCapacity
-        self._leiPrice: int = leiPrice
-        self._eurPrice: int = eurPrice
+        self._trailer_capacity: str = trailer_capacity
+        self._lei_price: int = lei_price
+        self._eur_price: int = eur_price
 
     @property
-    def TrailerCapacity(self) -> str:
+    def trailer_capacity(self) -> str:
         """
-        @summary: The TrailerCapacity getter property.
-        @param self: TrailerModel self parameter.
-        @returns: Returns trailer capacity.
-        """
-        return self._trailerCapacity
+        The trailer_capacity getter property.
 
-    @TrailerCapacity.setter
-    def TrailerCapacity(self, trailerCapacity: str):
+        Args:
+            self: TrailerModel self parameter.
+        Returns:
+            Returns trailer capacity.
         """
-        @summary: The TrailerCapacity setter property.
-        @param self: TrailerModel self parameter.
-        @param trailerCapacity: Trailer capacity.
-        """
-        if trailerCapacity != "":
-            self._trailerCapacity = trailerCapacity
+        return self._trailer_capacity
 
-    @property
-    def LeiPrice(self) -> int:
+    @trailer_capacity.setter
+    def trailer_capacity(self, trailer_capacity: str):
         """
-        @summary: The LeiPrice getter property.
-        @param self: TrailerModel self parameter.
-        @returns: Returns price in Lei.
-        """
-        return self._leiPrice
+        The trailer_capacity setter property.
 
-    @LeiPrice.setter
-    def LeiPrice(self, leiPrice: int):
+        Args:
+            self: TrailerModel self parameter.
+            trailer_capacity: Trailer capacity.
         """
-        @summary: The LeiPrice setter property.
-        @param self: TrailerModel self parameter.
-        @param leiPrice: Price in Lei.
-        """
-        if leiPrice > 0:
-            self._leiPrice = leiPrice
+        if trailer_capacity != "":
+            self._trailer_capacity = trailer_capacity
 
     @property
-    def EurPrice(self) -> int:
+    def lei_price(self) -> int:
         """
-        @summary: The EurPrice getter property.
-        @param self: TrailerModel self parameter.
-        @returns: Returns price in Eur.
-        """
-        return self._eurPrice
+        The lei_price getter property.
 
-    @EurPrice.setter
-    def EurPrice(self, eurPrice: int):
+        Args:
+            self: TrailerModel self parameter.
+        Returns:
+            Returns price in Lei.
         """
-        @summary: The EurPrice setter property.
-        @param self: TrailerModel self parameter.
-        @param eurPrice: Price in Eur.
+        return self._lei_price
+
+    @lei_price.setter
+    def lei_price(self, lei_price: int):
         """
-        if eurPrice > 0:
-            self._eurPrice = eurPrice
+        The lei_price setter property.
+
+        Args:
+            self: TrailerModel self parameter.
+            lei_price: Price in Lei.
+        """
+        if lei_price > 0:
+            self._lei_price = lei_price
+
+    @property
+    def eur_price(self) -> int:
+        """
+        The eur_price getter property.
+
+        Args:
+            self: TrailerModel self parameter.
+        Returns:
+            Returns price in Eur.
+        """
+        return self._eur_price
+
+    @eur_price.setter
+    def eur_price(self, eur_price: int):
+        """
+        The eur_price setter property.
+
+        Args:
+            self: TrailerModel self parameter.
+            eur_price: Price in Eur.
+        """
+        if eur_price > 0:
+            self._eur_price = eur_price

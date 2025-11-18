@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class returns the TrailerModel with dates.
+This class returns the TrailerModel with dates.
 """
 
 from data import RentalDetailsDataAccess
@@ -18,29 +18,34 @@ from models.rental_details import TrailersModel
 
 class TrailersModelBuilder():
     """
-    @summary: This class returns the TrailersModel with dates.
+    This class returns the TrailersModel with dates.
     """
 
-    def __init__(self, dataAccess: RentalDetailsDataAccess):
+    def __init__(self, data_access: RentalDetailsDataAccess):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TrailersModelBuilder self parameter.
-        @param sedataAccesslf: RentalDetailsDataAccess's inheritance class.
-        """
-        self._dataAccess = dataAccess
-        self._trailerModelBuilder = TrailerModelBuilder(dataAccess)
+        The init method initialize instance attributes.
 
-    def RetriveTrailersModel(self) -> TrailersModel:
+        Args:
+            self: TrailersModelBuilder self parameter.
+            data_access: RentalDetailsDataAccess's inheritance class.
         """
-        @summary: Retrive TrailersModel with dates.
-        @param self: TrailersModelBuilder self parameter.
-        @returns: Returns the TrailersModel with dates.
+        self._data_access = data_access
+        self._trailer_model_builder = TrailerModelBuilder(data_access)
+
+    def retrive_trailers_model(self) -> TrailersModel:
         """
-        trailerModels: list[TrailerModel] = []
-        for i in self._dataAccess.getTrailerCapacities():
-            trailerModel: TrailerModel = self._trailerModelBuilder.RetriveTrailerModel(i)
-            trailerModels.append(trailerModel)
+        Retrive TrailersModel with dates.
 
-        trailersModel: TrailersModel = TrailersModel(trailerModels)
+        Args:
+            self: TrailersModelBuilder self parameter.
+        Returns:
+            Returns the TrailersModel with dates.
+        """
+        trailer_models: list[TrailerModel] = []
+        for i in self._data_access.get_trailer_capacities():
+            trailer_model: TrailerModel = self._trailer_model_builder.retrive_trailer_model(i)
+            trailer_models.append(trailer_model)
 
-        return trailersModel
+        trailers_model: TrailersModel = TrailersModel(trailer_models)
+
+        return trailers_model

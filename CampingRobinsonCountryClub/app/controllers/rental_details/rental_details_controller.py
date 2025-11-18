@@ -1,13 +1,13 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: rental_details_ontroller.py
+# Filename: rental_details_controller.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the rental details model, and view.
+This class controller the rental details model, and view.
 """
 
 import models.rental_details.rental_details_model as models
@@ -20,42 +20,51 @@ from models.rental_details import DogModel
 
 class RentalDetailsController():
     """
-    @summary: This class controller the rental details.
+    This class controller the rental details.
     """
 
-    def __init__(self, rentalDetailsModel: models.RentalDetailsModel, rentalDetailsView: views.RentalDetailsView):
+    def __init__(self, rental_details_model: models.RentalDetailsModel, rental_details_view: views.RentalDetailsView):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: RentalDetailsController self parameter.
-        @param rentalDetailsModel: The model class for MVC pattern.
-        @param rentalDetailsView: The view class for MVC pattern.
-        """
-        self._rentalDetailsModel: models.RentalDetailsModel = rentalDetailsModel
-        self._rentalDetailsView: views.RentalDetailsView = rentalDetailsView
+        The init method initialize instance attributes.
 
-    def showRentalDetails(self, translations: dict = {}) -> str:
+        Args:
+            self: RentalDetailsController self parameter.
+            rental_details_model: The model class for MVC pattern.
+            rental_details_view: The view class for MVC pattern.
         """
-        @summary: Return the view of tent, trailer and dog detals.
-        @param self: RentalDetailsController self parameter.
-        @param translations: Language words.
-        @returns: Returns view of Rental Details in string.
+        self._rental_details_model: models.RentalDetailsModel = rental_details_model
+        self._rental_details_view: views.RentalDetailsView = rental_details_view
+
+    def show_rental_details(self, translations: dict = {}) -> str:
         """
-        tentModel: TentModel = self._rentalDetailsModel.TentModel
-        trailersModel: TrailersModel = self._rentalDetailsModel.TrailersModel
-        dogModel: DogModel = self._rentalDetailsModel.DogModel
+        Return the view of tent, trailer and dog detals.
+
+        Args:
+            self: RentalDetailsController self parameter.
+            translations: Language words.
+        Returns:
+            Returns view of Rental Details in string.
+        """
+        tent_model: TentModel = self._rental_details_model.tent_model
+        trailers_model: TrailersModel = self._rental_details_model.trailers_model
+        dog_model: DogModel = self._rental_details_model.dog_model
         try:
-            priceInformation: str = translations['rentalDetails']['priceInformation']
-            checkOutinformation: str = translations['rentalDetails']['checkOutinformation']
+            price_information: str = translations['rentalDetails']['priceInformation']
+            check_out_information: str = translations['rentalDetails']['checkOutinformation']
         except KeyError:
-            priceInformation: str = self._rentalDetailsModel.PriceInformation
-            checkOutinformation: str = self._rentalDetailsModel.CheckOutInformation
-        return self._rentalDetailsView.showRentalDetailsView(translations, tentModel, trailersModel,
-                                                             dogModel, priceInformation, checkOutinformation)
+            price_information: str = self._rental_details_model.price_information
+            check_out_information: str = self._rental_details_model.check_out_information
+        finally:
+            return self._rental_details_view.show_rental_details_view(translations, tent_model, trailers_model, 
+                                                                      dog_model, price_information, check_out_information)
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param self: RentalDetailsController self parameter.
-        @returns: Returns showRentalDetails().
+        A function of a class that can return class state.
+
+        Args:
+            self: RentalDetailsController self parameter.
+        Returns:
+            Returns show_rental_details().
         """
-        return self.showRentalDetails()
+        return self.show_rental_details()

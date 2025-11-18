@@ -7,45 +7,52 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of rental trailer details.
+This class handles the view of rental trailer details.
 """
 
 
 class TrailerView():
     """
-    @summary: This class handles the view of rental trailer details.
+    This class handles the view of rental trailer details.
     """
 
     def __init__(self):
         """
-        @summary: Rental trailer details views.
-        @param self: TrailerView self parameter.
+        Rental trailer details views.
+
+        Args:
+            self: TrailerView self parameter.
         """
         pass
 
     @classmethod
-    def showTrailerView(cls, translations: dict, trailerCapacity: str, leiPrice: int, eurPrice: int) -> str:
+    def show_trailer_view(cls, translations: dict, trailer_capacity: str, lei_price: int, eur_price: int) -> str:
         """
-        @summary: Create a trailer row view.
-        @param cls: TrailerView cls parameter.
-        @param translations: Language dictionary.
-        @param trailerCapacity: Capacity data.
-        @param leiPrice: Price data in Lei.
-        @param eurPrice: Price data in Eur.
-        @returns: Returns a trailer html table row code piece.
+        Create a trailer row view.
+
+        Args:
+            cls: TrailerView cls parameter.
+            translations: Language dictionary.
+            trailer_capacity: Capacity data.
+            lei_price: Price data in Lei.
+            eur_price: Price data in Eur.
+        Returns:
+            Returns a trailer html table row code piece.
         """
-        priceName: str = translations['rentalDetails']['trailerDetails']['personName']
+        price_name: str = translations['rentalDetails']['trailerDetails']['personName']
 
-        capacityDataCell: str = '<td>' + trailerCapacity + ' ' + priceName + '</td>'
-        leiDataCell: str = '<td>' + str(leiPrice) + '</td>'
-        eurDataCell: str = '<td>' + str(eurPrice) + '</td>'
+        capacity_data_cell: str = '<td>' + trailer_capacity + ' ' + price_name + '</td>'
+        leiDataCell: str = '<td>' + str(lei_price) + '</td>'
+        eurDataCell: str = '<td>' + str(eur_price) + '</td>'
 
-        trailerTableRow: str = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
-        return trailerTableRow
+        trailer_table_row: str = '<tr>' + capacity_data_cell + leiDataCell + eurDataCell + "</tr>"
+        return trailer_table_row
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param self: TrailerView self parameter.
+        A function of a class that can return class state.
+
+        Args:
+            self: TrailerView self parameter.
         """
-        return self.showTrailerView()
+        return self.show_trailer_view()

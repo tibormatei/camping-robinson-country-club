@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the Language Options For Select details.
+This class controller the Language Options For Select details.
 """
 
 from models.header_languages import LanguageOptionTagModel
@@ -19,30 +19,36 @@ from utils.language import LanguageCodes
 
 class LanguageOptionsForSelect():
     """
-    @summary: This class controller the language options for select objects.
+    This class controller the language options for select objects.
     """
 
-    def __init__(self, selectedLanguageCode: str):
+    def __init__(self, selected_language_code: str):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: LanguageOptionsForSelect self parameter.
+        The init method initialize instance attributes.
+
+        Args:
+            self: LanguageOptionsForSelect self parameter.
+            selected_language_code: An language code.
         """
-        languageOptionTagModels = list()
+        language_option_tag_models = list()
         for l in LanguageCodes:
-            if l.name == selectedLanguageCode:
-                languageOptionTagModel = LanguageOptionTagModel(l.value, l.name, True)
+            if l.name == selected_language_code:
+                language_option_tag_model = LanguageOptionTagModel(l.value, l.name, True)
             else:
-                languageOptionTagModel = LanguageOptionTagModel(l.value, l.name, False)
-            languageOptionTagModels.append(languageOptionTagModel)
+                language_option_tag_model = LanguageOptionTagModel(l.value, l.name, False)
+            language_option_tag_models.append(language_option_tag_model)
 
-        languageOptionTagsModel = LanguageOptionTagsModel(languageOptionTagModels)
-        languageOptionTagsView = LanguageOptionTagsView()
-        self._languageOptionTagsController = LanguageOptionTagsController(languageOptionTagsModel, languageOptionTagsView)
+        language_option_tags_model = LanguageOptionTagsModel(language_option_tag_models)
+        language_option_tags_view = LanguageOptionTagsView()
+        self._language_option_tags_controller = LanguageOptionTagsController(language_option_tags_model, language_option_tags_view)
 
-    def generateLanguageOptionsForSelect(self) -> str:
+    def generate_language_options_for_select(self) -> str:
         """
-        @summary: The method build all option tag for select tag.
-        @param self: LanguageOptionsForSelect self parameter.
-        @param path: Pice of html code.
+        The method build all option tag for select tag.
+
+        Args:
+            self: LanguageOptionsForSelect self parameter.
+        Returns:
+            html code piece.
         """
-        return self._languageOptionTagsController.showLanguageOptionTags()
+        return self._language_option_tags_controller.show_language_option_tags()

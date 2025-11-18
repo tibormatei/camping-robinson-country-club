@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the tent model and view.
+This class controller the tent model and view.
 """
 
 from models.rental_details import TentModel
@@ -15,32 +15,41 @@ from views.rental_details import TentView
 
 class TentController():
     """
-    @summary: This class controller the tent details.
+    This class controller the tent details.
     """
 
-    def __init__(self, tentModel: TentModel, tentView: TentView):
+    def __init__(self, tent_model: TentModel, tent_view: TentView):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TentController self parameter.
-        @param tentModel: The model class for MVC pattern.
-        @param tentView: The view class for MVC pattern.
-        """
-        self._tentModel: TentModel = tentModel
-        self._tentView: TentView = tentView
+        The init method initialize instance attributes.
 
-    def showTentView(self, translations: dict = {}) -> str:
+        Args:
+            self: TentController self parameter.
+            tent_model: The model class for MVC pattern.
+            tent_view: The view class for MVC pattern.
         """
-        @summary: Return the view of tent.
-        @param self: TentController self parameter.
-        @param translations: Language words.
-        @returns: Returns view of Tent Details in string.
+        self._tent_model: TentModel = tent_model
+        self._tent_view: TentView = tent_view
+
+    def show_tent_view(self, translations: dict = {}) -> str:
         """
-        return self._tentView.showTentView(translations, self._tentModel.TentCapacities, self._tentModel.LeiPricePerPerson, self._tentModel.EurPricePerPerson)
+        Return the view of tent.
+
+        Args:
+            self: TentController self parameter.
+            translations: Language words.
+        Returns:
+            Returns view of Tent Details in string.
+        """
+        return self._tent_view.show_tent_view(translations, self._tent_model.tent_capacities,
+                                              self._tent_model.lei_price_per_person, self._tent_model.eur_price_per_person)
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param self: TentController self parameter.
-        @returns: Returns showTentView().
+        A function of a class that can return class state.
+
+        Args:
+            self: TentController self parameter.
+        Returns:
+            Returns show_tent_view().
         """
-        return self.showTentView()
+        return self.show_tent_view()

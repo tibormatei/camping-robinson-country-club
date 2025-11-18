@@ -11,7 +11,7 @@ from enum import Enum
 
 class LanguageCodes(Enum):
     """
-    @summary: This is an enum, that represent Language codes.
+    This is an enum, that represent Language codes.
     """
     en = 'English'
     hu = 'Hungarian'

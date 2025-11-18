@@ -7,56 +7,70 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is base Handler class.
+This class is base Handler class.
 """
 
 
 class RequestHandler():
     """
-    @summary: This class is base Handler class.
+    This class is base Handler class.
     """
 
     def __init__(self):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: RequestHandler self parameter.
+        The init method initialize instance attributes.
+
+        Args:
+            self: RequestHandler self parameter.
         """
-        self._statusCode: int = 200
-        self._contentType: str = str()
+        self._status_code: int = 200
+        self._content_type: str = str()
         self._contents: bytes = bytes()
 
     @property
-    def StatusCode(self) -> int:
+    def status_code(self) -> int:
         """
-        @summary: The StatusCode getter property.
-        @param self: RequestHandler self parameter.
-        @returns: Request status code, default is 200.
+        The status_code getter property.
+
+        Args:
+            self: RequestHandler self parameter.
+        Returns:
+            Request status code, default is 200.
         """
-        return self._statusCode
+        return self._status_code
     
     @property
-    def ContentType(self) -> str:
+    def content_type(self) -> str:
         """
-        @summary: The ContentType getter property.
-        @param self: RequestHandler self parameter.
-        @returns: Mime type of contents.
+        The content_type getter property.
+
+        Args:
+            self: RequestHandler self parameter.
+        Returns:
+            Mime type of contents.
         """
-        return self._contentType
+        return self._content_type
 
     @property
-    def Contents(self) -> bytes:
+    def contents(self) -> bytes:
         """
-        @summary: The Contents getter property.
-        @param self: RequestHandler self parameter.
-        @returns: A File contents.
+        The contents getter property.
+
+        Args:
+            self: RequestHandler self parameter.
+        Returns:
+            A File contents.
         """
         return self._contents
 
     @property
-    def ContentLength(self) -> str:
+    def content_length(self) -> str:
         """
-        @summary: The ContentLength getter property.
-        @param self: RequestHandler self parameter.
-        @returns: Contents's length in str.
+        The content_length getter property.
+
+        Args:
+            self: RequestHandler self parameter.
+        Returns:
+            Contents's length in str.
         """
         return str(len(self._contents))

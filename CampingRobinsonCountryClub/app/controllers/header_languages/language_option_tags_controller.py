@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the language option tags model and view.
+This class controller the language option tags model and view.
 """
 
 from models.header_languages import LanguageOptionTagsModel
@@ -15,32 +15,40 @@ from models.header_languages import LanguageOptionTagsModel
 
 class LanguageOptionTagsController():
     """
-    @summary: This class controller the language option tags details.
+    This class controller the language option tags details.
     """
 
-    def __init__(self, languageOptionTagsModel: LanguageOptionTagsModel, languageOptionTagsView):
+    def __init__(self, language_option_tags_model: LanguageOptionTagsModel, language_option_tags_view):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: LanguageOptionTagsController self parameter.
-        @param languageOptionTagsModel: The model class for MVC pattern.
-        @param languageOptionTagsView: The view class for MVC pattern.
-        """
-        self._languageOptionTagsModel: LanguageOptionTagsModel = languageOptionTagsModel
-        from views.header_languages import LanguageOptionTagsView
-        self._languageOptionTagsView: LanguageOptionTagsView = languageOptionTagsView
+        The init method initialize instance attributes.
 
-    def showLanguageOptionTags(self) -> str:
+        Args:
+            self: LanguageOptionTagsController self parameter.
+            language_option_tags_model: The model class for MVC pattern.
+            language_option_tags_view: The view class for MVC pattern.
         """
-        @summary: Return the view of tent.
-        @param self: LanguageOptionTagsController self parameter.
-        @returns: Returns view of Language Option Tags in string.
+        self._language_option_tags_model: LanguageOptionTagsModel = language_option_tags_model
+        from views.header_languages import LanguageOptionTagsView
+        self._language_option_tags_view: LanguageOptionTagsView = language_option_tags_view
+
+    def show_language_option_tags(self) -> str:
         """
-        return self._languageOptionTagsView.showLanguageOptionTags(self._languageOptionTagsModel.LanguageOptionTagModels)
+        Return the view of tent.
+
+        Args:
+            self: LanguageOptionTagsController self parameter.
+        Returns:
+            Returns view of Language Option Tags in string.
+        """
+        return self._language_option_tags_view.show_language_option_tags(self._language_option_tags_model.language_option_tag_models)
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param self: LanguageOptionTagsController self parameter.
-        @returns: Returns showLanguageOptionTag().
+        A function of a class that can return class state.
+
+        Args:
+            self: LanguageOptionTagsController self parameter.
+        Returns:
+            Returns show_language_option_tags().
         """
-        return self.showLanguageOptionTags()
+        return self.show_language_option_tags()

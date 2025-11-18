@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class reading rental details dates from files.
+This class reading rental details dates from files.
 """
 
 from pathlib import Path
@@ -17,13 +17,15 @@ from data import RentalDetailsDataAccess
 
 class RentalDetailsDataFromFile(RentalDetailsDataAccess):
     """
-    @summary: This is an abstract base class for Rental details data.
+    This is an abstract base class for Rental details data.
     """
 
     def __init__(self):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: RentalDetailsDataFromFile self parameter.
+        The init method initialize instance attributes.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
         """
         TENT_PERSON_FILE_NAME: str = 'tent_person.txt'
         self._TENT_PERSON_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', TENT_PERSON_FILE_NAME)
@@ -37,11 +39,14 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
         DOG_FILE_NAME: str = 'dog.txt'
         self._DOG_FILE_PATH: Path = Path(__file__).parent.joinpath('txt', DOG_FILE_NAME)
 
-    def getTentPersons(self) -> list[str]:
+    def get_tent_persons(self) -> list[str]:
         """
-        @summary: Return Tent Persons dates.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @returns: Returns Tent Person dates.
+        Return Tent Persons dates.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+        Returns:
+            Returns Tent Person dates.
         """
         persons: list[str] = []
         with open(self._TENT_PERSON_FILE_PATH, 'r') as f:
@@ -51,11 +56,14 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
 
         return persons
 
-    def getTentPriceLei(self) -> int:
+    def get_tent_price_lei(self) -> int:
         """
-        @summary: Return Lei prices from the txt.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @returns: Returns Lei prices from the txt file.
+        Return Lei prices from the txt.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+        Returns:
+            Returns Lei prices from the txt file.
         """
         price: int = -1
         try:
@@ -66,15 +74,18 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                     if currency.lower() == "lei":
                         price = int(words[0])
         except Exception as e:
-            print(f"The getTentPriceLei did not found lei price! Error: {e}")
+            print(f"The get_tent_price_lei did not found lei price! Error: {e}")
         finally:
             return price
 
-    def getTentPriceEur(self) -> int:
+    def get_tent_price_eur(self) -> int:
         """
-        @summary: Return Eur prices from the txt.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @returns: Returns Eur prices from the txt file.
+        Return Eur prices from the txt.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+        Returns:
+            Returns Eur prices from the txt file.
         """
         price: int = -1
         try:
@@ -85,15 +96,18 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                     if currency.lower() == "eur":
                         price = int(words[0])
         except Exception as e:
-            print(f"The getTentPriceLei did not found eur price! Error: {e}")
+            print(f"The get_tent_price_eur did not found eur price! Error: {e}")
         finally:
             return price
 
-    def getTrailerCapacities(self) -> list[str]:
+    def get_trailer_capacities(self) -> list[str]:
         """
-        @summary: Return capacities of trailer from the txt file.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @returns: Returns capacities of trailer.
+        Return capacities of trailer from the txt file.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+        Returns:
+            Returns capacities of trailer.
         """
         capacities: list[str] = list()
         try:
@@ -103,16 +117,19 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                     CAPACITY_INDEX = 0
                     capacities.append(words[CAPACITY_INDEX])
         except Exception as e:
-            print(f"getTrailerCapacity error: {e}")
+            print(f"get_trailer_capacities error: {e}")
         finally:
             return capacities
 
-    def getTrailerPriceLei(self, capacity: str) -> int:
+    def get_trailer_price_lei(self, capacity: str) -> int:
         """
-        @summary: Return price of trailer in lei from the txt file.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @param capacity: Trailer capacity.
-        @returns: Returns price of trailer in lei.
+        Return price of trailer in lei from the txt file.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+            capacity: Trailer capacity.
+        Returns:
+            Returns price of trailer in lei.
         """
         price: int = -1
         try:
@@ -127,16 +144,19 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                             LEI_PRICE_INDEX: int = 1
                             price = int(words[LEI_PRICE_INDEX])
         except Exception as e:
-             print(f"getTrailerPriceLei error: {e}")
+             print(f"get_trailer_price_lei error: {e}")
         finally:
             return price
 
-    def getTrailerPriceEur(self, capacity: str) -> int:
+    def get_trailer_price_eur(self, capacity: str) -> int:
         """
-        @summary: Return price of trailer in eur from the txt file.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @param capacity: Trailer capacity.
-        @returns: Returns price of trailer in eur.
+        Return price of trailer in eur from the txt file.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+            capacity: Trailer capacity.
+        Returns:
+            Returns price of trailer in eur.
         """
         price: int = -1
         try:
@@ -151,15 +171,18 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                             EUR_PRICE_INDEX: int = 3
                             price = int(words[EUR_PRICE_INDEX])
         except Exception as e:
-             print(f"getTrailerPriceEur error: {e}")
+             print(f"get_trailer_price_eur error: {e}")
         finally:
             return price
 
-    def getDogPriceLei(self) -> int:
+    def get_dog_price_lei(self) -> int:
         """
-        @summary: Return price of dog in lei from the txt file.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @returns: Returns price of dog in lei.
+        Return price of dog in lei from the txt file.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+        Returns:
+            Returns price of dog in lei.
         """
         price: int = -1
         try:
@@ -172,15 +195,18 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                         LEI_PRICE_INDEX: int = 0
                         price = int(words[LEI_PRICE_INDEX])
         except Exception as e:
-             print(f"getDogPriceLei error: {e}")
+             print(f"get_dog_price_lei error: {e}")
         finally:
             return price
 
-    def getDogPriceEur(self) -> int:
+    def get_dog_price_eur(self) -> int:
         """
-        @summary: Return price of dog in eur from the txt file.
-        @param self: RentalDetailsDataFromFile self parameter.
-        @returns: Returns price of dog in eur.
+        Return price of dog in eur from the txt file.
+
+        Args:
+            self: RentalDetailsDataFromFile self parameter.
+        Returns:
+            Returns price of dog in eur.
         """
         price: int = -1
         try:
@@ -193,6 +219,6 @@ class RentalDetailsDataFromFile(RentalDetailsDataAccess):
                         EUR_PRICE_INDEX: int = 0
                         price = int(words[EUR_PRICE_INDEX])
         except Exception as e:
-             print(f"getDogPriceEur error: {e}")
+             print(f"get_dog_price_eur error: {e}")
         finally:
             return price

@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class reading rental details dates from json files.
+This class reading rental details dates from json files.
 """
 
 from pathlib import Path
@@ -18,7 +18,7 @@ from data import RentalDetailsDataAccess
 
 class RentalDetailsDataFromJson(RentalDetailsDataAccess):
     """
-    @summary: This is an abstract base class for Rental details data.
+    This is an abstract base class for Rental details data.
     """
 
     LEI_KEY = 'lei'
@@ -26,8 +26,10 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
     def __init__(self):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: RentalDetailsDataFromJson self parameter.
+        The init method initialize instance attributes.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
         """
         # 1.
         TENT_FILE_NAME: str = 'tent.json'
@@ -36,7 +38,6 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
             f = open(file = TENT_FILE_PATH, mode = 'r', encoding = 'utf-8')
             self._TENT = json.load(f)
             f.close()
-
         except FileNotFoundError:
             print(f'Json file not found: {TENT_FILE_PATH}!')
             self._TENT = {}
@@ -48,7 +49,6 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
             f = open(file = TRAILER_FILE_PATH, mode = 'r', encoding = 'utf-8')
             self._TRAILER = json.load(f)
             f.close()
-
         except FileNotFoundError:
             print(f'Json file not found: {TRAILER_FILE_PATH}!')
             self._TRAILER = {}
@@ -60,16 +60,18 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
             f = open(file = DOG_FILE_PATH, mode = 'r', encoding = 'utf-8')
             self._DOG = json.load(f)
             f.close()
-
         except FileNotFoundError:
             print(f'Json file not found: {DOG_FILE_PATH}!')
             self._DOG = {}
 
-    def getTentPersons(self) -> list[str]:
+    def get_tent_persons(self) -> list[str]:
         """
-        @summary: Return Tent Persons dates.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @returns: Returns Tent Person dates.
+        Return Tent Persons dates.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+        Returns:
+            Returns Tent Person dates.
         """
         persons: list[str] = []
         if len(self._TENT) > 0:
@@ -79,11 +81,14 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return persons
 
-    def getTentPriceLei(self) -> int:
+    def get_tent_price_lei(self) -> int:
         """
-        @summary: Return Lei prices from the json.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @returns: Returns Lei prices from the json file.
+        Return Lei prices from the json.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+        Returns:
+            Returns Lei prices from the json file.
         """
         price: int = -1
         if len(self._TENT) > 0:
@@ -91,11 +96,14 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return price
 
-    def getTentPriceEur(self) -> int:
+    def get_tent_price_eur(self) -> int:
         """
-        @summary: Return Eur prices from the json.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @returns: Returns Eur prices from the json file.
+        Return Eur prices from the json.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+        Returns:
+            Returns Eur prices from the json file.
         """
         price: int = -1
         if len(self._TENT) > 0:
@@ -103,11 +111,14 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return price
 
-    def getTrailerCapacities(self) -> list[str]:
+    def get_trailer_capacities(self) -> list[str]:
         """
-        @summary: Return capacities of trailer from the json file.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @returns: Returns capacities of trailer.
+        Return capacities of trailer from the json file.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+        Returns:
+            Returns capacities of trailer.
         """
         capacities: list[str] = list()
         if len(self._TRAILER) > 0:
@@ -117,12 +128,15 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return capacities
 
-    def getTrailerPriceLei(self, capacity: str) -> int:
+    def get_trailer_price_lei(self, capacity: str) -> int:
         """
-        @summary: Return price of trailer in lei from the json file.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @param capacity: Trailer capacity.
-        @returns: Returns price of trailer in lei.
+        Return price of trailer in lei from the json file.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+            capacity: Trailer capacity.
+        Returns:
+            Returns price of trailer in lei.
         """
         price: int = -1
         if len(self._TRAILER) > 0:
@@ -130,12 +144,15 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return price
 
-    def getTrailerPriceEur(self, capacity: str) -> int:
+    def get_trailer_price_eur(self, capacity: str) -> int:
         """
-        @summary: Return price of trailer in eur from the json file.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @param capacity: Trailer capacity.
-        @returns: Returns price of trailer in eur.
+        Return price of trailer in eur from the json file.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+            capacity: Trailer capacity.
+        Returns:
+            Returns price of trailer in eur.
         """
         price: int = -1
         if len(self._TRAILER) > 0:
@@ -143,11 +160,14 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return price
 
-    def getDogPriceLei(self) -> int:
+    def get_dog_price_lei(self) -> int:
         """
-        @summary: Return price of dog in lei from the json file.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @returns: Returns price of dog in lei.
+        Return price of dog in lei from the json file.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+        Returns:
+            Returns price of dog in lei.
         """
         price: int = -1
         if len(self._DOG) > 0:
@@ -155,11 +175,14 @@ class RentalDetailsDataFromJson(RentalDetailsDataAccess):
 
         return price
 
-    def getDogPriceEur(self) -> int:
+    def get_dog_price_eur(self) -> int:
         """
-        @summary: Return price of dog in eur from the json file.
-        @param self: RentalDetailsDataFromJson self parameter.
-        @returns: Returns price of dog in eur.
+        Return price of dog in eur from the json file.
+
+        Args:
+            self: RentalDetailsDataFromJson self parameter.
+        Returns:
+            Returns price of dog in eur.
         """
         price: int = -1
         if len(self._DOG) > 0:

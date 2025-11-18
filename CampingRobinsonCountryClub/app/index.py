@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class creates index.html.
+This class creates index.html.
 """
 
 from pathlib import Path
@@ -18,7 +18,7 @@ from utils.generators import LanguageOptionsForSelect
 
 class Index():
     """
-    @summary: This class creates index.html.
+    This class creates index.html.
     """
 
     # Class variables
@@ -26,74 +26,81 @@ class Index():
 
     def __init__(self, path: str, translations: dict):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: Index self parameter.
-        @param path: Root path.
+        The init method initialize instance attributes.
+
+        Args:
+            self: Index self parameter.
+            path: Root path.
         """
         self._index_file_path: Path = Path(path).joinpath('templates', self.__class__.INDEX_FILE_NAME)
-        self._index_file_content: str = self.__readIndexHtml()
+        self._index_file_content: str = self.__read_index_html()
         self._translations: dict = translations
 
-    def buildIndexPage(self) -> str:
+    def build_index_page(self) -> str:
         """
-        @summary: Return the done index page.
-        @param self: Index self parameter.
+        Return the done index page.
+
+        Args:
+            self: Index self parameter.
         """
         # Replace langCode:
         LANG_CODE_KEY: str = 'langCode'
-        self.__replaceInIndexContent(LANG_CODE_KEY, self._translations[LANG_CODE_KEY])
+        self.__replace_in_index_content(LANG_CODE_KEY, self._translations[LANG_CODE_KEY])
 
         # Replace languageOptions:
-        languageOptionsForSelect: LanguageOptionsForSelect = LanguageOptionsForSelect(self._translations[LANG_CODE_KEY])
-        languageOptionsForSelectHtml = languageOptionsForSelect.generateLanguageOptionsForSelect()
+        language_options_for_select: LanguageOptionsForSelect = LanguageOptionsForSelect(self._translations[LANG_CODE_KEY])
+        language_options_for_select_html = language_options_for_select.generate_language_options_for_select()
 
         LANGUAGE_OPTIONS_KEY: str = 'languageOptions'
-        self.__replaceInIndexContent(LANGUAGE_OPTIONS_KEY, languageOptionsForSelectHtml)
+        self.__replace_in_index_content(LANGUAGE_OPTIONS_KEY, language_options_for_select_html)
 
         # Replace menu:
         MENU_KEY: str = 'menu'
-        self.__replaceInIndexContent(MENU_KEY, self._translations[MENU_KEY])
+        self.__replace_in_index_content(MENU_KEY, self._translations[MENU_KEY])
 
         # Replace rentaldetails:
-        rentalDetailsSection: RentalDetailsSection = RentalDetailsSection()
-        rentalDetailsSectionHtml = rentalDetailsSection.generateRentalDetailsSection(self._translations)
+        rental_details_section: RentalDetailsSection = RentalDetailsSection()
+        rental_details_section_html = rental_details_section.generate_rental_details_section(self._translations)
 
         RENTALDETAILS_KEY: str = 'rentaldetails'
-        self.__replaceInIndexContent(RENTALDETAILS_KEY, rentalDetailsSectionHtml)
+        self.__replace_in_index_content(RENTALDETAILS_KEY, rental_details_section_html)
 
         return self._index_file_content
     
-    def __replaceInIndexContent(self, key: str, content: str) -> str:
+    def __replace_in_index_content(self, key: str, content: str) -> str:
         """
-        @summary: Replace the given key to the given content.
-        @param cls: Index cls parameter.
+        Replace the given key to the given content.
+
+        Args:
+            cls: Index cls parameter.
         """
         self._index_file_content = self._index_file_content.replace('{{' + key + '}}', content)
 
-    def __readIndexHtml(self) -> str:
+    def __read_index_html(self) -> str:
         """
-        @summary: Read in index.html from templates folder.
-        @param self: Index self parameter.
-        @returns: Returns contents of html file.
+        Read in index.html from templates folder.
+
+        Args:
+            self: Index self parameter.
+        Returns:
+            Returns contents of html file.
         """
-        indexHtml: str = None
+        index_html: str = None
 
         try:
             with open(self._index_file_path, 'r', encoding = 'utf-8') as f:
-                indexHtml = f.read()
-
+                index_html = f.read()
         except FileNotFoundError:
             print(f"Exception Error: {self._index_file_path} file not found!")
-            indexHtml = "Server error!"
-
+            index_html = "Server error!"
         except Exception as e:
             print(f"Exception Error: reading {self._index_file_path}: {e}")
-            indexHtml = "Server html file error!"
+            index_html = "Server html file error!"
 
-        return indexHtml
+        return index_html
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return index.html page.
+        A function of a class that can return index.html page.
         """
-        return self.buildIndexPage()
+        return self.build_index_page()

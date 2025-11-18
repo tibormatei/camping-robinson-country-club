@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of language option tags.
+This class handles the view of language option tags.
 """
 
 from models.header_languages import LanguageOptionTagModel
@@ -17,35 +17,42 @@ from controllers.header_languages import LanguageOptionTagController
 
 class LanguageOptionTagsView():
     """
-    @summary: This class handles the view of language option tags.
+    This class handles the view of language option tags.
     """
 
     def __init__(self):
         """
-        @summary: Language Option Tags view.
-        @param self: LanguageOptionTagsView self parameter.
-        """
-        self._languageOptionTagView = LanguageOptionTagView()
+        Language Option Tags view.
 
-    def showLanguageOptionTags(self, languageOptionTags: list[LanguageOptionTagModel]) -> str:
+        Args:
+            self: LanguageOptionTagsView self parameter.
         """
-        @summary: Create the full language option tag view.
-        @param cls: LanguageOptionTagsView cls parameter.
-        @param languageOptionTags: All LanguageOptionTagModel in a list.
-        @returns: Returns a full displayable option html tags.
+        self._language_option_tag_view = LanguageOptionTagView()
+
+    def show_language_option_tags(self, language_option_tags: list[LanguageOptionTagModel]) -> str:
         """
-        optionTags: str = ''
+        Create the full language option tag view.
 
-        for anguageOptionTagModel in languageOptionTags:
-            languageOptionTagController = LanguageOptionTagController(anguageOptionTagModel, self._languageOptionTagView)
-            optionTags += languageOptionTagController.showLanguageOptionTag()
-            optionTags += '\n'
+        Args:
+            cls: LanguageOptionTagsView cls parameter.
+            language_option_tags: All LanguageOptionTagModel in a list.
+        Returns:
+            Returns a full displayable option html tags.
+        """
+        option_tags: str = ''
 
-        return optionTags
+        for language_option_tag_model in language_option_tags:
+            language_option_tag_controller = LanguageOptionTagController(language_option_tag_model, self._language_option_tag_view)
+            option_tags += language_option_tag_controller.show_language_option_tag()
+            option_tags += '\n'
+
+        return option_tags
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param cls: LanguageOptionTagsView cls parameter.
+        A function of a class that can return class state.
+
+        Args:
+            cls: LanguageOptionTagsView cls parameter.
         """
-        return self.showLanguageOptionTags()
+        return self.show_language_option_tags()

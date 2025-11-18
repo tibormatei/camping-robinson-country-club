@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the dog model and view.
+This class controller the dog model and view.
 """
 
 from models.rental_details import DogModel
@@ -16,32 +16,40 @@ from views.rental_details import DogView
 
 class DogController():
     """
-    @summary: This class controller the dog details.
+    This class controller the dog details.
     """
 
-    def __init__(self, dogModel: DogModel, dogView: DogView):
+    def __init__(self, dog_model: DogModel, dog_view: DogView):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: DogController self parameter.
-        @param dogModel: The model class for MVC pattern.
-        @param dogView: The view class for MVC pattern.
-        """
-        self._dogModel: DogModel = dogModel
-        self._dogView: DogView = dogView
+        The init method initialize instance attributes.
 
-    def showDogView(self, translations: dict = {}) -> str:
+        Args:
+            self: DogController self parameter.
+            dog_model: The model class for MVC pattern.
+            dog_view: The view class for MVC pattern.
         """
-        @summary: Return the view of tent.
-        @param self: TentController self parameter.
-        @param translations: Language words.
-        @returns: Returns view of Tent Details in string.
+        self._dog_model: DogModel = dog_model
+        self._dog_view: DogView = dog_view
+
+    def show_dog_view(self, translations: dict = {}) -> str:
         """
-        return self._dogView.showDogView(translations, self._dogModel.LeiPricePerNight, self._dogModel.EurPricePerNight)
+        Return the view of tent.
+
+        Args:
+            self: TentController self parameter.
+            translations: Language words.
+        Returns:
+            Returns view of Tent Details in string.
+        """
+        return self._dog_view.show_dog_view(translations, self._dog_model.lei_price_per_night, self._dog_model.eur_price_per_night)
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param self: DogController self parameter.
-        @returns: Returns showDogView().
+        A function of a class that can return class state.
+
+        Args:
+            self: DogController self parameter.
+        Returns:
+            Returns show_dog_view().
         """
-        return self.showDogView()
+        return self.show_dog_view()

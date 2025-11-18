@@ -1,13 +1,13 @@
 # Copyright (c) 2025 Matei Tibor. All rights reserved.
 #
-# Filename: Rental_details_view.py
+# Filename: rental_details_view.py
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of rental details.
+This class handles the view of rental details.
 """
 
 from pathlib import Path
@@ -25,7 +25,7 @@ from controllers.rental_details import DogController
 
 class RentalDetailsView():
     """
-    @summary: This class handles the view of rental details.
+    This class handles the view of rental details.
     """
 
     # Class variables
@@ -35,82 +35,90 @@ class RentalDetailsView():
 
     def __init__(self):
         """
-        @summary: Rental details views.
-        @param self: RentalDetailsView self parameter.
+        Rental details views.
+
+        Args:
+            self: RentalDetailsView self parameter.
         """
         if self.__class__.RENTAL_DETAILS_SECTION_FILE_CONTENT is None:
-            self.__class__.RENTAL_DETAILS_SECTION_FILE_CONTENT = self.__readRentalDetailsSectionHtml()
+            self.__class__.RENTAL_DETAILS_SECTION_FILE_CONTENT = self.__read_rental_details_section_html()
 
     @classmethod
-    def showRentalDetailsView(cls, translations: dict, tentModel: TentModel,
-                              trailersModel: TrailersModel, dogModel: DogModel,
-                              priceInformation: str, checkOutinformation: str) -> str:
+    def show_rental_details_view(cls, translations: dict, tent_model: TentModel,
+                              trailers_model: TrailersModel, dog_model: DogModel,
+                              price_information: str, check_out_information: str) -> str:
         """
-        @summary: Create the full rental details view.
-        @param cls: RentalDetailsView cls parameter.
-        @param translations: Language words.
-        @param tentModel: Tent's Model class.
-        @param trailersModel: Trailers's Model class.
-        @param dogModel: Dog's Model class.
-        @param priceInformation: Price details.
-        @param checkOutinformation: Check Out time.
-        @returns: Returns a full displayable Rental information html code piece.
+        Create the full rental details view.
+
+        Args:
+            cls: RentalDetailsView cls parameter.
+            translations: Language words.
+            tent_model: Tent's Model class.
+            trailers_model: Trailers's Model class.
+            dog_model: Dog's Model class.
+            price_information: Price details.
+            check_out_information: Check Out time.
+        Returns:
+             Returns a full displayable Rental information html code piece.
         """
-        rentalDetailsView: str = cls.RENTAL_DETAILS_SECTION_FILE_CONTENT
+        rental_details_view: str = cls.RENTAL_DETAILS_SECTION_FILE_CONTENT
 
         # Tent section
-        tentView: TentView = TentView()
-        tentController: TentController = TentController(tentModel, tentView)
-        tentSectionContent: str = tentController.showTentView(translations)
+        tent_view: TentView = TentView()
+        tent_controller: TentController = TentController(tent_model, tent_view)
+        tent_section_content: str = tent_controller.show_tent_view(translations)
 
         TENT_SECTION_KEY: str = 'tentSection'
-        rentalDetailsView = rentalDetailsView.replace('{{' + TENT_SECTION_KEY + '}}', tentSectionContent)
+        rental_details_view = rental_details_view.replace('{{' + TENT_SECTION_KEY + '}}', tent_section_content)
 
         # Trailers section
-        trailersView: from_views.TrailersView = from_views.TrailersView()
-        trailersController: TrailersController = TrailersController(trailersModel, trailersView)
-        trailersSectionContent: str = trailersController.showTrailersView(translations)
+        trailers_view: from_views.TrailersView = from_views.TrailersView()
+        trailers_controller: TrailersController = TrailersController(trailers_model, trailers_view)
+        trailers_section_content: str = trailers_controller.show_trailers_view(translations)
 
         TRAILERS_SECTION_KEY: str = 'trailersSection'
-        rentalDetailsView = rentalDetailsView.replace('{{' + TRAILERS_SECTION_KEY + '}}', trailersSectionContent)
+        rental_details_view = rental_details_view.replace('{{' + TRAILERS_SECTION_KEY + '}}', trailers_section_content)
 
         # Dog section
-        dogView: DogView = DogView()
-        dogController: DogController = DogController(dogModel, dogView)
-        dogSectionContent: str = dogController.showDogView(translations)
+        dog_view: DogView = DogView()
+        dog_controller: DogController = DogController(dog_model, dog_view)
+        dog_section_content: str = dog_controller.show_dog_view(translations)
 
         DOG_SECTION_KEY: str = 'dogSection'
-        rentalDetailsView = rentalDetailsView.replace('{{' + DOG_SECTION_KEY + '}}', dogSectionContent)
+        rental_details_view = rental_details_view.replace('{{' + DOG_SECTION_KEY + '}}', dog_section_content)
 
         # Price Information section
         PRICE_INFORMATION_SECTION_KEY: str = 'priceInformation'
-        rentalDetailsView = rentalDetailsView.replace('{{' + PRICE_INFORMATION_SECTION_KEY + '}}', priceInformation)
+        rental_details_view = rental_details_view.replace('{{' + PRICE_INFORMATION_SECTION_KEY + '}}', price_information)
 
         # Price Information section
         CHECK_OUTINFORMATION_SECTION_KEY: str = 'checkOutinformation'
-        rentalDetailsView = rentalDetailsView.replace('{{' + CHECK_OUTINFORMATION_SECTION_KEY + '}}', checkOutinformation)
+        rental_details_view = rental_details_view.replace('{{' + CHECK_OUTINFORMATION_SECTION_KEY + '}}', check_out_information)
 
-        return rentalDetailsView
+        return rental_details_view
 
     @classmethod
-    def __readRentalDetailsSectionHtml(cls) -> str:
+    def __read_rental_details_section_html(cls) -> str:
         """
-        @summary: Read in section_rentalDetails.html from templates folder.
-        @param cls: RentalDetailsView cls parameter.
-        @returns: Returns contents of html file.
+        Read in section_rentalDetails.html from templates folder.
+
+        Args:
+            cls: RentalDetailsView cls parameter.
+        Returns:
+            Returns contents of html file.
         """
-        rentalDetailsSectionHtml: str = None
+        rental_details_section_html: str = None
 
         try:
             with open(cls.RENTAL_DETAILS_SECTION_FILE_PATH, 'r', encoding = 'utf-8') as f:
-                rentalDetailsSectionHtml = f.read()
+                rental_details_section_html = f.read()
 
         except FileNotFoundError:
             print(f"Exception Error: {cls.RENTAL_DETAILS_SECTION_FILE_PATH} file not found!")
-            rentalDetailsSectionHtml = None
+            rental_details_section_html = None
 
         except Exception as e:
             print(f"Exception Error: reading {cls.RENTAL_DETAILS_SECTION_FILE_PATH}: {e}")
-            rentalDetailsSectionHtml = None
+            rental_details_section_html = None
 
-        return rentalDetailsSectionHtml
+        return rental_details_section_html

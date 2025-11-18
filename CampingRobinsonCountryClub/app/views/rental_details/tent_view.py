@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of rental tent details.
+This class handles the view of rental tent details.
 """
 
 from pathlib import Path
@@ -15,7 +15,7 @@ from pathlib import Path
 
 class TentView():
     """
-    @summary: This class handles the view of rental tent details.
+    This class handles the view of rental tent details.
     """
 
     # Class variables
@@ -25,79 +25,89 @@ class TentView():
 
     def __init__(self):
         """
-        @summary: Rental tent details views.
-        @param self: TentView self parameter.
+        Rental tent details views.
+
+        Args:
+            self: TentView self parameter.
         """
         if self.__class__.TENT_BASE_TABLE_FILE_CONTENT is None:
-            self.__class__.TENT_BASE_TABLE_FILE_CONTENT = self.__readTentBaseTableHtml()
+            self.__class__.TENT_BASE_TABLE_FILE_CONTENT = self.__read_tent_base_table_html()
 
     @classmethod
-    def showTentView(cls, translations: dict, tentCapacities: list[str], leiPricePerPerson: int, eurPricePerPerson: int) -> str:
+    def show_tent_view(cls, translations: dict, tent_capacities: list[str], lei_price_per_person: int, eur_price_per_person: int) -> str:
         """
-        @summary: Create the full tent view.
-        @param cls: TentView cls parameter.
-        @param translations: Language dictionary.
-        @param tentCapacities: Capacities dates.
-        @param leiPricePerPerson: Price in Lei.
-        @param eurPricePerPerson: Price in Eur.
-        @returns: Returns a full displayable tent html code piece.
+        Create the full tent view.
+
+        Args:
+            cls: TentView cls parameter.
+            translations: Language dictionary.
+            tent_capacities: Capacities dates.
+            lei_price_per_person: Price in Lei.
+            eur_price_per_person: Price in Eur.
+        Returns:
+            Returns a full displayable tent html code piece.
         """
         # 1. replaces translation texts
-        tentView: str = cls.TENT_BASE_TABLE_FILE_CONTENT
+        tent_view: str = cls.TENT_BASE_TABLE_FILE_CONTENT
         try:
-            for key, itemValue in translations['rentalDetails']['tentDetails'].items():
-                tentView = tentView.replace('{{' + key + '}}', itemValue)
+            for key, item_value in translations['rentalDetails']['tentDetails'].items():
+                tent_view = tent_view.replace('{{' + key + '}}', item_value)
         except KeyError as e:
             print(f"KeyError exception in {cls.__class__.__name__}: {e}!")
 
-        # 2. generating and replaces tentTableRows in the content
-        tentTableRows: str = str()
-        if len(tentCapacities) > 0:
-            personName: str = translations['rentalDetails']['tentDetails']['personName']
+        # 2. generating and replaces tent_table_rows in the content
+        tent_table_rows: str = str()
+        if len(tent_capacities) > 0:
+            person_name: str = translations['rentalDetails']['tentDetails']['personName']
 
-            capacityDataCell: str = '<td>' + tentCapacities[0] + ' ' + personName + '</td>'
-            leiDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(leiPricePerPerson) + '</td>'
-            eurDataCell: str = '<td rowspan="' + str(len(tentCapacities)) + '">' + str(eurPricePerPerson) + '</td>'
-            tentTableRows = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
-            for i in range(1, len(tentCapacities)):
-                tentTableRows = tentTableRows + '<tr><td>' + tentCapacities[i] + ' ' + personName + '</td></tr>'
+            capacity_data_cell: str = '<td>' + tent_capacities[0] + ' ' + person_name + '</td>'
+            lei_data_cell: str = '<td rowspan="' + str(len(tent_capacities)) + '">' + str(lei_price_per_person) + '</td>'
+            eur_data_cell: str = '<td rowspan="' + str(len(tent_capacities)) + '">' + str(eur_price_per_person) + '</td>'
+            tent_table_rows = '<tr>' + capacity_data_cell + lei_data_cell + eur_data_cell + "</tr>"
+            for i in range(1, len(tent_capacities)):
+                tent_table_rows = tent_table_rows + '<tr><td>' + tent_capacities[i] + ' ' + person_name + '</td></tr>'
         else:
-            capacityDataCell: str = '<td></td>'
-            leiDataCell: str = '<td>' + str(leiPricePerPerson) + '</td>'
-            eurDataCell: str = '<td>' + str(eurPricePerPerson) + '</td>'
-            tentTableRows = '<tr>' + capacityDataCell + leiDataCell + eurDataCell + "</tr>"
+            capacity_data_cell: str = '<td></td>'
+            lei_data_cell: str = '<td>' + str(lei_price_per_person) + '</td>'
+            eur_data_cell: str = '<td>' + str(eur_price_per_person) + '</td>'
+            tent_table_rows = '<tr>' + capacity_data_cell + lei_data_cell + eur_data_cell + "</tr>"
 
         TENT_TABLE_ROWS_KEY: str = 'tentTableRows'
-        tentView = tentView.replace('{{' + TENT_TABLE_ROWS_KEY + '}}', tentTableRows)
+        tent_view = tent_view.replace('{{' + TENT_TABLE_ROWS_KEY + '}}', tent_table_rows)
 
-        return tentView
+        return tent_view
 
     @classmethod
-    def __readTentBaseTableHtml(cls) -> str:
+    def __read_tent_base_table_html(cls) -> str:
         """
-        @summary: Read in table_tentBase.html from templates folder.
-        @param cls: TentView cls parameter.
-        @returns: Returns contents of html file.
+        Read in table_tentBase.html from templates folder.
+
+        Args:
+            cls: TentView cls parameter.
+        Returns:
+            Returns contents of html file.
         """
-        tentBaseTableHtml: str = None
+        tent_base_table_html: str = None
 
         try:
             with open(cls.TENT_BASE_TABLE_FILE_PATH, 'r', encoding = 'utf-8') as f:
-                tentBaseTableHtml = f.read()
+                tent_base_table_html = f.read()
 
         except FileNotFoundError:
             print(f"Exception Error: {cls.TENT_BASE_TABLE_FILE_PATH} file not found!")
-            tentBaseTableHtml = None
+            tent_base_table_html = None
 
         except Exception as e:
             print(f"Exception Error: reading {cls.TENT_BASE_TABLE_FILE_PATH}: {e}")
-            tentBaseTableHtml = None
+            tent_base_table_html = None
 
-        return tentBaseTableHtml
+        return tent_base_table_html
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param cls: TentView cls parameter.
+        A function of a class that can return class state.
+
+        Args:
+            cls: TentView cls parameter.
         """
-        return self.showTentView()
+        return self.show_tent_view()

@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This is an interface/abstract base class.
+This is an interface/abstract base class.
 """
 
 from abc import abstractmethod
@@ -15,7 +15,7 @@ from abc import abstractmethod
 
 class RentalDetailsDataAccess():
     """
-    @summary: This is an abstract base class for Rental details data.
+    This is an abstract base class for Rental details data.
     """
 
     @abstractmethod
@@ -23,33 +23,33 @@ class RentalDetailsDataAccess():
         pass
 
     @abstractmethod
-    def getTentPersons(self) -> list[str]:
+    def get_tent_persons(self) -> list[str]:
         pass
 
     @abstractmethod
-    def getTentPriceLei(self) -> int:
+    def get_tent_price_lei(self) -> int:
         pass
 
     @abstractmethod
-    def getTentPriceEur(self) -> int:
+    def get_tent_price_eur(self) -> int:
         pass
 
     @abstractmethod
-    def getTrailerCapacities(self) -> list[str]:
+    def get_trailer_capacities(self) -> list[str]:
         pass
 
     @abstractmethod
-    def getTrailerPriceLei(self, capacity: str) -> str:
+    def get_trailer_price_lei(self, capacity: str) -> str:
         pass
 
     @abstractmethod
-    def getTrailerPriceEur(self, capacity: str) -> str:
+    def get_trailer_price_eur(self, capacity: str) -> str:
         pass
 
     @abstractmethod
-    def getDogPriceLei(self) -> int:
+    def get_dog_price_lei(self) -> int:
         pass
 
     @abstractmethod
-    def getDogPriceEur(self) -> int:
+    def get_dog_price_eur(self) -> int:
         pass

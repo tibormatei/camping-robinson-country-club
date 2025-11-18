@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the rental details classes.
+This class controller the rental details classes.
 """
 
 from data import RentalDetailsDataFromJson
@@ -24,38 +24,43 @@ from controllers.rental_details import RentalDetailsController
 
 class RentalDetailsSection():
     """
-    @summary: This class controller the rental details objects.
+    This class controller the rental details objects.
     """
 
     def __init__(self):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: RentalDetailsSection self parameter.
+        The init method initialize instance attributes.
+
+        Args:
+            self: RentalDetailsSection self parameter.
         """
-        rentalDetailsData: RentalDetailsDataFromJson = RentalDetailsDataFromJson()
+        rental_details_data: RentalDetailsDataFromJson = RentalDetailsDataFromJson()
 
         # 1. Tent controller:
-        tentModelBuilder: TentModelBuilder = TentModelBuilder(rentalDetailsData)
-        tentModel: TentModel = tentModelBuilder.RetriveTentModel()
+        tent_model_builder: TentModelBuilder = TentModelBuilder(rental_details_data)
+        tent_model: TentModel = tent_model_builder.retrive_tent_model()
 
         # 2. Trailers controller:
-        trailersModelBuilder: TrailersModelBuilder = TrailersModelBuilder(rentalDetailsData)
-        trailersModel: TrailersModel = trailersModelBuilder.RetriveTrailersModel()
+        trailers_model_builder: TrailersModelBuilder = TrailersModelBuilder(rental_details_data)
+        trailers_model: TrailersModel = trailers_model_builder.retrive_trailers_model()
 
         # 3. Dog controller:
-        dogModelBuilder: DogModelBuilder = DogModelBuilder(rentalDetailsData)
-        dogModel: DogModel = dogModelBuilder.RetriveDogModel()
+        dog_model_builder: DogModelBuilder = DogModelBuilder(rental_details_data)
+        dog_model: DogModel = dog_model_builder.retrive_dog_model()
 
         # 4. RentalDetails controller:
-        rentalDetailsModel: RentalDetailsModel = RentalDetailsModel(tentModel, trailersModel, dogModel)
-        rentalDetailsView: RentalDetailsView = RentalDetailsView()
-        self._rentalDetailsController: RentalDetailsController = RentalDetailsController(rentalDetailsModel, rentalDetailsView)
+        rental_details_model: RentalDetailsModel = RentalDetailsModel(tent_model, trailers_model, dog_model)
+        rental_details_view: RentalDetailsView = RentalDetailsView()
+        self._rental_details_controller: RentalDetailsController = RentalDetailsController(rental_details_model, rental_details_view)
 
-    def generateRentalDetailsSection(self, translations: dict = {}) -> str:
+    def generate_rental_details_section(self, translations: dict = {}) -> str:
         """
-        @summary: Generates rental details html section.
-        @param self: RentalDetailsSection self parameter.
-        @param translations: Language words.
-        @returns: Returns a full displayable Rental details information html code piece.
+        Generates rental details html section.
+
+        Args:
+            self: RentalDetailsSection self parameter.
+            translations: Language words.
+        Returns:
+            Returns a full displayable Rental details information html code piece.
         """
-        return self._rentalDetailsController.showRentalDetails(translations)
+        return self._rental_details_controller.show_rental_details(translations)

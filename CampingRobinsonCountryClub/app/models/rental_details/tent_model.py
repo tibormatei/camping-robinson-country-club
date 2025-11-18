@@ -7,79 +7,96 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model of rental tent prices.
+This class is a model of rental tent prices.
 """
 
 
 class TentModel():
     """
-    @summary: This class is a model of rental tent prices.
+    This class is a model of rental tent prices.
     """
 
-    def __init__(self, tentCapacities: list[str] = [], leiPricePerPerson: int = 0, eurPricePerPerson: int = 0):
+    def __init__(self, tent_capacities: list[str] = [], lei_price_per_person: int = 0, eur_price_per_person: int = 0):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TestModel self parameter.
-        @param tentCapacities: Tent capacities.
-        @param leiPricePerPerson: Price in Lei.
-        @param eurPricePerPerson: Price in Eur.
+        The init method initialize instance attributes.
+
+        Args:
+            self: TestModel self parameter.
+            tent_capacities: Tent capacities.
+            lei_price_per_person: Price in Lei.
+            eur_price_per_person: Price in Eur.
         """
-        self._tentCapacities: list[str] = tentCapacities
-        self._leiPricePerPerson: int = leiPricePerPerson
-        self._eurPricePerPerson: int = eurPricePerPerson
+        self._tent_capacities: list[str] = tent_capacities
+        self._lei_price_per_person: int = lei_price_per_person
+        self._eur_price_per_person: int = eur_price_per_person
 
     @property
-    def TentCapacities(self) -> list[str]:
+    def tent_capacities(self) -> list[str]:
         """
-        @summary: The TentCapacities getter property.
-        @param self: TestModel self parameter.
-        @returns: Returns all tent capacity types.
+        The tent_capacities getter property.
+
+        Args:
+            self: TestModel self parameter.
+        Returns:
+            Returns all tent capacity types.
         """
-        return self._tentCapacities
+        return self._tent_capacities
 
     @property
-    def LeiPricePerPerson(self) -> int:
+    def lei_price_per_person(self) -> int:
         """
-        @summary: The LeiPricePerPerson getter property.
-        @param self: TestModel self parameter.
-        @returns: Returns price in lei.
-        """
-        return self._leiPricePerPerson
+        The lei_price_per_person getter property.
 
-    @LeiPricePerPerson.setter
-    def LeiPricePerPerson(self, leiPricePerPerson: int):
+        Args:
+            self: TestModel self parameter.
+        Returns:
+            Returns price in lei.
         """
-        @summary: The LeiPricePerPerson setter property.
-        @param self: TestModel self parameter.
-        @param leiPricePerPerson: Lei price value.
+        return self._lei_price_per_person
+
+    @lei_price_per_person.setter
+    def lei_price_per_person(self, lei_price_per_person: int):
         """
-        if leiPricePerPerson > 0:
-            self._leiPricePerPerson = leiPricePerPerson
+        The lei_price_per_person setter property.
+
+        Args:
+            self: TestModel self parameter.
+            lei_price_per_person: Lei price value.
+        """
+        if lei_price_per_person > 0:
+            self._lei_price_per_person = lei_price_per_person
 
     @property
-    def EurPricePerPerson(self) -> int:
+    def eur_price_per_person(self) -> int:
         """
-        @summary: The EurPricePerPerson getter property.
-        @param self: TestModel self parameter.
-        @returns: Returns price in eur.
-        """
-        return self._eurPricePerPerson
+        The eur_price_per_person getter property.
 
-    @EurPricePerPerson.setter
-    def EurPricePerPerson(self, eurPricePerPerson: int):
+        Args:
+            self: TestModel self parameter.
+        Returns:
+            Returns price in eur.
         """
-        @summary: The EurPricePerPerson setter property.
-        @param self: TestModel self parameter.
-        @param eurPricePerPerson: Eur price value.
-        """
-        if eurPricePerPerson > 0:
-            self._eurPricePerPerson = eurPricePerPerson
+        return self._eur_price_per_person
 
-    def AddTentCapacity(self, tentcapacity: str) -> None:
+    @eur_price_per_person.setter
+    def eur_price_per_person(self, eur_price_per_person: int):
         """
-        @summary: Add to the list a tent capacity.
-        @param self: TestModel self parameter.
-        @param tentcapacity: The tent capacity.
+        The eur_price_per_person setter property.
+
+        Args:
+            self: TestModel self parameter.
+            eur_price_per_person: Eur price value.
         """
-        if tentcapacity not in self._tentCapacities:
-            self._tentCapacities.append(tentcapacity)
+        if eur_price_per_person > 0:
+            self._eur_price_per_person = eur_price_per_person
+
+    def add_tent_capacity(self, tent_capacity: str) -> None:
+        """
+        Add to the list a tent capacity.
+
+        Args:
+            self: TestModel self parameter.
+            tent_capacity: The tent capacity.
+        """
+        if tent_capacity not in self._tent_capacities:
+            self._tent_capacities.append(tent_capacity)

@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class tests the functions of TentView.
+This class tests the functions of TentView.
 """
 
 import unittest
@@ -16,19 +16,21 @@ from app.views.rental_details import TentView
 
 class TestTentView(unittest.TestCase):
     """
-    @summary: TestTentView tests.
+    TestTentView tests.
     """
 
     def setUp(self):
         """
-        @summary: Fresh instance for each test
-        @param self: TestTentView self parameter.
+        Fresh instance for each test
+
+        Args:
+            self: TestTentView self parameter.
         """
-        self.tentView = TentView()
+        self.tent_view = TentView()
 
     # Pozitiv tests:
-    # Test showTentView method
-    def test_01_showTentView(self):
+    # Test show_tent_view method
+    def test_01_show_tent_view(self):
         EXPECTED_RESULT: str = ('<table id="rentaldetails-tent-table" class="rentaldetails-table">\n'
                                 '    <thead>\n'
                                 '        <tr>\n'
@@ -57,7 +59,7 @@ class TestTentView(unittest.TestCase):
         LEI_PRICE_PER_PERSON: int = 200
         EUR_PRICE_PER_PERSON: int = 50
 
-        self.assertEqual(self.tentView.showTentView(TRANSLATIONS, TENT_CAPACITIES, LEI_PRICE_PER_PERSON, EUR_PRICE_PER_PERSON), EXPECTED_RESULT)
+        self.assertEqual(self.tent_view.show_tent_view(TRANSLATIONS, TENT_CAPACITIES, LEI_PRICE_PER_PERSON, EUR_PRICE_PER_PERSON), EXPECTED_RESULT)
 
 if __name__ == '__main__':
     unittest.main()

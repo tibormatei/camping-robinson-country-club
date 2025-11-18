@@ -7,53 +7,60 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of language option tag.
+This class handles the view of language option tag.
 """
 
 
 class LanguageOptionTagView():
     """
-    @summary: This class handles the view of language option tag.
+    This class handles the view of language option tag.
     """
 
     def __init__(self):
         """
-        @summary: Language Option Tag view.
-        @param self: LanguageOptionTagView self parameter.
+        Language Option Tag view.
+
+        Args:
+            self: LanguageOptionTagView self parameter.
         """
         pass
 
     @classmethod
-    def showLanguageOptionTag(cls, selected: bool, value: str, displayLanguageName: str) -> str:
+    def show_language_option_tag(cls, selected: bool, value: str, display_language_name: str) -> str:
         """
-        @summary: Create the full language option tag view.
-        @param cls: LanguageOptionTagView cls parameter.
-        @param selected: option tag is selected.
-        @param value: Value property value.
-        @param displayLanguageName: Display Language Name.
-        @returns: Returns a full displayable option html tag Exp: <option selected value="ro">Romanian</option>.
+        Create the full language option tag view.
+
+        Args:
+            cls: LanguageOptionTagView cls parameter.
+            selected: option tag is selected.
+            value: Value property value.
+            display_language_name: Display Language Name.
+        Returns:
+            Returns a full displayable option html tag Exp: <option selected value="ro">Romanian</option>.
         """
-        optionTag: str = '<option'
+        option_tag: str = '<option'
 
         # selected option:
         if selected == True:
-            optionTag += ' selected'
+            option_tag += ' selected'
 
         # value property:
-        valueProperty: str = f" value=\"{value}\""
-        optionTag += (valueProperty + '>')
+        value_property: str = f" value=\"{value}\""
+        option_tag += (value_property + '>')
 
         # inner html:
-        optionTag += displayLanguageName
+        option_tag += display_language_name
 
         # close option tag:
-        optionTag += '</option>'
+        option_tag += '</option>'
 
-        return optionTag
+        return option_tag
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param cls: LanguageOptionTagView cls parameter.
+        A function of a class that can return class state.
+
+        Args:
+            cls: LanguageOptionTagView cls parameter.
         """
-        return self.showLanguageOptionTag()
+        return self.show_language_option_tag()

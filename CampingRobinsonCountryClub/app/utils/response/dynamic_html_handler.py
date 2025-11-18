@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handlers a static file.
+This class handlers a static file.
 """
 
 from utils.response import RequestHandler
@@ -15,15 +15,17 @@ from utils.response import RequestHandler
 
 class DynamicHtmlHandler(RequestHandler):
     """
-    @summary: This class handlers a static file.
+    This class handlers a static file.
     """
 
-    def __init__(self, pageBuilder):
+    def __init__(self, page_builder):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: DynamicHtmlHandler self parameter.
-        @param pageBuilder: Dynami page builder.
+        The init method initialize instance attributes.
+
+        Args:
+            self: DynamicHtmlHandler self parameter.
+            page_builder: Dynami page builder.
         """
         super().__init__()
-        self._contentType = 'text/html'
-        self._contents = bytes(pageBuilder.__str__(), "utf-8")
+        self._content_type = 'text/html'
+        self._contents = bytes(page_builder.__str__(), "utf-8")

@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class returns the TentModel with dates.
+This class returns the TentModel with dates.
 """
 
 from data import RentalDetailsDataAccess
@@ -16,25 +16,30 @@ from models.rental_details import DogModel
 
 class DogModelBuilder():
     """
-    @summary: This class returns the DogModel with dates.
+    This class returns the DogModel with dates.
     """
 
-    def __init__(self, dataAccess: RentalDetailsDataAccess):
+    def __init__(self, data_access: RentalDetailsDataAccess):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: DogModelBuilder self parameter.
-        @param sedataAccesslf: RentalDetailsDataAccess's inheritance class.
-        """
-        self._dataAccess = dataAccess
+        The init method initialize instance attributes.
 
-    def RetriveDogModel(self) -> DogModel:
+        Args:
+            self: DogModelBuilder self parameter.
+            data_access: RentalDetailsDataAccess's inheritance class.
         """
-        @summary: Retrive DogModel with dates.
-        @param self: DogModelBuilder self parameter.
-        @returns: Returns the DogModel with dates.
-        """
-        leiPricePerNight: int = self._dataAccess.getDogPriceLei()
-        eurPricePerNight: int = self._dataAccess.getDogPriceEur()
-        dogModel: DogModel = DogModel(leiPricePerNight, eurPricePerNight)
+        self._data_access = data_access
 
-        return dogModel
+    def retrive_dog_model(self) -> DogModel:
+        """
+        Retrive DogModel with dates.
+
+        Args:
+            self: DogModelBuilder self parameter.
+        Returns:
+            Returns the DogModel with dates.
+        """
+        lei_price_per_night: int = self._data_access.get_dog_price_lei()
+        eur_price_per_night: int = self._data_access.get_dog_price_eur()
+        dog_model: DogModel = DogModel(lei_price_per_night, eur_price_per_night)
+
+        return dog_model

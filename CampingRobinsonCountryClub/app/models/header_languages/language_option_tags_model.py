@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model for the option tags in the header language select.
+This class is a model for the option tags in the header language select.
 """
 
 from models.header_languages import LanguageOptionTagModel
@@ -15,22 +15,27 @@ from models.header_languages import LanguageOptionTagModel
 
 class LanguageOptionTagsModel():
     """
-    @summary: This class is a model of language option tags.
+    This class is a model of language option tags.
     """
 
-    def __init__(self, languageOptionTagModels: list[LanguageOptionTagModel]):
+    def __init__(self, language_option_tag_models: list[LanguageOptionTagModel]):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: LanguageOptionTagsModel self parameter.
-        @param languageOptionTagModels: A list with LanguageOptionTagModels.
+        The init method initialize instance attributes.
+
+        Args:
+            self: LanguageOptionTagsModel self parameter.
+            language_option_tag_models: A list with LanguageOptionTagModels.
         """
-        self._languageOptionTagModels: list[LanguageOptionTagModel] = languageOptionTagModels
+        self._language_option_tag_models: list[LanguageOptionTagModel] = language_option_tag_models
 
     @property
-    def LanguageOptionTagModels(self) -> list[LanguageOptionTagModel]:
+    def language_option_tag_models(self) -> list[LanguageOptionTagModel]:
         """
-        @summary: The DisplayLanguageName getter property.
-        @param self: LanguageOptionTagsModel self parameter.
-        @returns: Language name.
+        The language_option_tag_models getter property.
+
+        Args:
+            self: LanguageOptionTagsModel self parameter.
+        Returns:
+            Language name.
         """
-        return self._languageOptionTagModels
+        return self._language_option_tag_models

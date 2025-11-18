@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class handles the view of rental trailers details.
+This class handles the view of rental trailers details.
 """
 
 from pathlib import Path
@@ -19,7 +19,7 @@ from controllers.rental_details import TrailerController
 
 class TrailersView():
     """
-    @summary: This class handles the view of rental trailers details.
+    This class handles the view of rental trailers details.
     """
 
     # Class variables
@@ -29,68 +29,78 @@ class TrailersView():
 
     def __init__(self):
         """
-        @summary: Rental trailers details views.
-        @param self: TrailersView self parameter.
+        Rental trailers details views.
+
+        Args:
+            self: TrailersView self parameter.
         """
         if self.__class__.TRAILER_BASE_TABLE_FILE_CONTENT is None:
-            self.__class__.TRAILER_BASE_TABLE_FILE_CONTENT = self.__readTrailerBaseTableHtml()
+            self.__class__.TRAILER_BASE_TABLE_FILE_CONTENT = self.__read_trailer_base_table_html()
 
     @classmethod
-    def showTrailersView(cls, translations: dict, trailersModel: TrailersModel) -> str:
+    def show_trailers_view(cls, translations: dict, trailers_model: TrailersModel) -> str:
         """
-        @summary: Create the full trailers view.
-        @param cls: TrailersView cls parameter.
-        @param translations: Language dictionary.
-        @param trailerControllers: Trailer contollers.
-        @returns: Returns a full displayable trailers html code piece.
+        Create the full trailers view.
+
+        Args:
+            cls: TrailersView cls parameter.
+            translations: Language dictionary.
+            trailers_model: Trailer models.
+        Returns:
+            Returns a full displayable trailers html code piece.
         """
         # 1. replaces translation texts
-        trailersView: str = cls.TRAILER_BASE_TABLE_FILE_CONTENT
+        trailers_view: str = cls.TRAILER_BASE_TABLE_FILE_CONTENT
         try:
-            for key, itemValue in translations['rentalDetails']['trailerDetails'].items():
-                trailersView = trailersView.replace('{{' + key + '}}', itemValue)
+            for key, item_value in translations['rentalDetails']['trailerDetails'].items():
+                trailers_view = trailers_view.replace('{{' + key + '}}', item_value)
         except KeyError as e:
             print(f"KeyError exception in {cls.__class__.__name__}: {e}!")
 
         # 2. generating and replaces trailerTableRows in the content
-        trailersTableRows: str = str()
-        for i in trailersModel:
-            trailerView: TrailerView = TrailerView()
-            trailerController: TrailerController = TrailerController(i, trailerView)
-            trailersTableRows = trailersTableRows + trailerController.showTrailerView(translations)
+        trailers_table_rows: str = str()
+        for i in trailers_model:
+            trailer_view: TrailerView = TrailerView()
+            trailer_controller: TrailerController = TrailerController(i, trailer_view)
+            trailers_table_rows = trailers_table_rows + trailer_controller.show_trailer_view(translations)
 
         TRAILER_TABLE_ROWS_KEY: str = 'trailerTableRows'
-        trailersView = trailersView.replace('{{' + TRAILER_TABLE_ROWS_KEY + '}}', trailersTableRows)
+        trailers_view = trailers_view.replace('{{' + TRAILER_TABLE_ROWS_KEY + '}}', trailers_table_rows)
 
-        return trailersView
+        return trailers_view
 
     @classmethod
-    def __readTrailerBaseTableHtml(cls) -> str:
+    def __read_trailer_base_table_html(cls) -> str:
         """
-        @summary: Read in table_trailerBase.html from templates folder.
-        @param cls: TrailersView cls parameter.
-        @returns: Returns contents of html file.
+        Read in table_trailerBase.html from templates folder.
+
+        Args:
+            cls: TrailersView cls parameter.
+        Returns:
+            Returns contents of html file.
         """
-        trailerBaseTableHtml: str = None
+        trailer_base_table_html: str = None
 
         try:
             with open(cls.TRAILER_BASE_TABLE_FILE_PATH, 'r', encoding = 'utf-8') as f:
-                trailerBaseTableHtml = f.read()
+                trailer_base_table_html = f.read()
 
         except FileNotFoundError:
             print(f"Exception Error: {cls.TRAILER_BASE_TABLE_FILE_PATH} file not found!")
-            trailerBaseTableHtml = None
+            trailer_base_table_html = None
 
         except Exception as e:
             print(f"Exception Error: reading {cls.TRAILER_BASE_TABLE_FILE_PATH}: {e}")
-            trailerBaseTableHtml = None
+            trailer_base_table_html = None
 
-        return trailerBaseTableHtml
+        return trailer_base_table_html
 
     @classmethod
     def __str__(cls) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param cls: TrailersView self parameter.
+        A function of a class that can return class state.
+
+        Args:
+            cls: TrailersView self parameter.
         """
         pass

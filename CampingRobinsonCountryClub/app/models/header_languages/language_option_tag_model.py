@@ -7,50 +7,61 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model for the option tag in the header language select.
+This class is a model for the option tag in the header language select.
 """
 
 
 class LanguageOptionTagModel():
     """
-    @summary: This class is a model of language option tag.
+    This class is a model of language option tag.
     """
 
-    def __init__(self, displayLanguageName: str = '', languageCodeName: str = '', selected: bool = False):
+    def __init__(self, display_language_name: str = '', language_code_name: str = '', selected: bool = False):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: LanguageOptionTagModel self parameter.
-        @param displayLanguageName: Display Language Name the inner text.
-        @param languageCodeName: value parameter.
-        @param selected: Is selected option.
+        The init method initialize instance attributes.
+
+        Args:
+            self: LanguageOptionTagModel self parameter.
+            display_language_name: Display Language Name the inner text.
+            language_code_name: value parameter.
+            selected: Is selected option.
         """
-        self._displayLanguageName: str = displayLanguageName
-        self._languageCodeName: str = languageCodeName
+        self._display_language_name: str = display_language_name
+        self._language_code_name: str = language_code_name
         self._selected: bool = selected
 
     @property
-    def DisplayLanguageName(self) -> str:
+    def display_language_name(self) -> str:
         """
-        @summary: The DisplayLanguageName getter property.
-        @param self: LanguageOptionTagModel self parameter.
-        @returns: Language name.
+        The display_language_name getter property.
+
+        Args:
+            self: LanguageOptionTagModel self parameter.
+        Returns:
+            Language name.
         """
-        return self._displayLanguageName
+        return self._display_language_name
 
     @property
-    def LanguageCodeName(self) -> str:
+    def language_code_name(self) -> str:
         """
-        @summary: The LanguageCodeName getter property.
-        @param self: LanguageOptionTagModel self parameter.
-        @returns: Language code naem for value parameter.
+        The language_code_name getter property.
+
+        Args:
+            self: LanguageOptionTagModel self parameter.
+        Returns:
+            Language code naem for value parameter.
         """
-        return self._languageCodeName
+        return self._language_code_name
 
     @property
-    def IsSelected(self) -> bool:
+    def is_selected(self) -> bool:
         """
-        @summary: The Selected getter property.
-        @param self: LanguageOptionTagModel self parameter.
-        @returns: Return True if the option is selected.
+        The Selected getter property.
+
+        Args:
+            self: LanguageOptionTagModel self parameter.
+        Returns:
+            Return True if the option is selected.
         """
         return self._selected

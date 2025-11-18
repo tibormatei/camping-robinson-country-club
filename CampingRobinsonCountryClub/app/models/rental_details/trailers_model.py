@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class is a model of rental trailers prices.
+This class is a model of rental trailers prices.
 """
 
 from models.rental_details import TrailerModel
@@ -15,29 +15,35 @@ from models.rental_details import TrailerModel
 
 class TrailersModel():
     """
-    @summary: This class is a model of rental trailers prices.
+    This class is a model of rental trailers prices.
     """
 
-    def __init__(self, trailerModels: list[TrailerModel] = []):
+    def __init__(self, trailer_models: list[TrailerModel] = []):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TrailersModel self parameter.
-        @param trailerModels: Trailer models.
-        """
-        self._trailers: list[TrailerModel] = trailerModels
+        The init method initialize instance attributes.
 
-    def AddTrailerModel(self, trailerModel: TrailerModel) -> None:
+        Args:
+            self: TrailersModel self parameter.
+            trailer_models: Trailer models.
         """
-        @summary: Add to the trailers list a trailer model.
-        @param self: TrailersModel self parameter.
-        @param trailerModel: The trailer model.
+        self._trailers: list[TrailerModel] = trailer_models
+
+    def add_trailer_model(self, trailer_model: TrailerModel) -> None:
         """
-        if trailerModel not in self._trailers:
-            self._trailers.append(trailerModel)
+        Add to the trailers list a trailer model.
+
+        Args:
+            self: TrailersModel self parameter.
+            trailer_model: The trailer model.
+        """
+        if trailer_model not in self._trailers:
+            self._trailers.append(trailer_model)
 
     def __iter__(self):
         """
-        @summary: This is an iterable class.
-        @param self: TrailersModel self parameter.
+        This is an iterable class.
+
+        Args:
+            self: TrailersModel self parameter.
         """
         return iter(self._trailers)

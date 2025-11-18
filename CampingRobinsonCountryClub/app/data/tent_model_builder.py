@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class returns the TentModel with dates.
+This class returns the TentModel with dates.
 """
 
 from data import RentalDetailsDataAccess
@@ -16,26 +16,31 @@ from models.rental_details import TentModel
 
 class TentModelBuilder():
     """
-    @summary: This class returns the TentModel with dates.
+    This class returns the TentModel with dates.
     """
 
-    def __init__(self, dataAccess: RentalDetailsDataAccess):
+    def __init__(self, data_access: RentalDetailsDataAccess):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TentModelBuilder self parameter.
-        @param sedataAccesslf: RentalDetailsDataAccess's inheritance class.
-        """
-        self._dataAccess = dataAccess
+        The init method initialize instance attributes.
 
-    def RetriveTentModel(self) -> TentModel:
+        Args:
+            self: TentModelBuilder self parameter.
+            data_access: RentalDetailsDataAccess's inheritance class.
         """
-        @summary: Retrive TentModel with dates.
-        @param self: TentModelBuilder self parameter.
-        @returns: Returns the TentModel with dates.
-        """
-        tentCapacities: list[str] = self._dataAccess.getTentPersons()
-        leiPricePerPerson: int = self._dataAccess.getTentPriceLei()
-        eurPricePerPerson: int = self._dataAccess.getTentPriceEur()
-        tentModel: TentModel = TentModel(tentCapacities, leiPricePerPerson, eurPricePerPerson)
+        self._data_access = data_access
 
-        return tentModel
+    def retrive_tent_model(self) -> TentModel:
+        """
+        Retrive TentModel with dates.
+
+        Args:
+            self: TentModelBuilder self parameter.
+        Returns:
+            Returns the TentModel with dates.
+        """
+        tent_capacities: list[str] = self._data_access.get_tent_persons()
+        lei_price_per_person: int = self._data_access.get_tent_price_lei()
+        eur_price_per_person: int = self._data_access.get_tent_price_eur()
+        tent_model: TentModel = TentModel(tent_capacities, lei_price_per_person, eur_price_per_person)
+
+        return tent_model

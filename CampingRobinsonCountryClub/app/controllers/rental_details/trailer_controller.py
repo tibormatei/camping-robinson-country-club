@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class controller the trailer model and view.
+This class controller the trailer model and view.
 """
 
 from models.rental_details import TrailerModel
@@ -16,34 +16,42 @@ from views.rental_details import TrailerView
 
 class TrailerController():
     """
-    @summary: This class controller the trailer details.
+    This class controller the trailer details.
     """
 
-    def __init__(self, trailerModel: TrailerModel, trailerView: TrailerView):
+    def __init__(self, trailer_model: TrailerModel, trailer_view: TrailerView):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TrailerController self parameter.
-        @param trailerModel: The model class for MVC pattern.
-        @param trailerView: The view class for MVC pattern.
-        """
-        self._trailerModel: TrailerModel = trailerModel
-        self._trailerView: TrailerView = trailerView
+        The init method initialize instance attributes.
 
-    def showTrailerView(self, translations: dict = {}) -> str:
+        Args:
+            self: TrailerController self parameter.
+            trailer_model: The model class for MVC pattern.
+            trailer_view: The view class for MVC pattern.
         """
-        @summary: Return the view of tent.
-        @param self: TentController self parameter.
-        @returns: Returns view of Tent Details in string.
+        self._trailer_model: TrailerModel = trailer_model
+        self._trailer_view: TrailerView = trailer_view
+
+    def show_trailer_view(self, translations: dict = {}) -> str:
         """
-        trailerCapacity: str = self._trailerModel.TrailerCapacity
-        leiPrice: int = self._trailerModel.LeiPrice
-        eurPrice: int = self._trailerModel.EurPrice
-        return self._trailerView.showTrailerView(translations, trailerCapacity, leiPrice, eurPrice)
+        Return the view of tent.
+
+        Args:
+            self: TentController self parameter.
+        Returns:
+            Returns view of Tent Details in string.
+        """
+        trailer_capacity: str = self._trailer_model.trailer_capacity
+        lei_price: int = self._trailer_model.lei_price
+        eur_price: int = self._trailer_model.eur_price
+        return self._trailer_view.show_trailer_view(translations, trailer_capacity, lei_price, eur_price)
 
     def __str__(self) -> str:
         """
-        @summary: A function of a class that can return class state.
-        @param self: TrailerController self parameter.
-        @returns: Returns showTrailerView().
+        A function of a class that can return class state.
+
+        Args:
+            self: TrailerController self parameter.
+        Returns:
+            Returns show_trailer_view().
         """
-        return self.showTrailerView()
+        return self.show_trailer_view()

@@ -7,7 +7,7 @@
 # the Free Software Foundation, either version 2 of the License.
 
 """
-@summary: This class returns the TrailerModel with dates.
+This class returns the TrailerModel with dates.
 """
 
 from data import RentalDetailsDataAccess
@@ -16,25 +16,30 @@ from models.rental_details import TrailerModel
 
 class TrailerModelBuilder():
     """
-    @summary: This class returns the TrailerModel with dates.
+    This class returns the TrailerModel with dates.
     """
 
-    def __init__(self, dataAccess: RentalDetailsDataAccess):
+    def __init__(self, data_access: RentalDetailsDataAccess):
         """
-        @summary: The init method initialize instance attributes.
-        @param self: TrailerModelBuilder self parameter.
-        @param sedataAccesslf: RentalDetailsDataAccess's inheritance class.
-        """
-        self._dataAccess = dataAccess
+        The init method initialize instance attributes.
 
-    def RetriveTrailerModel(self, trailerCapacity: str) -> TrailerModel:
+        Args:
+            self: TrailerModelBuilder self parameter.
+            data_access: RentalDetailsDataAccess's inheritance class.
         """
-        @summary: Retrive TrailerModel with dates.
-        @param self: TrailerModelBuilder self parameter.
-        @returns: Returns the TrailerModel with dates.
-        """
-        leiPrice = self._dataAccess.getTrailerPriceLei(trailerCapacity)
-        eurPrice = self._dataAccess.getTrailerPriceEur(trailerCapacity)
-        trailerModel: TrailerModel = TrailerModel(trailerCapacity, leiPrice, eurPrice)
+        self._data_access = data_access
 
-        return trailerModel
+    def retrive_trailer_model(self, trailer_capacity: str) -> TrailerModel:
+        """
+        Retrive TrailerModel with dates.
+
+        Args:
+            self: TrailerModelBuilder self parameter.
+        Returns:
+            Returns the TrailerModel with dates.
+        """
+        lei_price = self._data_access.get_trailer_price_lei(trailer_capacity)
+        eur_price = self._data_access.get_trailer_price_eur(trailer_capacity)
+        trailer_model: TrailerModel = TrailerModel(trailer_capacity, lei_price, eur_price)
+
+        return trailer_model
