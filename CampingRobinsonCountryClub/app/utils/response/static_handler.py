@@ -44,7 +44,7 @@ class StaticHandler(RequestHandler):
                     self._contents = f.read()
 
             except FileNotFoundError:
-                self._statusCode = 404
+                self._status_code = 404
                 self._contents = bytes(f"{path} file Not found!", 'utf-8')
         else:
             # To Do: future support!

@@ -115,7 +115,7 @@ class CampingRobinsonCountryClubServer(BaseHTTPRequestHandler):
                 if handler.status_code == 200:
                     self.send_response(handler.status_code)
                     self.send_header("Content-type", handler.content_type)
-                    self.send_header('Content-Length', handler.content_type)
+                    self.send_header('Content-Length', handler.content_length)
                     self.end_headers()
 
                     # Set contents:
